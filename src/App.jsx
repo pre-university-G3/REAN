@@ -1,13 +1,10 @@
 import './App.css'
-import NavbarComponent from './components/sidebar/SidebarComponent'
-import CounterComponent from './components/counter/CounterComponent'
-import BekMen from './components/counter/BekMen'
+import SidebarComponent from './components/sidebar/SidebarComponent'
 function App() {
 
   return (
     <>
-    <NavbarComponent/>
-    {/* <BekMen/> */}
+    <SidebarComponent/>
     </>
   )
 }
