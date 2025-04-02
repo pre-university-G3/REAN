@@ -1,10 +1,12 @@
 import './App.css'
-import SidebarComponent from './components/sidebar/SidebarComponent'
+import LoginComponent from './components/form/LoginComponent';
 function App() {
   return (
     <>
-      <SidebarComponent/>
+    <LoginComponent />
+     
     </>
   )
 }
+
 export default App

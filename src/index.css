@@ -1,8 +1,5 @@
 @import "tailwindcss";
-@font-face {
-  font-family: "Kantumruy Pro", sans-serif;
-  src:url(../public/fonts/KantumruyPro-Bold.ttf);
-}
-@theme{
-  --font-kh:"Kantumruy Pro", sans-serif;
-}
+
+
+
+
