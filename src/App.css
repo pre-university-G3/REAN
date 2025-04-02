@@ -1,42 +1,64 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+:root {
+  font-family: Outfit;
+
+  --primary-color: #2c3e50;
+  --secondary-color: #f4c542;
+  --accent-color: #16a085;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.small-button {
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.medium-button {
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
-.card {
-  padding: 2em;
+.large-button {
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 35px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
-.read-the-docs {
-  color: #888;
+.large-button,
+.medium-button,
+.small-button {
+  transition: all ease-out 300ms;
+}
+
+.large-button:hover,
+.medium-button:hover,
+.small-button:hover {
+  background-color: #0b6957;
+}
+
+.animated {
+  transition: all ease-out 300ms;
 }
