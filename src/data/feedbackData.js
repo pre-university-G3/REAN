@@ -1,0 +1,44 @@
+const feedbackData = [
+  {
+    profile: "/img/team.jpg",
+    name: "Kung Sovannda",
+    role: "Learner",
+    feedback:
+      "Great free content with a smooth UI! Adding interactive quizzes or coding challenges would make it even better.",
+    star: 4,
+  },
+  {
+    profile: "/img/team.jpg",
+    name: "Kung Sovannda",
+    role: "Learner",
+    feedback:
+      "Rean is an amazing platform! The courses are well-structured, beginner-friendly, and easy to navigate. A must-visit for tech learners!",
+    star: 5,
+  },
+  {
+    profile: "/img/team.jpg",
+    name: "Kung Sovannda",
+    role: "Learner",
+    feedback:
+      "Valuable courses, but some lessons need more depth. A discussion forum for learners would be a great addition!",
+    star: 3,
+  },
+  {
+    profile: "/img/team.jpg",
+    name: "Kung Sovannda",
+    role: "Learner",
+    feedback:
+      "Great concept but needs improvement. Some pages load slowly, and certain topics could be more detailed.",
+    star: 2,
+  },
+  {
+    profile: "/img/team.jpg",
+    name: "Kung Sovannda",
+    role: "Learner",
+    feedback:
+      "Rean is a fantastic learning hub! Free, well-structured courses with a user-friendly interface—perfect for tech enthusiasts!",
+    star: 5,
+  },
+];
+
+export default feedbackData;

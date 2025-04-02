@@ -1,11 +1,19 @@
 import React from "react";
 
 export default function Course(props) {
-  const { category, title, lessons, time, src } = props;
+  const { id, category, title, lessons, time, src, onClick } = props;
+  const handleClick = () => {
+    if (onClick) {
+      onClick(id);
+    }
+  };
   return (
-    <section className="flex flex-col p-4 space-y-2 rounded-small shadow-small">
+    <section
+      className="flex flex-col p-4 space-y-2 rounded-small shadow-small"
+      onClick={handleClick}
+    >
       <figure
-        className="w-full h-[169px] rounded-small bg-center bg-cover"
+        className="w-full h-[300px] md:h-[169px] rounded-small bg-center bg-cover"
         style={{ backgroundImage: `url(${src})` }}
       ></figure>
       <span className="text-accent text-detail-large uppercase">
