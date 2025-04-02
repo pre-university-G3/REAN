@@ -85,7 +85,7 @@ export default function HeaderComponent() {
         </nav>
       </header>
       {/* Header for Large Devices */}
-      <header className="hidden sm:flex flex-col items-end lg:hidden">
+      <header className="hidden fixed w-full sm:flex flex-col items-end lg:hidden">
         <nav className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white ">
           <img src={"./icons/logo.svg"} alt="" />
           <ul className="flex space-x-20 justify-between items-center">
@@ -157,7 +157,7 @@ export default function HeaderComponent() {
         </menu>
       </header>
       {/* Header for large Screen */}
-      <header className="hidden lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white shadow-small">
+      <header className="hidden fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white shadow-small">
         <img src={"./icons/logo.svg"} alt="" />
         <nav>
           <ul className="flex space-x-20 w-full  justify-between items-center">
