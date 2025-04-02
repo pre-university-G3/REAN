@@ -1,15 +1,20 @@
-import './App.css'
-import NavbarComponent from './components/navbar/NavbarComponent'
-import CounterComponent from './components/counter/CounterComponent'
-import BekMen from './components/counter/BekMen'
-function App() {
+import "./App.css";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HeaderComponent from "./components/header/HeaderComponent";
 
+function App() {
   return (
-    <>
-    <NavbarComponent/>
-    {/* <BekMen/> */}
-    </>
-  )
+    <BrowserRouter>
+      <HeaderComponent />
+      <Routes>
+        <Route path="/" element={<h1>HomePage</h1>} />
+        <Route path="/about" element={<h1>About Page</h1>} />
+        <Route path="/courses" element={<h1>Courses Page</h1>} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
