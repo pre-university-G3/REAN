@@ -1,10 +1,10 @@
 @import "tailwindcss";
-<<<<<<< HEAD
+
 @font-face {
   font-family: "Kantumruy Pro", sans-serif;
   src:url(../public/fonts/KantumruyPro-Bold.ttf);
-=======
 
+}
 @theme {
   --color-primary: #2c3e50;
   --color-secondary: #f4c542;
@@ -39,7 +39,6 @@
 
   /* Shadow */
   --shadow-small: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
->>>>>>> a8f3971f6d3266ec6e3c1d0b6bd49b6c216bcb2c
 }
 @theme{
   --font-kh:"Kantumruy Pro", sans-serif;
