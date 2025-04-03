@@ -13,7 +13,7 @@ function Navbar() {
         </nav>
         <div className="d-block">
         <p>this sentents will :{counter} be increase </p>
-        <button onClick={()=> setcount(counter + "fuck yiou ")}>Click me</button>
+        <button onClick={()=> setcount(counter + "fuck you ")}>Click me</button>
         <button onClick={()=> setcount(counter - counter)}>Click to back</button>
             </div>  
         </>

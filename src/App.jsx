@@ -1,12 +1,10 @@
 import './App.css'
-import NavbarComponent from './components/navbar/NavbarComponent'
-import CounterComponent from './components/counter/CounterComponent'
-import BekMen from './components/counter/BekMen'
+import { AllCourses } from './pages/AllCourses'
 function App() {
 
   return (
     <>
-    <NavbarComponent/>
+    <AllCourses/>
     {/* <BekMen/> */}
     </>
   )
