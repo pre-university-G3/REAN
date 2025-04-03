@@ -1,29 +1,22 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes,useLocation } from "react-router-dom";
 import HeaderComponent from "./components/header/HeaderComponent";
 import HomePage from "./pages/HomePage";
 
 import "./App.css";
-import SidebarComponent from "./components/sidebar/SidebarComponent";
+import ProfileSaved from "./components/Profile/ProfileSaved";
+import Dashboard from "./components/Profile/Dashboard";
 function App() {
   return (
-    <BrowserRouter>
-      <HeaderComponent />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<h1>About Page</h1>} />
-        <Route path="/courses" element={<h1>Courses Page</h1>} />
-        <Route
-          path="/profile"
-          element={
-            <h1>
-              <SidebarComponent />
-            </h1>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        {/* <HeaderComponent /> */}
+        <Routes>
+          <Route path="*" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
