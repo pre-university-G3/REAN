@@ -23,8 +23,8 @@ export default function FeedbackCard(props) {
         <span className="flex justify-center items-center gap-1">
           {Array(star)
             .fill(0)
-            .map(() => (
-              <img src="/icons/ratingstar.svg" alt="" />
+            .map((value, index) => (
+              <img key={index} src="/icons/ratingstar.svg" alt="" />
             ))}
         </span>
       </article>

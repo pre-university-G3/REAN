@@ -27,6 +27,7 @@ export default function ClientFeedback() {
         </div>
         {datas.map((data) => (
           <FeedbackCard
+            key={data.id}
             profile={data.profile}
             name={data.name}
             role={data.role}

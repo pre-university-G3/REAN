@@ -5,6 +5,7 @@ import AboutSection from "../components/hompage/about/AboutSection";
 import OfferCourse from "../components/hompage/offercourse/OfferCourse";
 import Faq from "../components/hompage/faq/Faq";
 import ClientFeedback from "../components/hompage/clientfeedback/ClientFeedback";
+import FeedbackForm from "../components/hompage/feedbackform/FeedbackForm";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
       <OfferCourse />
       <Faq />
       <ClientFeedback />
+      <FeedbackForm />
     </main>
   );
 }

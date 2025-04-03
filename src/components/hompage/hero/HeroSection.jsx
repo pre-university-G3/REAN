@@ -1,7 +1,8 @@
 import React from "react";
 import Widget from "./Widget";
-
+import { useNavigate } from "react-router-dom";
 export default function HeroSection() {
+  const navigate = useNavigate();
   return (
     <>
       <section className="relative z-10 flex flex-col   w-full h-fit md:h-[100vh]  md:flex-row justify-center  pt-[50px] sm:pt-[72px] px-5 md:px-[60px] lg:px-[120px] ">
@@ -18,7 +19,10 @@ export default function HeroSection() {
             <button className="large-button w-full max-w-[232px]">
               Get Started
             </button>
-            <button className="flex justify-center items-center w-full max-w-[232px] rounded-small bg-white text-accent border-2 border-accent hover:text-white hover:bg-accent transition-colors ease-in-out duration-300 h-full">
+            <button
+              className="flex justify-center items-center w-full max-w-[232px] rounded-small bg-white text-accent border-2 border-accent hover:text-white hover:bg-accent transition-colors ease-in-out duration-300 h-full"
+              onClick={() => navigate("/about")}
+            >
               Learn more
             </button>
           </div>

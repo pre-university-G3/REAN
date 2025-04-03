@@ -21,7 +21,11 @@ export default function Faq() {
       </article>
       <section className="flex flex-col w-full xl:w-[70%] gap-5">
         {datas.map((data) => (
-          <QuestionAnswer question={data.question} answer={data.answer} />
+          <QuestionAnswer
+            key={data.id}
+            question={data.question}
+            answer={data.answer}
+          />
         ))}
       </section>
     </section>
