@@ -1,196 +1,82 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import HeaderComponent from "../header/HeaderComponent";
-export default function LearninPages() {
-  const [logo, setLogo] = useState("/icons/menu.svg");
-  const [isClick, setClick] = useState(false);
+import { Menu } from "lucide-react";
 
+export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Auto-open sidebar on desktop
   useEffect(() => {
     const handleResize = () => {
-      setClick(false);
-      setLogo("/icons/menu.svg");
+      if (window.innerWidth >= 1024) {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
     };
 
     window.addEventListener("resize", handleResize);
+    handleResize(); // Set initial state
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Sidebar menu items data
+  const menuItems = [
+    { path: "/", name: "HTML HOME", isActive: true },
+    { path: "/introduction", name: "HTML Introduction" },
+    { path: "/editors", name: "HTML Editors" },
+    { path: "/basic", name: "HTML Basic" },
+    { path: "/elements", name: "HTML Elements" },
+    // Add more items as needed
+  ];
+
   return (
     <>
-      {/* Small_Device */}
-      <section className="fixed sm:hidden w-full animated h-fit mt-12.25">
-        <nav
-          cclassName={`relative h-[50px] z-50 w-full px-[30px] bg-white animated shadow-small flex justify-between items-center`}
-        >
-          <figure
-            className="hover:bg-black animated h-8 w-8 rounded-small flex justify-center items-center cursor-pointer"
-            onClick={() => {
-              setLogo(isClick ? "/icons/menu.svg" : "/icons/xmenu.svg");
-
-              setClick(!isClick);
-            }}
-          >
-            <div
-              className={`transition-transform duration-300 ease-in-out ${
-                isClick ? "rotate-180" : "rotate-0"
-              }`}
-            >
-              <img src={logo} alt="Menu icons" />
-            </div>
-          </figure>
-        </nav>
-        <nav
-          className={`absolute w-full h-fit z-40 bg-white border-b-[1px] transition-all duration-700 ease-in-out border-gray-300 px-[30px] py-4 rounded-b-small  ${
-            isClick ? "opacity-100 " : " translate-y-[-232px]"
-          }`}
-        >
-          <ul className="h-full space-y-2 flex flex-col justify-between">
-            <Link className="font-semibold text-detail-medium" to="/">
-            Chapter 1
-            </Link>
-            <li>
-              <Link className="font-semibold text-detail-medium" to="/">
-              Chapter 2
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-medium" to="/about">
-              Chapter 3
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-medium" to="/login">
-              Chapter 4
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="text-accent font-semibold text-detail-medium"
-                to="/register"
-              >
-                Chapter 5
-              </Link>
-            </li>
+      {/* Sidebar - Desktop */}
+      <aside 
+        className={`fixed top-16 bottom-0 left-0 w-64 bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 z-40 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        } lg:translate-x-0`}
+      >
+        <div className="p-4">
+          <h2 className="text-lg font-bold mb-4 text-gray-800">HTML Tutorial</h2>
+          <ul className="space-y-2">
+            {menuItems.map((item, index) => (
+              <li key={index}>
+                <Link 
+                  className={`block p-2 rounded-md ${
+                    item.isActive 
+                      ? 'bg-green-600 text-white hover:bg-green-700' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                  to={item.path}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
           </ul>
-        </nav>
-      </section>
-      {/* Mid */}
-      <section className="hidden fixed w-full sm:flex flex-col items-end lg:hidden mt-16.25">
-        <nav
-          className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white "
-        >
-          <figure
-            className="hover:bg-black animated h-8 w-8 rounded-small flex justify-center items-center cursor-pointer"
-            onClick={() => {
-              setLogo(isClick ? "/icons/menu.svg" : "/icons/xmenu.svg");
+        </div>
+      </aside>
 
-              setClick(!isClick);
-            }}
-          >
-            <div
-              className={`transition-transform duration-300 ease-in-out ${
-                isClick ? "rotate-180" : "rotate-0"
-              }`}
-            >
-              <img src={logo} alt="Menu icons" />
-            </div>
-          </figure>
-        </nav>
-        <nav
-          className={`absolute w-full h-fit z-40 bg-white border-b-[1px] transition-all duration-700 ease-in-out border-gray-300 px-[30px] py-4 rounded-b-small  ${
-            isClick ? "opacity-100 " : " translate-y-[-232px]"
-          }`}
+      {/* Sidebar Toggle Button - Mobile */}
+      {!isOpen && (
+        <button
+          className="fixed bottom-4 left-4 lg:hidden p-3 bg-green-600 text-white rounded-full shadow-lg z-50"
+          onClick={() => setIsOpen(true)}
         >
-          <ul className="h-full space-y-2 flex flex-col justify-between ">
-            <Link className="font-semibold text-detail-medium" to="/">
-            Chapter 1
-            </Link>
-            <li>
-              <Link className="font-semibold text-detail-medium" to="/">
-              Chapter 2
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-medium" to="/about">
-              Chapter 3
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-medium" to="/login">
-              Chapter 4
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="text-accent font-semibold text-detail-medium"
-                to="/register"
-              >
-                Chapter 5
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      {/* Large Screen */}
-      <section className="hidden fixed lg:flex h-full w-[25%] mt-18.25 bg-[#F5F5F5]  shadow-small">
-        <nav>
-          <ul className="flex-col w-full p-2">
-          <li>
-              <Link
-                className="font-semibold w text-h2-large text-accent w-full"
-                to="/"
-              >
-                HTML Tutorial
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="font-semibold text-detail-large text-accent p-5"
-                to="/"
-              >
-                HTML HOME
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large p-5" to="/">
-                HTML Introduction
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large p-5" to="/">
-                HTML Editors
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large p-5" to="/">
-                HTML Basic
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large p-5" to="/">
-                HTML Elements
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large p-5" to="/">
-                HTML Elements
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large p-5" to="/">
-                HTML Elements
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      <header>
-          <HeaderComponent/>
-      </header>
+          <Menu size={24} />
+        </button>
+      )}
 
-      
+      {/* Overlay for mobile sidebar */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-opacity-50 lg:hidden z-30"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
     </>
   );
 }

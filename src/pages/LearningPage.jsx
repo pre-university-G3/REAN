@@ -1,23 +1,18 @@
 import React from "react";
 import LearningSide from "../components/learning-side/LearningSide";
+import HeaderComponent from "../components/header/HeaderComponent";
+import Content from "../components/content/Content";
 
-export default function LearningPage() {
+export default function Layout({ children }) {
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-white">
+            <div className="flex flex-1">
+      
+      <Content>{children}</Content>
       <LearningSide />
-      <section className="w-[50]">
-        <h1 className="text-xl font-bold">HTML Tutorial</h1>
-        <div>
-          <div className="flex justify-between items-center p-4">
-            <button className="bg-green-600 text-white px-4 py-2 rounded flex items-center">
-              <span className="mr-2">&laquo;</span> Home
-            </button>
-            <button className="bg-green-600 text-white px-4 py-2 rounded flex items-center">
-              Next <span className="ml-2">&raquo;</span>
-            </button>
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+      <HeaderComponent/>
+
+    </div>
   );
 }
