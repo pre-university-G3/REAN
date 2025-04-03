@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HeaderComponent from "./components/header/HeaderComponent";
+import FooterComponent from "./components/footer/FooterComponent";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/courses" element={<h1>Courses Page</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
+      <FooterComponent />
     </BrowserRouter>
   );
 }
