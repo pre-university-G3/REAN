@@ -105,21 +105,21 @@ export default function LearninPages() {
         >
           <ul className="h-full space-y-2 flex flex-col justify-between ">
             <Link className="font-semibold text-detail-medium" to="/">
-              C1
+            Chapter 1
             </Link>
             <li>
               <Link className="font-semibold text-detail-medium" to="/">
-                C2
+              Chapter 2
               </Link>
             </li>
             <li>
               <Link className="font-semibold text-detail-medium" to="/about">
-                C3
+              Chapter 3
               </Link>
             </li>
             <li>
               <Link className="font-semibold text-detail-medium" to="/login">
-                C4
+              Chapter 4
               </Link>
             </li>
             <li>
@@ -127,50 +127,70 @@ export default function LearninPages() {
                 className="text-accent font-semibold text-detail-medium"
                 to="/register"
               >
-                C5
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      {/* Large Screen */}
-      <section className="hidden fixed lg:flex h-full w-[20.22%] mt-18.25 bg-white shadow-small">
-        <nav>
-          <ul className="flex-col space-x-1 w-[100%] ">
-            <li>
-              <Link
-                className="font-semibold text-detail-large text-accent"
-                to="/"
-              >
-                Chapter 1
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large" to="/">
-                Chapter 2
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large" to="/">
-                Chapter 3
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large" to="/">
-                Chapter 4
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-detail-large" to="/">
                 Chapter 5
               </Link>
             </li>
           </ul>
         </nav>
       </section>
+      {/* Large Screen */}
+      <section className="hidden fixed lg:flex h-full w-[25%] mt-18.25 bg-[#F5F5F5]  shadow-small">
+        <nav>
+          <ul className="flex-col w-full p-2">
+          <li>
+              <Link
+                className="font-semibold w text-h2-large text-accent w-full"
+                to="/"
+              >
+                HTML Tutorial
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="font-semibold text-detail-large text-accent p-5"
+                to="/"
+              >
+                HTML HOME
+              </Link>
+            </li>
+            <li>
+              <Link className="font-semibold text-detail-large p-5" to="/">
+                HTML Introduction
+              </Link>
+            </li>
+            <li>
+              <Link className="font-semibold text-detail-large p-5" to="/">
+                HTML Editors
+              </Link>
+            </li>
+            <li>
+              <Link className="font-semibold text-detail-large p-5" to="/">
+                HTML Basic
+              </Link>
+            </li>
+            <li>
+              <Link className="font-semibold text-detail-large p-5" to="/">
+                HTML Elements
+              </Link>
+            </li>
+            <li>
+              <Link className="font-semibold text-detail-large p-5" to="/">
+                HTML Elements
+              </Link>
+            </li>
+            <li>
+              <Link className="font-semibold text-detail-large p-5" to="/">
+                HTML Elements
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </section>
       <header>
-        <HeaderComponent />
+          <HeaderComponent/>
       </header>
+
+      
     </>
   );
 }
