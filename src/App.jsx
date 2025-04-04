@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HeaderComponent from "./components/header/HeaderComponent";
+import HeaderComponent from "./components/header/HeaderComponent"
+import { BrowserRouter, Route, Routes,useLocation } from "react-router-dom";
 import CourseDetail from "./pages/CourseDetail";
 
 function App() {

@@ -1,17 +1,22 @@
+
 import React from 'react'
 import HeroSection from "../components/coursedetail/HeroSection";
+import DropDown from "../components/coursedetail/DropDown"
 
 export default function CourseDetail() {
   return (
-    <main className=''>
+  
+    <main className='flex flex-col items-center'>
         <HeroSection />
-          
-        <section className='flex flex-col w-full md:h-[100vh] pt-[50px] px-30'>
+
+        <section className='flex flex-col w-full md:h-[70vh] pt-[50px] px-30'>
           <h1 className='text-accent text-h2-large font-bold'>
               Course Content
           </h1>
+          {/* Cours content */}
+          <DropDown />
         </section>
-          
+          {/* Description */}
         <section className='flex flex-col w-full md:h-[40vh] pt-[50px] px-30'>
           <h1 className='text-accent text-h2-large font-bold'>
               Description
@@ -20,7 +25,7 @@ export default function CourseDetail() {
           It would be best to have a basic understanding of HTML and CSS. If you still need to learn the fundamentals, we link to some excellent resources inside the path. We recommend starting the path and using the resources to boost your knowledge before tackling the first challenge.
           </p>
         </section>
-          
+          {/* All course */}
         <section className='flex flex-col w-full md:h-[100vh] pt-[30px] px-30'>
             <h1 className='text-accent text-h2-large font-bold'>
                 All Course
@@ -31,7 +36,7 @@ export default function CourseDetail() {
                 </nav>
             </div>
         </section>
-          
+          {/* Instructor */}
         <section className='flex flex-col w-full md:h-[100vh] pt-[30px] px-30'>
                 <h1 className='text-accent text-h2-large font-bold'>
                     Instructor

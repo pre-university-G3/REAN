@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function HeroSection() {
   return (
-    <section className='flex flex-col w-full bg-primary md:h-[100vh] md:flex-row justify-center overflow-clip pt-[50px] px-30'>
-        <article className='space-y-8 w-full h-screen md:h-full md:w-[90vw] flex flex-col justify-center text-center md:text-start'>
+    <section className='flex flex-col w-full bg-primary md:h-[100vh] md:flex-row justify-center overflow-clip pt-[5px] px-30'>
+        <article className='space-y-8 w-full  md:h-full md:w-[90vw] flex flex-col justify-center text-center md:text-start'>
             <div>
                 <nav className="text-white text-body-text-large ">
                     <a href="#" class="hover:text-accent">Course <span className='mx-3'>&gt;</span> </a> 
