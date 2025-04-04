@@ -1,4 +1,5 @@
-const Dashboard = () => {
+
+const Profile = () => {
   return (
     <div className="flex">
       <Sidebar />
@@ -29,4 +30,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Profile;

@@ -1,9 +1,11 @@
 import React from 'react'
-import ProfileSaved from '../components/Profile/ProfileSaved'
+import Profile from '../components/Profile/ProfileComponent'
 export default function ProfilePage() {
   return (
     <main>
-      <ProfileSaved/>
+      <>
+      <Profile/>
+      </>
     </main>
   )
 }
