@@ -36,7 +36,7 @@ export default function Sidebar() {
     <>
       {/* Sidebar - Desktop */}
       <aside 
-        className={`fixed top-16 bottom-0 left-0 w-64 bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 z-40 ${
+        className={`fixed top-18 bottom-0 left-0 w-64 bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 z-40 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0`}
       >
@@ -48,7 +48,7 @@ export default function Sidebar() {
                 <Link 
                   className={`block p-2 rounded-md ${
                     location.pathname === item.path
-                      ? 'bg-accent text-white hover:bg-green-700' 
+                      ? 'bg-primary text-white hover:bg-gray-900' 
                       : 'text-gray-700 hover:bg-gray-100'
                   }`}
                   to={item.path}
@@ -75,7 +75,7 @@ export default function Sidebar() {
       {/* Overlay for mobile sidebar */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 lg:hidden z-30"
+          className="fixed inset-0 bg-opacity-50 lg:hidden z-30"
           onClick={() => setIsOpen(false)}
         ></div>
       )}

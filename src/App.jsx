@@ -5,7 +5,7 @@ import LearningPage from "./pages/LearningPage";
 import HeaderComponent from "./components/header/HeaderComponent";
 import LearninPages from "./pages/LearningPage";
 import Introduction from "./pages/Introduction";
-import Elements from "./pages/Element";
+import Element from "./pages/Element";
 import Basic from "./pages/Basic";
 import Editors from "./pages/Editors";
 
