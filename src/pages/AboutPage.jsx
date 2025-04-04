@@ -3,6 +3,7 @@ import HeroSection from "../components/aboutpage/herosection/HeroSection";
 import WhoWeAre from "../components/aboutpage/aboutwesection/WhoWeAre";
 import KeyBenefit from "../components/aboutpage/keybenefit/KeyBenefit";
 import OurTeam from "../components/aboutpage/ourteam/OurTeam";
+import ContactSection from "../components/aboutpage/contactsection/ContactSection";
 
 export default function AboutPage() {
   return (
@@ -11,6 +12,7 @@ export default function AboutPage() {
       <WhoWeAre />
       <KeyBenefit />
       <OurTeam />
+      <ContactSection />
     </main>
   );
 }
