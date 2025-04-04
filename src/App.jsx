@@ -8,21 +8,49 @@ import React from "react";
 import HeaderComponent from "./components/header/HeaderComponent";
 import FooterComponent from "./components/footer/FooterComponent";
 import AboutPage from "./pages/AboutPage";
+import Layout from "./route/Layout";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
     <BrowserRouter>
-      <HeaderComponent />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Layout>
+              <AboutPage />
+            </Layout>
+          }
+        />
         <Route path="/courses" element={<h1>Courses Page</h1>} />
         <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/register"
+          element={
+            <AuthPage>
+              <RegisterForm />
+            </AuthPage>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <AuthPage>
+              <LoginForm />
+            </AuthPage>
+          }
+        />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
-      <FooterComponent />
     </BrowserRouter>
   );
 }

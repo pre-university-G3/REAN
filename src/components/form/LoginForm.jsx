@@ -1,188 +1,158 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import style from "./style.module.css";
-import { ErrorMessage, Field, Formik, Form } from 'formik';
-import { useNavigate } from 'react-router';
-import * as Yup from 'yup';
-import { IoEyeOffSharp, IoEyeSharp } from 'react-icons/io5';
-import Loader from '../../components/loader/Loader';
-import image from '../../../public/img/Logo.svg'
-import images from '../../../public/img/Login.svg'
-import Google from '../../../public/img/GoogleLogo.svg'
-
+import { ErrorMessage, Field, Formik, Form } from "formik";
+import { Link, useNavigate } from "react-router";
+import * as Yup from "yup";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
+import Loader from "../../components/loading/Loader";
+import images from "../../../public/img/Login.svg";
+import { loginUser } from "../../api/login";
 
 const initialValues = {
-    email: "",
-    password: "",
-}
+  email: "lovelyfarm168@gmail.com",
+  password: "Kdxadev12!",
+};
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email format").required("Email is required"),
-    password: Yup.string().required("Password is required"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 export default function LoginForm() {
-    const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-    const handleShowPassword = () => {
-        setShowPassword(!showPassword);
-        // Toggle password visibility
-    };
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+    // Toggle password visibility
+  };
 
-    // handle for login
-    const handleSubmit = async (values) => {
-        setLoading(true);
+  // handle for login
+  const handleSubmit = async (values) => {
+    console.log(values);
+    setLoading(true);
 
-        try {
-            // const response = await fetch("https://api.escuelajs.co/api/v1/auth/login", {
-            const response = await fetch("https://course-api.istad.co/api/v1/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values),
-            });
-
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.message || "Login failed! Check your credentials.");
-            }
-
-            console.log("Login Success:", data);
-            setLoading(false);
-
-            if (data.access_token) {
-                localStorage.setItem("token", data.access_token); // Store token
-                navigate("/"); // Redirect to home page
-            }
-        } catch (error) {
-            console.error("Login Error:", error);
-            setLoading(false);
-            if (error instanceof Error) {
-                alert(error.message || "Something went wrong! Please try again.");
-            } else {
-                alert("Something went wrong! Please try again.");
-            }
-        }
-    };
-
-    if (loading) {
-        return (
-            <div className={style.container}>
-                <Loader />
-            </div>
-        );
+    try {
+      const data = await loginUser(values);
+      if (data?.access_token) {
+        localStorage.setItem("token", data.access_token);
+        navigate("/");
+      } else {
+        throw new Error("Verification succeeded but no token received.");
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+      setLoading(false);
+      if (error instanceof Error) {
+        alert(error.message || "Something went wrong! Please try again.");
+      } else {
+        alert("Something went wrong! Please try again.");
+      }
     }
+  };
 
-
+  if (loading) {
     return (
-        <div className=" flex items-center  from-green-50 to-white   ">
-            <div className="  w-full ">
-            
-            <div className="w-full  bg-white  rounded-lg p-6  ">
-            <a href="/" className="text-sm text-green-500 hover:underline mb-4 inline-block">
-            &larr; Back to home
-          </a>
-          <div className="flex justify-content-between mt-10">
-           <div className=" w-full ">
-                    <div className="mt-10 ">
-                        <img
-                            src={images}
-                            alt="piclogin"
-                            className="w-[60%]"
-                            />
-                          </div>
-           </div> 
-            
-        <main className="w-[60%] {style.container} ">
-            <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={handleSubmit} 
-            >
-                <Form className="bg-white border border-gray-300 p-5 rounded-lg w-full">
-                <img
-                        src={image}
-                        alt="Logo"
-                        className="mx-auto mb-4"
-                      />
-                    <h1 className= "text-2xl font-bold text-gray-800 text-center {style.title}">Login</h1>
-                    <p className="text-gray-500 mb-6 text-center mt-4">Login to access your rean account</p>
-                    {/* Email Field */}
-                    <div className="mb-5">
-                        <label className={style.label} htmlFor="email"   >
-                            Email
-                        </label>
-                        <Field type="text" name="email" id="email" placeholder="Email" className={style.input} />
-                        <ErrorMessage name="email" component="section" className={style.error} />
-                    </div>
-                    {/* Password Field */}
-                    <div className="mb-5">
-                        <label className={style.label} htmlFor="password">
-                            Password
-                        </label>
-                        <div className="relative">
-                            <Field
-                                type={showPassword ? "text" : "password"}
-                                name="password"
-                                id="password"
-                                placeholder="Password"
-                                className={style.input}
-                            />
-                            <button
-                                type="button"
-                                onClick={handleShowPassword}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
-                            >
-                                {showPassword ? <IoEyeSharp size={20} /> : <IoEyeOffSharp size={20} />}
-                            </button>
-                        </div>
-                        <ErrorMessage name="password" component="section" className={style.error} />
-                    </div>
-                    <div className="text-right mt-1">
-                                <a href="/forgot-password" className="text-sm text-gray-400 hover:underline">
-                                Forgot Password?
-                                </a>
-                            </div>
+      <div className={style.container}>
+        <Loader />
+      </div>
+    );
+  }
 
-                    {/* Submit Button */}
-                    <button type="submit" className={style.button}>
-                        Login
-                    </button>
-                     <div className="my-6 flex items-center">
-                                <hr className="flex-grow border-gray-300" />
-                                <span className="mx-4 text-sm text-gray-500">Or login with</span>
-                                <hr className="flex-grow border-gray-300" />
-                              </div>
-                              <button
-                                type="button"
-                                className="w-full flex items-center justify-center border border-gray-300 text-gray-800 py-2 px-4 rounded-md shadow  focus:outline-none"
-                              >
-                                <img
-                                  src={Google}
-                                  alt="Google Icon"
-                                  className="w-5 h-5 mr-2"
-                                />
-                                Continue with Google
-                              </button>
-                              <p className="text-center text-sm text-gray-500 mt-4">
-                                Do not have an account?{' '}
-                                <a href="/register" className="text-green-500 hover:underline">
-                                  Register
-                                </a>
-                              </p>
-                </Form>
-            </Formik>   
+  return (
+    <section className="flex flex-col justify-center px-5 md:px-[60px] lg:px-[120px] h-screen">
+      <div className="flex items-center justify-between">
+        <article className="w-[50%] hidden md:flex">
+          <img src={images} alt="piclogin" className="w-full " />
+        </article>
+
+        <main className="w-full max-w-lg p-8 bg-white shadow-small rounded-small">
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            <Form className="w-full">
+              <header className="text-center mb-4">
+                <h1 className="text-2xl font-bold text-gray-800">Login</h1>
+                <p className="text-gray-500 mb-6">
+                  Login to access your Rean account
+                </p>
+              </header>
+
+              <section className="mb-6">
+                {/* Email Field */}
+                <label className={style.label} htmlFor="email">
+                  Email
+                </label>
+                <Field
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  className={`${style.input} h-[52px]`}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="section"
+                  className={style.error}
+                />
+              </section>
+
+              <section className="mb-6">
+                {/* Password Field */}
+                <label className={style.label} htmlFor="password">
+                  Password
+                </label>
+                <div className="relative">
+                  <Field
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    className={`${style.input} h-[52px]`}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleShowPassword}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                  >
+                    {showPassword ? (
+                      <IoEyeSharp size={20} />
+                    ) : (
+                      <IoEyeOffSharp size={20} />
+                    )}
+                  </button>
+                </div>
+                <ErrorMessage
+                  name="password"
+                  component="section"
+                  className={style.error}
+                />
+              </section>
+
+              <section className="mb-6">
+                {/* Submit Button */}
+                <button type="submit" className="large-button w-full">
+                  Login
+                </button>
+              </section>
+
+              <footer className="text-center text-sm text-gray-500 mt-4">
+                <p>
+                  Do not have an account?{" "}
+                  <a href="/register" className="text-accent hover:underline">
+                    Register
+                  </a>
+                </p>
+              </footer>
+            </Form>
+          </Formik>
         </main>
-        
-            </div>
-         </div>
-    </div>
-
- </div>
-    )
+      </div>
+    </section>
+  );
 }
-
-
-
