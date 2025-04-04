@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation(); // Get current route location
 
   // Auto-open sidebar on desktop
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function Sidebar() {
 
   // Sidebar menu items data
   const menuItems = [
-    { path: "/", name: "HTML HOME", isActive: true },
+    { path: "/", name: "HTML HOME" },
     { path: "/introduction", name: "HTML Introduction" },
     { path: "/editors", name: "HTML Editors" },
     { path: "/basic", name: "HTML Basic" },
@@ -42,15 +43,16 @@ export default function Sidebar() {
         <div className="p-4">
           <h2 className="text-lg font-bold mb-4 text-gray-800">HTML Tutorial</h2>
           <ul className="space-y-2">
-            {menuItems.map((item, index) => (
-              <li key={index}>
+            {menuItems.map((item) => (
+              <li key={item.path}>
                 <Link 
                   className={`block p-2 rounded-md ${
-                    item.isActive 
-                      ? 'bg-green-600 text-white hover:bg-green-700' 
+                    location.pathname === item.path
+                      ? 'bg-accent text-white hover:bg-green-700' 
                       : 'text-gray-700 hover:bg-gray-100'
                   }`}
                   to={item.path}
+                  onClick={() => setIsOpen(false)} // Close sidebar on mobile when item is clicked
                 >
                   {item.name}
                 </Link>
@@ -63,7 +65,7 @@ export default function Sidebar() {
       {/* Sidebar Toggle Button - Mobile */}
       {!isOpen && (
         <button
-          className="fixed bottom-4 left-4 lg:hidden p-3 bg-green-600 text-white rounded-full shadow-lg z-50"
+          className="fixed bottom-4 left-4 lg:hidden p-3 bg-accent text-white rounded-full shadow-lg z-50"
           onClick={() => setIsOpen(true)}
         >
           <Menu size={24} />
@@ -73,7 +75,7 @@ export default function Sidebar() {
       {/* Overlay for mobile sidebar */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-opacity-50 lg:hidden z-30"
+          className="fixed inset-0 bg-black bg-opacity-50 lg:hidden z-30"
           onClick={() => setIsOpen(false)}
         ></div>
       )}

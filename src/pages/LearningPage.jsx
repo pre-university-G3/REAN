@@ -6,12 +6,13 @@ import Content from "../components/content/Content";
 export default function Layout({ children }) {
   return (
     <div className="flex flex-col min-h-screen bg-white">
-            <div className="flex flex-1">
-      
-      <Content>{children}</Content>
-      <LearningSide />
-      </div>
-      <HeaderComponent/>
+      <HeaderComponent />
+      <main>
+      <div className="flex flex-1">
+        <Content>{children}</Content>
+        <LearningSide />
+      </div>        
+      </main>
 
     </div>
   );
