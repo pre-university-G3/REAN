@@ -5,11 +5,10 @@ import HomePage from "./pages/HomePage";
 import LoginForm from "./components/form/LoginForm";
 import "./App.css";
 import React from "react";
-import HeaderComponent from "./components/header/HeaderComponent";
-import FooterComponent from "./components/footer/FooterComponent";
 import AboutPage from "./pages/AboutPage";
 import Layout from "./route/Layout";
 import AuthPage from "./pages/AuthPage";
+import FileNotFound from "./components/filenotfound/FileNotFound";
 
 function App() {
   return (
@@ -49,7 +48,7 @@ function App() {
             </AuthPage>
           }
         />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="*" element={<FileNotFound />} />
       </Routes>
     </BrowserRouter>
   );
