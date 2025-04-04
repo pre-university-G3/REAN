@@ -4,7 +4,7 @@ import "./Footer.css";
 
 export default function FooterComponent() {
   return (
-    <footer className="w-full flex flex-col items-center justify-center gap-8 py-8 px-5 md:px-[60px] lg:px-[120px] text-white bg-primary">
+    <footer className="w-full flex flex-col items-center justify-center gap-8 py-8 px-5 md:px-[60px] lg:px-[120px] text-white bg-primary z-100">
       <section className="flex flex-col-reverse lg:flex-row w-full justify-between gap-8">
         <figure className="w-full lg:w-[300px] flex flex-row lg:flex-col gap-4  items-center justify-center">
           <h3 className="text-h3-small md:text-h3-medium lg:text-h3-large font-semibold">

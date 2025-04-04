@@ -8,6 +8,10 @@
   --accent-color: #16a085;
 }
 
+li {
+  list-style: none;
+}
+
 html,
 body {
   overflow-x: hidden;
