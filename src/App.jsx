@@ -1,5 +1,4 @@
 import "./App.css";
-import HeroSection from "./components/hompage/HeroSection";
 import { BrowserRouter, Route, Routes } from "react-router";
 import RegisterForm from "./components/form/RegisterForm";
 import HomePage from "./pages/HomePage";
