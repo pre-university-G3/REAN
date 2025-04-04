@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function HeaderComponent() {
   const [logo, setLogo] = useState("/icons/menu.svg");
   const [isClick, setClick] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,11 +20,16 @@ export default function HeaderComponent() {
   return (
     <>
       {/* Header for Small Devices */}
-      <header className="fixed sm:hidden w-full animated h-fit">
+      <header className="fixed sm:hidden w-full animated h-fit z-100">
         <nav
           className={`relative h-[50px] z-50 w-full px-[30px] bg-white animated shadow-small flex justify-between items-center`}
         >
-          <img src={"./icons/logo.svg"} width={"48px"} alt="" />
+          <img
+            src={"/icons/logo.svg"}
+            width={"48px"}
+            alt=""
+            onClick={() => navigate("/")}
+          />
           <figure
             className="hover:bg-black animated h-8 w-8 rounded-small flex justify-center items-center cursor-pointer"
             onClick={() => {
@@ -85,9 +91,9 @@ export default function HeaderComponent() {
         </nav>
       </header>
       {/* Header for Large Devices */}
-      <header className="hidden fixed w-full sm:flex flex-col items-end lg:hidden">
+      <header className="hidden fixed w-full sm:flex flex-col items-end lg:hidden z-100">
         <nav className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white ">
-          <img src={"./icons/logo.svg"} alt="" />
+          <img src={"/icons/logo.svg"} alt="" onClick={() => navigate("/")} />
           <ul className="flex space-x-20 justify-between items-center">
             <li>
               <Link className="text-detail-large font-semibold" to="/">
@@ -157,8 +163,8 @@ export default function HeaderComponent() {
         </menu>
       </header>
       {/* Header for large Screen */}
-      <header className="hidden fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white shadow-small">
-        <img src={"./icons/logo.svg"} alt="" />
+      <header className="hidden fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white shadow-small z-100">
+        <img src={"/icons/logo.svg"} alt="" onClick={() => navigate("/")} />
         <nav>
           <ul className="flex space-x-20 w-full  justify-between items-center">
             <li>
@@ -197,7 +203,7 @@ export default function HeaderComponent() {
             type="button"
             className="flex justify-center items-center h-10 w-10 rounded-small animated bg-accent hover:bg-[#0b6957]"
           >
-            <img src={"icons/night.svg"} alt="" />
+            <img src={"/icons/night.svg"} alt="" />
           </button>
         </ul>
       </header>
