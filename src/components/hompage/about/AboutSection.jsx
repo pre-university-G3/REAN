@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import aboutUsFeatures from "../../../data/aboutUsFeatures";
+import aboutUsFeatures from "../../../data/homepagedata/aboutUsFeatures";
 import Widget from "./Widget";
 
 const datas = aboutUsFeatures;

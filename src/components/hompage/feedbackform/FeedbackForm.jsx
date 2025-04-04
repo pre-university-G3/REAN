@@ -91,7 +91,14 @@ export default function FeedbackForm() {
             className="bg-secondary flex justify-center items-center h-[52px] rounded-small text-detail-medium font-bold text-accent hover:bg-yellow-500 transition-colors ease-in-out duration-300"
             disabled={state.submitting}
           >
-            Submit
+            {state.submitting ? (
+              <div className="flex items-center gap-2">
+                <span className="loader w-5 h-5 border-2 border-t-transparent border-accent rounded-full animate-spin"></span>
+                <span>Submitting...</span>
+              </div>
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </section>

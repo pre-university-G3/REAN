@@ -1,7 +1,7 @@
 // import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "./Course";
-import popularCourses from "../../../data/popularCourses";
+import popularCourses from "../../../data/homepagedata/popularCourses";
 
 const courses = popularCourses;
 

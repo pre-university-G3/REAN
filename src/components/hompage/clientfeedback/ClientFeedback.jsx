@@ -1,5 +1,5 @@
 import React from "react";
-import feedbackData from "../../../data/feedbackData";
+import feedbackData from "../../../data/homepagedata/feedbackData";
 import FeedbackCard from "./FeedbackCard";
 
 const datas = feedbackData;

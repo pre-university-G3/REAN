@@ -1,5 +1,5 @@
 import React from "react";
-import offerCourses from "../../../data/offerCourses";
+import offerCourses from "../../../data/homepagedata/offerCourses";
 import Card from "./Card";
 
 const datas = offerCourses;
