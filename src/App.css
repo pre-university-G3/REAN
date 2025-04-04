@@ -8,6 +8,11 @@
   --accent-color: #16a085;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 .small-button {
   height: 32px;
   display: flex;
