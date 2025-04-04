@@ -56,7 +56,7 @@ export default function FooterComponent() {
               <li>
                 <Link
                   className="footer-nav text-body-text-small md:text-body-text-medium lg:text-body-text-large"
-                  to="/about#contact"
+                  to="/about"
                 >
                   Contact Us
                 </Link>

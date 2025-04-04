@@ -43,7 +43,10 @@ export default function FeedbackForm() {
 
   return (
     <>
-      <section className="flex flex-col gap-4 md:flex-row text-center p-10 md:text-start bg-accent mx-5 md:mx-[60px] lg:mx-[120px] rounded-2xl">
+      <section
+        id="feedbackform"
+        className="flex flex-col gap-4 md:flex-row text-center p-10 md:text-start bg-accent mx-5 md:mx-[60px] lg:mx-[120px] rounded-2xl"
+      >
         <article className="md:w-[100%] md:flex flex-col justify-center items-start gap-4">
           <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-white font-bold ">
             Share Your Feedback

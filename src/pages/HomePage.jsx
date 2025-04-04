@@ -1,11 +1,11 @@
 import React from "react";
-import HeroSection from "../components/hompage/hero/HeroSection";
-import PopularCourses from "../components/hompage/popularcourse/PopularCourses";
-import AboutSection from "../components/hompage/about/AboutSection";
-import OfferCourse from "../components/hompage/offercourse/OfferCourse";
-import Faq from "../components/hompage/faq/Faq";
-import ClientFeedback from "../components/hompage/clientfeedback/ClientFeedback";
-import FeedbackForm from "../components/hompage/feedbackform/FeedbackForm";
+import HeroSection from "../components/homepage/hero/HeroSection";
+import PopularCourses from "../components/homepage/popularcourse/PopularCourses";
+import AboutSection from "../components/homepage/about/AboutSection";
+import OfferCourse from "../components/homepage/offercourse/OfferCourse";
+import Faq from "../components/homepage/faq/Faq";
+import ClientFeedback from "../components/homepage/clientfeedback/ClientFeedback";
+import FeedbackForm from "../components/homepage/feedbackform/FeedbackForm";
 
 export default function HomePage() {
   return (

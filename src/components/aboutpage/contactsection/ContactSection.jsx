@@ -21,7 +21,10 @@ export default function ContactSection() {
   return (
     <>
       <section className="flex flex-col gap-10 w-full z-10 px-5 md:px-[60px] lg:px-[120px] mb-24">
-        <section className="grid grid-cols-2 items-center justify-center gap-10">
+        <section
+          id="contact"
+          className="grid grid-cols-2 items-center justify-center gap-10"
+        >
           <form
             onSubmit={handleSubmit}
             action="https://formspree.io/f/xrbpyokj"

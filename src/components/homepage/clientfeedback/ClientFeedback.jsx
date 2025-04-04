@@ -5,6 +5,17 @@ import FeedbackCard from "./FeedbackCard";
 const datas = feedbackData;
 
 export default function ClientFeedback() {
+  const handleScroll = () => {
+    const targetSection = document.getElementById("feedbackform");
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+
+        block: "center",
+        inline: "center",
+      });
+    }
+  };
   return (
     <section className="flex flex-col gap-10 px-5 md:px-[60px] lg:px-[120px]">
       <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-accent font-bold text-center">
@@ -23,7 +34,9 @@ export default function ClientFeedback() {
               Many of our members have started their early careers with us.
             </p>
           </article>
-          <button className="large-button w-full">Join Now!</button>
+          <button onClick={handleScroll} className="large-button w-full">
+            Join Now!
+          </button>
         </div>
         {datas.map((data) => (
           <FeedbackCard
