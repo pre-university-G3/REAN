@@ -204,7 +204,7 @@ export default function HeaderComponent() {
               Login
             </Link>
           </li>
-          <li className="h-[60%] w-[0.8px] bg-gray-300 rounded-small"></li>
+          <li className="h-[60%] w-[0.8px] bg-gray-300 dark:bg-primary rounded-small"></li>
           <li>
             <Link
               className="flex justify-center items-center h-10 px-4 text-white dark:bg-primary dark:text-accent font-semibold animated rounded-small bg-accent hover:bg-[#0b6957]"
