@@ -2,10 +2,10 @@
 import React from 'react'
 import HeroSection from "../components/coursedetail/HeroSection";
 import DropDown from "../components/coursedetail/DropDown"
+import AllCourseCard from "../components/card/AllCourseCard"
 
 export default function CourseDetail() {
   return (
-  
     <main className='flex flex-col items-center'>
         <HeroSection />
 
@@ -35,9 +35,10 @@ export default function CourseDetail() {
                     <a href="#" className='hover:text-accent text-body-text-large'>View More <span className='mx-3'>&gt;</span></a>
                 </nav>
             </div>
+            <AllCourseCard />
         </section>
           {/* Instructor */}
-        <section className='flex flex-col w-full md:h-[100vh] pt-[30px] px-30'>
+        <section className='flex flex-col w-full md:h-[60vh] pt-[30px] px-30 '>
                 <h1 className='text-accent text-h2-large font-bold'>
                     Instructor
                 </h1>

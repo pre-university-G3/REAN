@@ -35,7 +35,7 @@ export default function HeroSection() {
             </div>
         </article>
         <figure className='w-full flex justify-center items-center'>
-            <img src=".." alt="" />
+            <img src="/images/ux.svg" alt="" className='w-[70%] rounded-2xl'/>
         </figure>
     </section>
   )
