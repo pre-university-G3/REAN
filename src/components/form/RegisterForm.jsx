@@ -8,6 +8,8 @@ import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import images from "../../../public/img/register.svg";
 import { registerUser } from "../../api/register";
 import { verifyUser } from "../../api/verify";
+import ErrorModal from "../modal/ErrorModal";
+import VerifyCode from "../modal/VerifyCode";
 
 const initialValues = {
   name: "",
@@ -43,6 +45,17 @@ export default function RegisterForm() {
   const [showconfirmedPassword, setShowconfirmedPassword] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [errorModal, setErrorModal] = useState({
+    open: false,
+    title: "",
+    description: "",
+  });
+  const [showVerifyModal, setShowVerifyModal] = useState(false);
+  const [verifyCode, setVerifyCode] = useState(0);
+  const handleVerifyCode = (code) => {
+    setVerifyCode(code);
+    console.log("User entered code:", code);
+  };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -59,15 +72,19 @@ export default function RegisterForm() {
 
     try {
       await registerUser(values); // now abstracted
-      const verifyCode = prompt("Enter verification code sent to your email:");
-      alert("Verifying with code: " + verifyCode);
+      setShowVerifyModal(true);
+      // const verifyCode = prompt("Enter verification code sent to your email:");
+      // alert("Verifying with code: " + verifyCode);
 
       const data = await verifyUser(values.email, verifyCode); // now abstracted
       console.log(data);
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error);
-      alert(error.message || "Something went wrong.");
+      setErrorModal({
+        open: true,
+        title: "Register Error",
+        description: error?.message || "Something went wrong! Please try again",
+      });
     } finally {
       setLoading(false);
     }
@@ -245,6 +262,21 @@ export default function RegisterForm() {
           </Formik>
         </main>
       </section>
+      {errorModal.open && (
+        <ErrorModal
+          title={errorModal.title}
+          description={errorModal.description}
+          onClose={() => setErrorModal({ ...errorModal, open: false })}
+        />
+      )}
+      {showVerifyModal && (
+        <VerifyCode
+          onClick={(code) => {
+            handleVerifyCode(code);
+            setShowVerifyModal(false); // Close modal after input
+          }}
+        />
+      )}
     </section>
   );
 }

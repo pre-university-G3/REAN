@@ -7,6 +7,7 @@ import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import Loader from "../../components/loading/Loader";
 import images from "../../../public/img/Login.svg";
 import { loginUser } from "../../api/login";
+import ErrorModal from "../modal/ErrorModal";
 
 const initialValues = {
   email: "lovelyfarm168@gmail.com",
@@ -21,36 +22,40 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, handleShowPassword] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [errorModal, setErrorModal] = useState({
+    open: false,
+    title: "",
+    description: "",
+  });
 
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-    // Toggle password visibility
-  };
-
-  // handle for login
   const handleSubmit = async (values) => {
-    console.log(values);
     setLoading(true);
 
     try {
       const data = await loginUser(values);
-      if (data?.access_token) {
-        localStorage.setItem("token", data.access_token);
-        navigate("/");
-      } else {
-        throw new Error("Verification succeeded but no token received.");
+
+      if (data === false || !data?.access_token) {
+        setErrorModal({
+          open: true,
+          title: "Error",
+          description: "Something went wrong! Please try again",
+        });
+        setLoading(false);
+        return;
       }
+
+      localStorage.setItem("token", data.access_token);
+      navigate("/");
     } catch (error) {
-      console.error("Login Error:", error);
+      setErrorModal({
+        open: true,
+        title: "Login Error",
+        description: error?.message || "Something went wrong! Please try again",
+      });
       setLoading(false);
-      if (error instanceof Error) {
-        alert(error.message || "Something went wrong! Please try again.");
-      } else {
-        alert("Something went wrong! Please try again.");
-      }
     }
   };
 
@@ -63,7 +68,7 @@ export default function LoginForm() {
   }
 
   return (
-    <section className="flex flex-col justify-center px-5 md:px-[60px] lg:px-[120px] h-screen">
+    <section className="relative z-1 flex flex-col justify-center px-5 md:px-[60px] lg:px-[120px] h-screen">
       <div className="flex items-center justify-between">
         <article className="w-[50%] hidden md:flex">
           <img src={images} alt="piclogin" className="w-full " />
@@ -153,6 +158,13 @@ export default function LoginForm() {
           </Formik>
         </main>
       </div>
+      {errorModal.open && (
+        <ErrorModal
+          title={errorModal.title}
+          description={errorModal.description}
+          onClose={() => setErrorModal({ ...errorModal, open: false })}
+        />
+      )}
     </section>
   );
 }

@@ -14,9 +14,7 @@ export const loginUser = async (values) => {
   console.log("Raw Response:", text);
 
   if (!response.ok) {
-    throw new Error(
-      `Server Error: ${response.status} - ${text || "No response body"}`
-    );
+    return false;
   }
 
   if (!response.ok) {
