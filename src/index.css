@@ -1,19 +1,10 @@
 @import "tailwindcss";
 
-<<<<<<< HEAD
-@theme {
-  --color-primary-light: #2C3E50;
-  --color-secondary-light: #F4C542;
-  --color-accent-light: #16A085;
-}
-
-
-
-
-=======
 html {
   scroll-behavior: smooth;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-primary: #2c3e50;
@@ -50,4 +41,3 @@ html {
   /* Shadow */
   --shadow-small: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 }
->>>>>>> 13c943fd0decb5f2e8099cc72a32402a7445a38b

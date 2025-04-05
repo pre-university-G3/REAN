@@ -4,6 +4,20 @@ export default function HeaderComponent() {
   const [logo, setLogo] = useState("/icons/menu.svg");
   const [isClick, setClick] = useState(false);
   const navigate = useNavigate();
+  const [darkMode, setDarkMode] = useState(false);
+  const [themeLogo, setThemeLogo] = useState("/icons/night.svg");
+  const [isThemeClick, setIsThemeClick] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("darkMode") === "true";
+    setThemeLogo(savedTheme ? "/icons/sun.svg" : "/icons/night.svg");
+    setDarkMode(savedTheme);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode);
+    document.documentElement.classList.toggle("dark", darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -91,8 +105,8 @@ export default function HeaderComponent() {
         </nav>
       </header>
       {/* Header for Large Devices */}
-      <header className="hidden fixed w-full sm:flex flex-col items-end lg:hidden z-100">
-        <nav className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white ">
+      <header className="hidden  fixed w-full sm:flex flex-col items-end lg:hidden z-100">
+        <nav className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white dark:bg-[#0D0D0D] ">
           <img src={"/icons/logo.svg"} alt="" onClick={() => navigate("/")} />
           <ul className="flex space-x-20 justify-between items-center">
             <li>
@@ -163,7 +177,7 @@ export default function HeaderComponent() {
         </menu>
       </header>
       {/* Header for large Screen */}
-      <header className="hidden fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white shadow-small z-100">
+      <header className="hidden fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white dark:bg-[#0D0D0D] dark:text-accent shadow-small z-100">
         <img src={"/icons/logo.svg"} alt="" onClick={() => navigate("/")} />
         <nav>
           <ul className="flex space-x-20 w-full  justify-between items-center">
@@ -193,17 +207,29 @@ export default function HeaderComponent() {
           <li className="h-[60%] w-[0.8px] bg-gray-300 rounded-small"></li>
           <li>
             <Link
-              className="flex justify-center items-center h-10 px-4 text-white font-semibold animated rounded-small bg-accent hover:bg-[#0b6957]"
+              className="flex justify-center items-center h-10 px-4 text-white dark:bg-primary dark:text-accent font-semibold animated rounded-small bg-accent hover:bg-[#0b6957]"
               to="/register"
             >
               Register
             </Link>
           </li>
           <button
+            onClick={() => {
+              const newMode = !darkMode;
+              setDarkMode(newMode);
+              setThemeLogo(newMode ? "/icons/sun.svg" : "/icons/night.svg");
+              setIsThemeClick(!isThemeClick);
+            }}
             type="button"
-            className="flex justify-center items-center h-10 w-10 rounded-small animated bg-accent hover:bg-[#0b6957]"
+            className="flex justify-center items-center dark:bg-primary h-10 w-10 rounded-small animated bg-accent hover:bg-[#0b6957]"
           >
-            <img src={"/icons/night.svg"} alt="" />
+            <div
+              className={`transition-transform duration-300 ease-in-out ${
+                isThemeClick ? "rotate-180" : "rotate-0"
+              }`}
+            >
+              <img src={themeLogo} alt="Theme icon" />
+            </div>
           </button>
         </ul>
       </header>
