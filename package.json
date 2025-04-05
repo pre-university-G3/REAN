@@ -15,23 +15,16 @@
     "@formspree/react": "^3.0.0",
     "@lottiefiles/dotlottie-react": "^0.13.3",
     "@tailwindcss/vite": "^4.0.17",
-<<<<<<< HEAD
     "lucide-react": "^0.487.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-lucid": "^0.0.1",
     "react-router-dom": "^7.4.1",
-=======
     "emailjs-com": "^3.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0",
     "react-lottie": "^1.2.10",
-    "react-router-dom": "^7.4.1",
     "styled-components": "^6.1.17",
     "yup": "^1.6.1",
->>>>>>> f8ec64ca879b8ed054c251618c63239a456be30a
     "tailwindcss": "^4.0.17"
   },
   "devDependencies": {

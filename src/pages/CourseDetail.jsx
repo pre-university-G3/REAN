@@ -1,7 +1,10 @@
 import React from "react";
 import HeroSection from "../components/coursedetail/HeroSection";
 import DropDown from "../components/coursedetail/DropDown";
-import AllCourseCard from "../components/card/AllCourseCard";
+import AllCourseData from "../data/allCourses/AllCourses";
+import CourseCard from "../components/card/CourseCard";
+
+const recommandCourse = AllCourseData.slice(0, 4);
 
 export default function CourseDetail() {
   return (
@@ -29,16 +32,30 @@ export default function CourseDetail() {
           </p>
         </section>
         {/* All Courses */}
-        <section className="w-full">
-          <h1 className="text-accent text-h2-large font-bold">All Course</h1>
-          <div className="mt-5">
-            <nav className="text-gray-500">
-              <a href="#" className="hover:text-accent text-body-text-large">
-                View More <span className="mx-3">&gt;</span>
-              </a>
-            </nav>
+        <section className="w-full flex flex-col space-y-10">
+          <div className="flex justify-between items-center">
+            <h1 className="text-accent text-h2-large font-bold">All Course</h1>
+            <div className="mt-5">
+              <nav className="text-gray-500">
+                <a href="#" className="hover:text-accent text-body-text-large">
+                  View More <span className="mx-3">&gt;</span>
+                </a>
+              </nav>
+            </div>
           </div>
-          <AllCourseCard />
+          <section className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {recommandCourse.map((data) => (
+              <CourseCard
+                key={data.id}
+                avatar={data.avatar}
+                title={data.title}
+                subtitle={data.subtitle}
+                description={data.description}
+                lesson={data.lesson}
+                time={data.time}
+              />
+            ))}
+          </section>
         </section>
         {/* Instructor */}
         <section className="w-full">
