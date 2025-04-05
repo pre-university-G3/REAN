@@ -1,4 +1,3 @@
-import AllCourseCard from "../components/card/AllCourseCard.jsx";
 import CategoryCard from "../components/card/CategoryCard.jsx";
 import CourseCard from "../components/card/CourseCard.jsx";
 import AllCourseData from "../data/allCourses/AllCourses.js";
@@ -66,9 +65,8 @@ export function AllCourses() {
       <main className="bg-white">
         <section className="w-full bg-gray-200 h-[400px] md:h-[500px] relative overflow-hidden flex flex-col items-center justify-center px-4">
           <div className="text-center flex flex-col items-center gap-y-4 max-w-4xl mx-auto">
-            <h1 className="text-primary-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
-              Discover Your Next
-              <br className="hidden sm:inline" /> Learning Adventure
+            <h1 className="text-primary text-h1-small md:text-h1-medium lg:text-h1-large font-bold">
+              Discover Your Next Learning Adventure
             </h1>
 
             <div className="absolute top-10 left-1/6 w-6 h-6 bg-accent-light rounded-full"></div>
@@ -85,10 +83,10 @@ export function AllCourses() {
               alt="decoration"
             />
 
-            <p className="text-primary-light text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+            <p className="text-primary/90 text-detail-small md:text-detail-medium lg:text-detail-large mx-auto">
               Unlock a world of knowledge with our expert-led IT courses.
               Whether <br /> you're a beginner or an experienced professional,
-              we have something for <br /> everyone. Start learning today!
+              we have something for everyone. Start learning today!
             </p>
 
             <div className="w-164 max-w-4xl h-12 px-4 bg-white rounded-md flex justify-between items-center shadow-sm">
@@ -103,7 +101,7 @@ export function AllCourses() {
         </section>
 
         <section className="px-4 sm:px-5 md:px-15 lg:px-30 py-8">
-          <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="flex gap-4 overflow-x-auto py-2 scrollbar-hidden">
             {CategoryData.map((category) => (
               <CategoryCard
                 key={category.id}
