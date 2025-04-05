@@ -32,7 +32,7 @@ const memberdata = [
     gender: "male",
     role: "Frontend",
     avatar: "/img/member/lao-naroth.svg",
-    facebook: "",
+    facebook: "https://www.facebook.com/RO.TH.55",
     github: "https://github.com/Naroth123444",
   },
   {
@@ -41,7 +41,7 @@ const memberdata = [
     gender: "male",
     role: "Frontend",
     avatar: "/img/member/saren-ratanak.svg",
-    facebook: "",
+    facebook: "https://www.facebook.com/share/1BQKEevtTX",
     github: "https://github.com/Ratanak123456",
   },
   {
@@ -59,7 +59,7 @@ const memberdata = [
     gender: "female",
     role: "Frontend",
     avatar: "/img/member/sean-monyneath.svg",
-    facebook: "",
+    facebook: "https://www.facebook.com/share/1A9S2KR1rD",
     github: "https://github.com/Monyneath-smile",
   },
   {
