@@ -1,22 +1,72 @@
 import "./App.css";
+import { AllCourses } from "./pages/AllCourses";
+import { BrowserRouter, Route, Routes } from "react-router";
+import RegisterForm from "./components/form/RegisterForm";
+import HomePage from "./pages/HomePage";
+import LoginForm from "./components/form/LoginForm";
 import React from "react";
-import HeaderComponent from "./components/header/HeaderComponent"
-import { BrowserRouter, Route, Routes,useLocation } from "react-router-dom";
+import AboutPage from "./pages/AboutPage";
+import Layout from "./route/Layout";
+import AuthPage from "./pages/AuthPage";
+import FileNotFound from "./components/filenotfound/FileNotFound";
 import CourseDetail from "./pages/CourseDetail";
-import FooterComponent from "./components/footer/FooterComponent";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <HeaderComponent />
-        <Routes>
-          <Route path="/" element={<CourseDetail/>} />
-        </Routes>
-        <FooterComponent />
-      </BrowserRouter>
-
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Layout>
+              <AboutPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <Layout>
+              <AllCourses />
+            </Layout>
+          }
+        />
+        <Route
+          path="/coursedetail"
+          element={
+            <Layout>
+              <CourseDetail/>
+            </Layout>
+          }
+        />
+        <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
+        <Route
+          path="/register"
+          element={
+            <AuthPage>
+              <RegisterForm />
+            </AuthPage>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <AuthPage>
+              <LoginForm />
+            </AuthPage>
+          }
+        />
+        <Route path="*" element={<FileNotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

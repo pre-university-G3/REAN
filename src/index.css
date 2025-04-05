@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Kantumruy Pro", sans-serif;
-  src:url(../public/fonts/KantumruyPro-Bold.ttf);
+html {
+  scroll-behavior: smooth;
 }
 
 @theme {
@@ -39,7 +38,4 @@
 
   /* Shadow */
   --shadow-small: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-}
-@theme{
-  --font-kh:"Kantumruy Pro", sans-serif;
 }

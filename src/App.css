@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 
 :root {
@@ -7,6 +6,25 @@
   --primary-color: #2c3e50;
   --secondary-color: #f4c542;
   --accent-color: #16a085;
+}
+
+li {
+  list-style: none;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .small-button {
