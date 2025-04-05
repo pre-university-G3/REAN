@@ -1,4 +1,3 @@
-// import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Course from "./Course";
 import popularCourses from "../../../data/homepagedata/popularCourses";
@@ -12,13 +11,13 @@ export default function PopularCourses() {
   };
 
   return (
-    <section className="w-full flex flex-col space-y-10 px-5 md:px-[60px] lg:px-[120px]">
+    <section className="w-full flex flex-col space-y-10 px-5 md:px-[60px] lg:px-[120px] dark:bg-dark-bg dark:text-white">
       <article className="flex justify-between items-center">
-        <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-primary font-bold text-start">
+        <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-primary font-bold text-start dark:text-accent">
           Popular Courses
         </h2>
         <button
-          className="relative flex lg:hidden z-10 text-accent underline text-detail-large"
+          className="relative flex lg:hidden z-10 text-accent underline text-detail-large dark:text-dark-accent"
           onClick={() => navigate("/courses")}
         >
           View all courses
@@ -29,7 +28,6 @@ export default function PopularCourses() {
           <Course
             key={course.id}
             id={course.id}
-            // onClick={() => navigate(`/courses/${course.id}`)}
             category={course.category}
             title={course.title}
             lessons={course.lessons}
@@ -40,7 +38,7 @@ export default function PopularCourses() {
         ))}
       </section>
       <button
-        className="hidden lg:flex mx-auto justify-center items-center px-6 py-3  w-fit bg-accent text-white hover:bg-[#0b6957] hover:text-white rounded-small transition-colors ease-in-out duration-300"
+        className="hidden lg:flex mx-auto justify-center items-center px-6 py-3 w-fit bg-accent text-white hover:bg-[#0b6957] hover:text-white rounded-small transition-colors ease-in-out duration-300 dark:bg-dark-accent dark:hover:bg-dark-accent"
         onClick={() => navigate("/courses")}
       >
         View all Courses

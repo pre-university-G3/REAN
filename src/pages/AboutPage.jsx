@@ -7,7 +7,7 @@ import ContactSection from "../components/aboutpage/contactsection/ContactSectio
 
 export default function AboutPage() {
   return (
-    <main className="flex flex-col w-full items-center space-y-24 overflow-x-hidden">
+    <main className="flex flex-col w-full items-center space-y-24 overflow-x-hidden dark:bg-dark-bg">
       <HeroSection />
       <WhoWeAre />
       <KeyBenefit />

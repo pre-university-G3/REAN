@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import IsLogin from "../../auth/IsLogin";
+
 export default function HeaderComponent() {
   const [logo, setLogo] = useState("/icons/menu.svg");
   const [isClick, setClick] = useState(false);
@@ -37,12 +38,13 @@ export default function HeaderComponent() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <>
       {/* Header for Small Devices */}
       <header className="fixed sm:hidden w-full animated h-fit z-100">
         <nav
-          className={`relative h-[50px] z-50 w-full px-[30px] bg-white animated shadow-small flex justify-between items-center`}
+          className={`relative h-[50px] z-50 w-full px-[30px] bg-white dark:bg-[#121212] animated shadow-small flex justify-between items-center`}
         >
           <img
             src={"/icons/logo.svg"}
@@ -51,10 +53,9 @@ export default function HeaderComponent() {
             onClick={() => navigate("/")}
           />
           <figure
-            className="hover:bg-black animated h-8 w-8 rounded-small flex justify-center items-center cursor-pointer"
+            className="hover:bg-black dark:hover:bg-dark-accent animated h-8 w-8 rounded-small flex justify-center items-center cursor-pointer"
             onClick={() => {
               setLogo(isClick ? "/icons/menu.svg" : "/icons/xmenu.svg");
-
               setClick(!isClick);
             }}
           >
@@ -68,40 +69,52 @@ export default function HeaderComponent() {
           </figure>
         </nav>
         <nav
-          className={`absolute w-full h-fit z-40 bg-white border-b-[1px] transition-all duration-700 ease-in-out border-gray-300 px-[30px] py-4 rounded-b-small  ${
+          className={`absolute w-full h-fit z-40 bg-white dark:bg-[#121212] border-b-[1px] transition-all duration-700 ease-in-out border-gray-300 dark:border-dark-primary px-[30px] py-4 rounded-b-small  ${
             isClick ? "opacity-100 " : " translate-y-[-232px]"
           }`}
         >
           <ul className="h-full space-y-2 flex flex-col justify-between">
-            <Link className="font-semibold text-detail-medium" to="/">
+            <Link
+              className="font-semibold text-detail-medium dark:text-dark-primary"
+              to="/"
+            >
               Home
             </Link>
             <li>
-              <Link className="font-semibold text-detail-medium" to="courses">
+              <Link
+                className="font-semibold text-detail-medium dark:text-dark-primary"
+                to="courses"
+              >
                 Courses
               </Link>
             </li>
             <li>
-              <Link className="font-semibold text-detail-medium" to="/about">
+              <Link
+                className="font-semibold text-detail-medium dark:text-dark-primary"
+                to="/about"
+              >
                 About
               </Link>
             </li>
             <li>
               <button
                 type="button"
-                className="font-semibold text-detail-medium"
+                className="font-semibold text-detail-medium dark:text-dark-primary"
               >
                 Dark Mode
               </button>
             </li>
             <li>
-              <Link className="font-semibold text-detail-medium" to="/login">
+              <Link
+                className="font-semibold text-detail-medium dark:text-dark-primary"
+                to="/login"
+              >
                 Login
               </Link>
             </li>
             <li>
               <Link
-                className="text-accent font-semibold text-detail-medium"
+                className="text-accent dark:text-dark-accent font-semibold text-detail-medium"
                 to="/register"
               >
                 Register
@@ -112,28 +125,36 @@ export default function HeaderComponent() {
       </header>
       {/* Header for Large Devices */}
       <header className="hidden  fixed w-full sm:flex flex-col items-end lg:hidden z-100">
-        <nav className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white dark:bg-[#0D0D0D] ">
+        <nav className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white dark:bg-[#0D0D0D]">
           <img src={"/icons/logo.svg"} alt="" onClick={() => navigate("/")} />
           <ul className="flex space-x-20 justify-between items-center">
             <li>
-              <Link className="text-detail-large font-semibold" to="/">
+              <Link
+                className="text-detail-large font-semibold dark:text-dark-primary"
+                to="/"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link className="text-detail-large font-semibold" to="/courses">
+              <Link
+                className="text-detail-large font-semibold dark:text-dark-primary"
+                to="/courses"
+              >
                 Courses
               </Link>
             </li>
             <li>
-              <Link className="text-detail-large font-semibold" to="/about">
+              <Link
+                className="text-detail-large font-semibold dark:text-dark-primary"
+                to="/about"
+              >
                 About
               </Link>
             </li>
           </ul>
           <figure
-            className=" hover:bg-black animated h-8 w-8 rounded-small flex
-            justify-center items-center cursor-pointer"
+            className=" hover:bg-black dark:hover:bg-dark-accent animated h-8 w-8 rounded-small flex justify-center items-center cursor-pointer"
             onClick={() => {
               setLogo(isClick ? "/icons/menu.svg" : "/icons/xmenu.svg");
               setClick(!isClick);
@@ -149,7 +170,7 @@ export default function HeaderComponent() {
           </figure>
         </nav>
         <menu
-          className={`absolute z-0 mr-[60px] mt-[84px] bg-white rounded-small shadow-small h-fit w-[110px] flex justify-center items-center py-2.5 px-2 transition-all ease-in-out duration-300 ${
+          className={`absolute z-0 mr-[60px] mt-[84px] bg-white dark:bg-[#121212] rounded-small shadow-small h-fit w-[110px] flex justify-center items-center py-2.5 px-2 transition-all ease-in-out duration-300 ${
             isClick
               ? "translate-y-0 opacity-100"
               : "translate-y-[-100px] opacity-0"
@@ -159,21 +180,24 @@ export default function HeaderComponent() {
             <li>
               <button
                 type="button"
-                className="text-detail-large font-semibold "
+                className="text-detail-large font-semibold dark:text-dark-primary"
               >
                 Dark
               </button>
             </li>
-            <li className="w-full h-[0.5px] bg-gray-300"></li>
+            <li className="w-full h-[0.5px] bg-gray-300 dark:bg-dark-primary"></li>
             <li>
-              <Link className="text-detail-large font-semibold" to="/login">
+              <Link
+                className="text-detail-large font-semibold dark:text-dark-primary"
+                to="/login"
+              >
                 Login
               </Link>
             </li>
-            <li className="w-full h-[0.5px] bg-gray-300"></li>
+            <li className="w-full h-[0.5px] bg-gray-300 dark:bg-dark-primary"></li>
             <li>
               <Link
-                className="text-detail-large font-semibold text-accent"
+                className="text-detail-large font-semibold text-accent dark:text-dark-accent"
                 to="/register"
               >
                 Register
@@ -188,17 +212,26 @@ export default function HeaderComponent() {
         <nav>
           <ul className="flex space-x-20 w-full  justify-between items-center">
             <li>
-              <Link className="font-semibold text-detail-large" to="/">
+              <Link
+                className="font-semibold text-detail-large dark:text-dark-primary"
+                to="/"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link className="font-semibold text-detail-large" to="/courses">
+              <Link
+                className="font-semibold text-detail-large dark:text-dark-primary"
+                to="/courses"
+              >
                 Courses
               </Link>
             </li>
             <li>
-              <Link className="font-semibold text-detail-large" to="/about">
+              <Link
+                className="font-semibold text-detail-large dark:text-dark-primary"
+                to="/about"
+              >
                 About
               </Link>
             </li>
@@ -210,7 +243,10 @@ export default function HeaderComponent() {
           }`}
         >
           <li>
-            <Link className="font-semibold text-detail-large" to="/login">
+            <Link
+              className="font-semibold text-detail-large dark:text-dark-primary"
+              to="/login"
+            >
               Login
             </Link>
           </li>
@@ -244,7 +280,9 @@ export default function HeaderComponent() {
         </ul>
         <img
           onClick={() => navigate("/profile")}
-          className="h-12 w-12 rounded-full outline-1 cursor-pointer outline-accent border-2 border-transparent"
+          className={`h-12 w-12 rounded-full outline-1 cursor-pointer outline-accent border-2 border-transparent ${
+            isAuth ? "" : "hidden"
+          }`}
           src={"/img/userprofile.jpg"}
           alt=""
         />

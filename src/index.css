@@ -11,6 +11,11 @@ html {
   --color-secondary: #f4c542;
   --color-accent: #16a085;
 
+  --color-dark-primary: #e0e0e0;
+  --color-dark-bg: #121212;
+  --color-dark-accent: #1abc9c;
+  --color-dark-secondary: #ffd700;
+
   --radius-small: 8px;
   --radius-medium: 16px;
 

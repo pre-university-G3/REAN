@@ -12,11 +12,11 @@ export default function AboutSection() {
         <main className="flex flex-col md:flex-row w-full gap-x-50">
           <figure className="w-screen md:w-[100%]  md:min-w-[588px] relative flex justify-center md:justify-start items-center h-[588px] ">
             <img
-              className=" w-full md:w-[588px] h-[588px]"
+              className=" w-full md:w-[588px] h-[588px] rounded-3xl"
               src="/img/team.jpg"
               alt=""
             />
-            <figure className="w-72 h-72 bg-secondary p-2 rounded-2xl absolute md:right-[-140px] right-0 flex justify-center items-center">
+            <figure className="w-72 h-72 bg-secondary dark:bg-primary p-2 rounded-2xl absolute md:right-[-140px] right-0 flex justify-center items-center">
               <img
                 className="h-full rounded-2xl"
                 src="/img/team01.jpg"
@@ -25,10 +25,10 @@ export default function AboutSection() {
             </figure>
           </figure>
           <article className=" flex flex-col justify-center gap-y-10 ">
-            <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-primary font-bold">
+            <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-primary dark:text-dark-primary font-bold">
               About Us
             </h2>
-            <p className="text-body-text-small md:text-body-text-medium lg:text-body-text-large text-primary/70">
+            <p className="text-body-text-small md:text-body-text-medium lg:text-body-text-large text-primary/70 dark:text-dark-primary/70">
               We are dedicated to providing high-quality education for learners
               of all levels. Our platform offers expert-led courses designed to
               help you grow and succeed

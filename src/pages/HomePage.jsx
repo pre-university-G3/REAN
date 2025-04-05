@@ -9,7 +9,7 @@ import FeedbackForm from "../components/homepage/feedbackform/FeedbackForm";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col w-full items-center space-y-24 overflow-x-hidden">
+    <main className="flex flex-col w-full items-center space-y-24 overflow-x-hidden dark:bg-dark-bg">
       <HeroSection />
       <PopularCourses />
       <AboutSection />
