@@ -17,6 +17,16 @@ body {
   overflow-x: hidden;
 }
 
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .small-button {
   height: 32px;
   display: flex;

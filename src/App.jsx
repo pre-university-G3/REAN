@@ -1,9 +1,9 @@
 import "./App.css";
+import { AllCourses } from "./pages/AllCourses";
 import { BrowserRouter, Route, Routes } from "react-router";
 import RegisterForm from "./components/form/RegisterForm";
 import HomePage from "./pages/HomePage";
 import LoginForm from "./components/form/LoginForm";
-import "./App.css";
 import React from "react";
 import AboutPage from "./pages/AboutPage";
 import Layout from "./route/Layout";
@@ -30,7 +30,14 @@ function App() {
             </Layout>
           }
         />
-        <Route path="/courses" element={<h1>Courses Page</h1>} />
+        <Route
+          path="/courses"
+          element={
+            <Layout>
+              <AllCourses />
+            </Layout>
+          }
+        />
         <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
         <Route
           path="/register"
