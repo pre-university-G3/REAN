@@ -1,11 +1,21 @@
 @import "tailwindcss";
+<<<<<<< HEAD
 
 html {
   scroll-behavior: smooth;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+=======
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 
+@font-face {
+  font-family: "Kantumruy Pro", sans-serif;
+  src:url(../public/fonts/KantumruyPro-Bold.ttf);
+>>>>>>> 103ad6dd560c2b543cc5136d975ea2c0510f602d
+
+}
 @theme {
   --color-primary: #2c3e50;
   --color-secondary: #f4c542;

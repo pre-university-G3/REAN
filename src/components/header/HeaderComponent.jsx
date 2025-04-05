@@ -12,7 +12,7 @@ export default function HeaderComponent() {
 
   useEffect(() => {
     setIsAuth(IsLogin);
-  });
+  }, []);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode") === "true";
@@ -241,13 +241,13 @@ export default function HeaderComponent() {
               <img src={themeLogo} alt="Theme icon" />
             </div>
           </button>
+          <img
+            onClick={() => navigate("/profile")}
+            className="h-12 w-12 rounded-full outline-1 cursor-pointer outline-accent border-2 border-transparent"
+            src={"/img/userprofile.jpg"}
+            alt=""
+          />
         </ul>
-        <img
-          onClick={() => navigate("/profile")}
-          className="h-12 w-12 rounded-full outline-1 cursor-pointer outline-accent border-2 border-transparent"
-          src={"/img/userprofile.jpg"}
-          alt=""
-        />
       </header>
     </>
   );
