@@ -7,6 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { FaBookOpen, FaBookmark, FaSearch, FaUser } from "react-icons/fa";
+import image from "../../../public/img/image.png";
 function Profile() {
   const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -118,10 +119,11 @@ function ProfilePage() {
   ];
   return (
     <>
-      <div className="container w-[92%]  flex justify-between">
+      <div className="container w-[92%] flex justify-between ml-6">
         <div className="img-profile flex justify-content-center items-center ">
-          <div className="box w-[120px] h-[120px] bg-red-500 rounded-full">
+          <div className="w-[120px] h-[120px] pt-2">
             <img
+              className="border-1 rounded-full w-[120px] h-[120px]"
               src="https://cdn.pixabay.com/photo/2022/12/10/13/46/attack-7647136_1280.png"
               alt=""
             />
@@ -135,35 +137,58 @@ function ProfilePage() {
         <div>
           <button
             type="button"
-            className="text-red-600 bg-accent p-3 rounded-2xl mt-5"
+            className="text-white bg-accent p-3 rounded-2xl mt-5"
           >
             Logout
           </button>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-sm p-6 max-w-md w-full border border-gray-200 mt-5 ">
-        <h2 className="text-xl font-semibold mb-6 text-gray-800">
-          Profile Information
-        </h2>
+      <div className="flex items-center justify-between w-full max-w-5xl mx-auto mt-10 ml-7 h-[50vh]">
+        {/* Profile Info Card */}
+        <div className="bg-white rounded-lg shadow-md p-6 w-[400px] border border-gray-200">
+          <h2 className="text-xl font-semibold mb-6 text-gray-800">
+            Profile Information
+          </h2>
 
-        <div className="space-y-4 ">
-          {ProfileInfo.map((item, index) => (
-            <div key={index}>
-              <p className="text-sm font-medium text-gray-500">{item.label}</p>
-              <p className="mt-1 text-gray-800">{item.value}</p>
-              {index !== ProfileInfo.length - 1 && (
-                <div className="mt-3 border-b border-gray-100"></div>
-              )}
-            </div>
-          ))}
+          <div className="space-y-4">
+            {ProfileInfo.map((item, index) => (
+              <div key={index}>
+                <p className="text-sm font-medium text-gray-500">
+                  {item.label}
+                </p>
+                <p className="mt-1 text-gray-800 bg-gray-100 rounded-md p-2">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bigger Illustration (matching form size) */}
+        <div className="w-[500px] h-full flex justify-center items-center">
+          <img
+            className="w-[550px] h-[500px] object-contain"
+            src={image}
+            alt="Illustration"
+          />
         </div>
       </div>
-      <div className="w-[600px] absolute top-70 right-1 ">
-        <img
-          src="https://cdn.pixabay.com/photo/2019/12/16/10/30/iphone-4699057_1280.jpg"
-          alt=""
-        />
-      </div>
+
+      <footer className="w-full bg-gray-900 text-white py-10 mt-[50px]">
+        <div className="max-w-6xl mx-auto text-center px-6">
+          <h2 className="text-lg font-bold">JOIN OUR DISCORD COMMUNITY</h2>
+          <p className="mt-4 text-gray-300">
+            Join thousands of students sharing knowledge and experiences. Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Possimus amet,
+            debitis corporis rerum impedit saepe maxime sed vero, voluptate
+            quasi error praesentium a dicta consectetur! Illum, accusamus
+            deserunt. Aspernatur, voluptatem!
+          </p>
+          <button className="mt-6 bg-green-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-600 transition">
+            Join us
+          </button>
+        </div>
+      </footer>
     </>
   );
 }
