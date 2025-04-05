@@ -10,6 +10,7 @@ import Layout from "./route/Layout";
 import AuthPage from "./pages/AuthPage";
 import FileNotFound from "./components/filenotfound/FileNotFound";
 import CourseDetail from "./pages/CourseDetail";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
           }
         />
         <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+        
         <Route
           path="/register"
           element={
