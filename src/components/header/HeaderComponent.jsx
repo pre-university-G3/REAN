@@ -12,8 +12,9 @@ export default function HeaderComponent() {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    setIsAuth(IsLogin);
-  });
+    setIsAuth(IsLogin());
+  }, []);
+  console.log("isAuth is", isAuth);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode") === "true";

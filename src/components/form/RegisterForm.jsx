@@ -254,9 +254,9 @@ export default function RegisterForm() {
 
               <p className="text-center text-sm text-gray-500 mt-4">
                 Already have an account?{" "}
-                <a href="/login" className="text-accent hover:underline">
+                <Link to="/login" className="text-accent hover:underline">
                   Login
-                </a>
+                </Link>
               </p>
             </Form>
           </Formik>

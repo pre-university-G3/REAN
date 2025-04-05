@@ -37,8 +37,16 @@ export default function LoginForm() {
     try {
       const data = await loginUser(values);
 
-      localStorage.setItem("token", data.accessToken);
-      navigate("/");
+      if (data.accessToken !== null && data.accessToken !== undefined) {
+        localStorage.setItem("token", data.accessToken);
+        navigate("/");
+      } else {
+        setErrorModal({
+          open: true,
+          title: "Login Error",
+          description: "Invalid email or password! Please try again",
+        });
+      }
     } catch (error) {
       setErrorModal({
         open: true,
@@ -139,9 +147,9 @@ export default function LoginForm() {
               <footer className="text-center text-sm text-gray-500 mt-4">
                 <p>
                   Do not have an account?{" "}
-                  <a href="/register" className="text-accent hover:underline">
+                  <Link to="/register" className="text-accent hover:underline">
                     Register
-                  </a>
+                  </Link>
                 </p>
               </footer>
             </Form>

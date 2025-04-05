@@ -16,6 +16,10 @@ export const loginUser = async (values) => {
   const data = text ? JSON.parse(text) : {};
   console.log("Parsed JSON:", data);
 
+  if (response.status !== 200) {
+    throw new Error();
+  }
+
   console.log("Login Success:", data);
 
   return data;
