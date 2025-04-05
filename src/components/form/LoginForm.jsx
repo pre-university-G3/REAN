@@ -10,8 +10,8 @@ import { loginUser } from "../../api/login";
 import ErrorModal from "../modal/ErrorModal";
 
 const initialValues = {
-  email: "lovelyfarm168@gmail.com",
-  password: "Kdxadev12!",
+  email: "",
+  password: "",
 };
 
 const validationSchema = Yup.object().shape({
