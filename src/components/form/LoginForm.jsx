@@ -37,17 +37,7 @@ export default function LoginForm() {
     try {
       const data = await loginUser(values);
 
-      if (data === false || !data?.access_token) {
-        setErrorModal({
-          open: true,
-          title: "Error",
-          description: "Something went wrong! Please try again",
-        });
-        setLoading(false);
-        return;
-      }
-
-      localStorage.setItem("token", data.access_token);
+      localStorage.setItem("token", data.accessToken);
       navigate("/");
     } catch (error) {
       setErrorModal({

@@ -13,13 +13,6 @@ export const loginUser = async (values) => {
   console.log("HTTP Status:", response.status);
   console.log("Raw Response:", text);
 
-  if (!response.ok) {
-    return false;
-  }
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
   const data = text ? JSON.parse(text) : {};
   console.log("Parsed JSON:", data);
 

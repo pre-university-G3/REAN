@@ -72,9 +72,9 @@ export default function RegisterForm() {
 
     try {
       await registerUser(values); // now abstracted
-      setShowVerifyModal(true);
-      // const verifyCode = prompt("Enter verification code sent to your email:");
-      // alert("Verifying with code: " + verifyCode);
+      // setShowVerifyModal(true);
+      const verifyCode = prompt("Enter verification code sent to your email:");
+      alert("Verifying with code: " + verifyCode);
 
       const data = await verifyUser(values.email, verifyCode); // now abstracted
       console.log(data);

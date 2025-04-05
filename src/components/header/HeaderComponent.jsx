@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import IsLogin from "../../auth/IsLogin";
 export default function HeaderComponent() {
   const [logo, setLogo] = useState("/icons/menu.svg");
   const [isClick, setClick] = useState(false);
@@ -7,6 +8,11 @@ export default function HeaderComponent() {
   const [darkMode, setDarkMode] = useState(false);
   const [themeLogo, setThemeLogo] = useState("/icons/night.svg");
   const [isThemeClick, setIsThemeClick] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    setIsAuth(IsLogin);
+  });
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode") === "true";
@@ -198,7 +204,11 @@ export default function HeaderComponent() {
             </li>
           </ul>
         </nav>
-        <ul className="flex justify-between space-x-4 items-center h-full">
+        <ul
+          className={`flex justify-between space-x-4 items-center h-full ${
+            isAuth ? "hidden" : ""
+          }`}
+        >
           <li>
             <Link className="font-semibold text-detail-large" to="/login">
               Login
@@ -232,6 +242,12 @@ export default function HeaderComponent() {
             </div>
           </button>
         </ul>
+        <img
+          onClick={() => navigate("/profile")}
+          className="h-12 w-12 rounded-full outline-1 cursor-pointer outline-accent border-2 border-transparent"
+          src={"/img/userprofile.jpg"}
+          alt=""
+        />
       </header>
     </>
   );
