@@ -10,7 +10,7 @@ function NavLink({ to, icon, text, sidebarOpen, darkMode }) {
   return (
     <Link
       to={to}
-      className={`flex items-center p-4 mb-2 rounded-lg transition-colors duration-200 ${
+      className={`flex items-center  p-4 mb-2 rounded-lg transition-colors duration-200 ${
         isActive
           ? "bg-gray-800 dark:bg-gray-900 text-white"
           : `${
@@ -18,10 +18,13 @@ function NavLink({ to, icon, text, sidebarOpen, darkMode }) {
                 ? "hover:bg-gray-800 dark:hover:bg-gray-900 hover:text-white"
                 : "hover:bg-gray-800 hover:text-white"
             }`
-      }`}
+      }
+      ${sidebarOpen ? "" : "justify-center"}`}
     >
       <span className="text-xl">{icon}</span>
-      {sidebarOpen && <span className="ml-3">{text}</span>}
+      {sidebarOpen && (
+        <span className={`ml-3 font-semibold min-w-3xs`}>{text}</span>
+      )}
     </Link>
   );
 }
@@ -30,20 +33,20 @@ export default function Sidebar() {
   const [darkMode, setDarkMode] = useState(false);
   return (
     <div
-      className={`flex h-screen ${
+      className={`flex h-screen  ${
         darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
       }`}
     >
       {/* Sidebar */}
       <div
-        className={`${sidebarOpen ? "w-64" : "w-20"} ${
+        className={`px-4 ${sidebarOpen ? "w-64" : "w-20"} ${
           darkMode ? "bg-gray-800" : "bg-white"
         } transition-all duration-300 border-r ${
           darkMode ? "border-gray-700" : "border-gray-200"
         }`}
       >
         <div className="p-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold">{sidebarOpen ? "Profile" : "D"}</h1>
+          <h1 className="text-xl font-bold">{sidebarOpen ? "Account" : ""}</h1>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 rounded-lg hover:bg-gray-900 dark:hover:bg-gray-700"
@@ -52,15 +55,15 @@ export default function Sidebar() {
           </button>
         </div>
 
-        {/* Toggle dark mode */}
+        {/* Toggle dark mode
         <div className="px-4 mb-4">
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="text-sm text-blue-500 underline"
           >
-            {darkMode ? <FiSun /> : <FiMoon />} {/* Now matches state name */}
+            {darkMode ? <FiSun /> : <FiMoon />} {/* Now matches state name 
           </button>
-        </div>
+        </div> */}
 
         <nav className="mt-6 flex flex-col gap-2">
           <NavLink
