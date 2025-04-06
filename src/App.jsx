@@ -10,11 +10,24 @@ import Layout from "./route/Layout";
 import AuthPage from "./pages/AuthPage";
 import FileNotFound from "./components/filenotfound/FileNotFound";
 import CourseDetail from "./pages/CourseDetail";
+import ProtectedRoute from "./route/ProtectedRoute";
+import UserRoute from "./route/UserRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Protected Route */}
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path="/courses"
+            element={
+              <Layout>
+                <AllCourses />
+              </Layout>
+            }
+          />
+        </Route>
         <Route
           path="/"
           element={
@@ -31,39 +44,37 @@ function App() {
             </Layout>
           }
         />
-        <Route
-          path="/courses"
-          element={
-            <Layout>
-              <AllCourses />
-            </Layout>
-          }
-        />
+
         <Route
           path="/coursedetail"
           element={
             <Layout>
-              <CourseDetail/>
+              <CourseDetail />
             </Layout>
           }
         />
         <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
-        <Route
-          path="/register"
-          element={
-            <AuthPage>
-              <RegisterForm />
-            </AuthPage>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <AuthPage>
-              <LoginForm />
-            </AuthPage>
-          }
-        />
+
+        {/* User Route */}
+        <Route element={<UserRoute />}>
+          <Route
+            path="/register"
+            element={
+              <AuthPage>
+                <RegisterForm />
+              </AuthPage>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <AuthPage>
+                <LoginForm />
+              </AuthPage>
+            }
+          />
+        </Route>
+
         <Route path="*" element={<FileNotFound />} />
       </Routes>
     </BrowserRouter>

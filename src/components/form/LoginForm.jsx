@@ -66,13 +66,13 @@ export default function LoginForm() {
   }
 
   return (
-    <section className="relative z-1 flex flex-col justify-center px-5 md:px-[60px] lg:px-[120px] h-screen">
+    <section className="relative z-1 flex flex-col justify-center dark:bg-dark-bg  px-5 md:px-[60px] lg:px-[120px] h-screen">
       <div className="flex items-center justify-between">
         <article className="w-[50%] hidden md:flex">
           <img src={images} alt="piclogin" className="w-full " />
         </article>
 
-        <main className="w-full max-w-lg p-8 bg-white shadow-small rounded-small">
+        <main className="w-full max-w-lg p-8 bg-white dark:bg-black shadow-small rounded-small">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -80,8 +80,10 @@ export default function LoginForm() {
           >
             <Form className="w-full">
               <header className="text-center mb-4">
-                <h1 className="text-2xl font-bold text-gray-800">Login</h1>
-                <p className="text-gray-500 mb-6">
+                <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                  Login
+                </h1>
+                <p className="text-gray-500 dark:text-gray-300 mb-6">
                   Login to access your Rean account
                 </p>
               </header>
@@ -96,7 +98,7 @@ export default function LoginForm() {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className={`${style.input} h-[52px]`}
+                  className={`${style.input} h-[52px] placeholder:text-gray-500 dark:placeholder:text-gray-400`}
                 />
                 <ErrorMessage
                   name="email"
@@ -116,12 +118,12 @@ export default function LoginForm() {
                     name="password"
                     id="password"
                     placeholder="Password"
-                    className={`${style.input} h-[52px]`}
+                    className={`${style.input} h-[52px] placeholder:text-gray-500 dark:placeholder:text-gray-400`}
                   />
                   <button
                     type="button"
                     onClick={handleShowPassword}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-300"
                   >
                     {showPassword ? (
                       <IoEyeSharp size={20} />
@@ -144,7 +146,7 @@ export default function LoginForm() {
                 </button>
               </section>
 
-              <footer className="text-center text-sm text-gray-500 mt-4">
+              <footer className="text-center text-sm text-gray-500 dark:text-gray-300 mt-4">
                 <p>
                   Do not have an account?{" "}
                   <Link to="/register" className="text-accent hover:underline">
