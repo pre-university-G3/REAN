@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import CategoryCard from "../components/card/CategoryCard.jsx";
 import CourseCard from "../components/card/CourseCard.jsx";
 import AllCourseData from "../data/allCourses/AllCourses.js";
@@ -5,6 +6,22 @@ import CategoryData from "../data/allCourses/Category.js";
 import PopularCourseData from "../data/allCourses/PopularCourses.js";
 
 export function AllCourses() {
+  useEffect(() => {
+    fetch("https://course-api.istad.co/api/v1/courses", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`, // If using tokens
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (data.length === 0) console.log("No courses found.");
+        else console.log(data);
+      })
+      .catch((error) => console.error("Error:", error));
+  });
   return (
     <>
       {/* <main className="bg-white">
@@ -136,7 +153,7 @@ export function AllCourses() {
           <h2 className="text-2xl md:text-3xl text-primary-light font-bold mb-6">
             All Courses
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-24">
             {AllCourseData.map((course) => (
               <CourseCard
                 key={course.id}

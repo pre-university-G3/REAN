@@ -7,10 +7,30 @@ import Faq from "../components/homepage/faq/Faq";
 import ClientFeedback from "../components/homepage/clientfeedback/ClientFeedback";
 import FeedbackForm from "../components/homepage/feedbackform/FeedbackForm";
 import getUser from "../api/getUser";
+import refreshToken from "../api/refreshToken";
 
 export default function HomePage() {
   // Fetch user information
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const newToken = async () => {
+      try {
+        const data = await refreshToken();
+        if (data.accessToken !== null && data.accessToken !== undefined) {
+          localStorage.setItem("token", data.accessToken);
+          localStorage.setItem("refreshToken", data.refreshToken);
+          console.log("New token is written to localStorage");
+        }
+      } catch (e) {
+        console.log(
+          "Cannot write token to localStorage , Error : " + e.message
+        );
+      }
+    };
+
+    newToken();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

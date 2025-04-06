@@ -39,6 +39,7 @@ export default function LoginForm() {
 
       if (data.accessToken !== null && data.accessToken !== undefined) {
         localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
         navigate("/");
       } else {
         setErrorModal({

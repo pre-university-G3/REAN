@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import IsLogin from "../../auth/IsLogin";
+import getUser from "../../api/getUser";
 
 export default function HeaderComponent() {
   const [logo, setLogo] = useState("/icons/menu.svg");
@@ -10,6 +11,19 @@ export default function HeaderComponent() {
   const [themeLogo, setThemeLogo] = useState("/icons/night.svg");
   const [isThemeClick, setIsThemeClick] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
+
+  // Fetch user information
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userData = await getUser();
+      setUser(userData);
+    };
+
+    fetchData();
+  }, []);
+  console.log(user);
 
   useEffect(() => {
     setIsAuth(IsLogin());
