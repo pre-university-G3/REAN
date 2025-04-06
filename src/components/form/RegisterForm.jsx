@@ -17,7 +17,7 @@ const initialValues = {
   email: "",
   password: "",
   confirmedPassword: "",
-  biography: "This is my bio",
+  biography: name,
   role: "student",
 };
 
@@ -67,6 +67,7 @@ export default function RegisterForm() {
   // adjust path as needed
 
   const handleSubmit = async (values) => {
+    values.biography = values.name;
     console.log(values);
     setLoading(true);
 

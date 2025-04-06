@@ -10,6 +10,10 @@ import Layout from "./route/Layout";
 import AuthPage from "./pages/AuthPage";
 import FileNotFound from "./components/filenotfound/FileNotFound";
 import CourseDetail from "./pages/CourseDetail";
+import "./App.css";
+import UserProfile from "./components/Profile/UserProfile";
+import UserEnroll from "./components/Profile/UserEnroll";
+import ProfileSaved from "./components/Profile/ProfileSaved";
 import ProfilePage from "./pages/ProfilePage";
 
 function App() {
@@ -44,12 +48,13 @@ function App() {
           path="/coursedetail"
           element={
             <Layout>
-              <CourseDetail/>
+              <CourseDetail />
             </Layout>
           }
         />
         <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
-        <Route path="/profile" element={<ProfilePage/>} />
+
+        {/* Route login and register */}
         <Route
           path="/register"
           element={
@@ -64,6 +69,32 @@ function App() {
             <AuthPage>
               <LoginForm />
             </AuthPage>
+          }
+        />
+
+        {/* Profile Sidebar Routing */}
+        <Route
+          path="/profile"
+          element={
+            <ProfilePage>
+              <UserProfile />
+            </ProfilePage>
+          }
+        />
+        <Route
+          path="/my-course"
+          element={
+            <ProfilePage>
+              <UserEnroll />
+            </ProfilePage>
+          }
+        />
+        <Route
+          path="/saved"
+          element={
+            <ProfilePage>
+              <ProfileSaved />
+            </ProfilePage>
           }
         />
         <Route path="*" element={<FileNotFound />} />
