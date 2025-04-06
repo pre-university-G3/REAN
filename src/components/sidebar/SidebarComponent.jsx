@@ -1,5 +1,6 @@
-import React from 'react';
-import { FaUser, FaBookOpen, FaBookmark } from 'react-icons/fa'; // Import icons
+import React from "react";
+import { FaUser, FaBookOpen, FaBookmark } from "react-icons/fa"; // Import icons
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -11,22 +12,31 @@ function Sidebar() {
 
       <nav className="flex flex-col space-y-4">
         {/* Profile Button */}
-        <a  className="flex items-center space-x-3 hover:bg-gray-800 text-gray-800 hover:text-white px-4 py-2 rounded-lg" href="/profile">
+        <Link
+          className="flex items-center space-x-3 hover:bg-gray-800 text-gray-800 hover:text-white px-4 py-2 rounded-lg"
+          to="/profile"
+        >
           <FaUser className="text-xl" />
           <span className="font-medium">PROFILE</span>
-        </a>
+        </Link>
 
         {/* Courses Button */}
-        <a className="flex items-center space-x-3 hover:bg-gray-800 text-gray-800 hover:text-white px-4 py-2 rounded-lg" href="/courses">
+        <Link
+          className="flex items-center space-x-3 hover:bg-gray-800 text-gray-800 hover:text-white px-4 py-2 rounded-lg"
+          to="/courses"
+        >
           <FaBookOpen className="text-xl" />
           <span className="font-medium">COURSES</span>
-        </a>
+        </Link>
 
         {/* Saved Button */}
-        <a className="flex items-center space-x-3 hover:bg-gray-800 text-gray-800 hover:text-white px-4 py-2 rounded-lg" href="/saved">
+        <Link
+          className="flex items-center space-x-3 hover:bg-gray-800 text-gray-800 hover:text-white px-4 py-2 rounded-lg"
+          to="/saved"
+        >
           <FaBookmark className="text-xl" />
           <span className="font-medium font-kh">SAVED</span>
-        </a>
+        </Link>
       </nav>
     </div>
   );
