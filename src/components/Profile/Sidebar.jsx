@@ -1,8 +1,7 @@
 import React from "react";
-import { FiSun, FiMoon } from "react-icons/fi";
-import { useState, Search, setSearch } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaBookOpen, FaBookmark, FaSearch, FaUser } from "react-icons/fa";
+import { FaBookOpen, FaBookmark, FaUser } from "react-icons/fa";
 function NavLink({ to, icon, text, sidebarOpen, darkMode }) {
   const location = useLocation();
   const isActive = location.pathname === to;

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import image from "../../../public/img/image.png";
 
@@ -15,7 +14,7 @@ export default function UserProfile() {
     <>
       {/* You had an invalid Link here — removed */}
 
-      <section className="h-screen flex flex-col space-y-10">
+      <section className="h-screen flex flex-col space-y-10 w-full p-10">
         <div className="container w-full flex justify-between items-center">
           <div className="img-profile flex justify-content-center items-center ">
             <div className="w-[120px] h-[120px] pt-2">

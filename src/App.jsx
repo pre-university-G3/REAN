@@ -5,20 +5,37 @@ import UserProfile from "./components/Profile/UserProfile";
 import UserEnroll from "./components/Profile/UserEnroll";
 import ProfileSaved from "./components/Profile/ProfileSaved";
 import Sidebar from "./components/Profile/Sidebar";
+import ProfilePage from "./pages/ProfilePage";
 function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="flex">
-          <Sidebar/>
-          <div className="flex-1 p-6">
-            <Routes>
-                <Route path="/profile" element={<UserProfile />} />
-                <Route path="/my-course" element={<UserEnroll />} />
-                <Route path="/saved" element={<ProfileSaved />} />
-            </Routes>
-          </div>
-        </div>
+        <Routes>
+          <Route
+            path="/profile"
+            element={
+              <ProfilePage>
+                <UserProfile />
+              </ProfilePage>
+            }
+          ></Route>
+          <Route
+            path="/my-course"
+            element={
+              <ProfilePage>
+                <UserEnroll />
+              </ProfilePage>
+            }
+          ></Route>
+          <Route
+            path="/saved"
+            element={
+              <ProfilePage>
+                <ProfileSaved />
+              </ProfilePage>
+            }
+          ></Route>
+        </Routes>
       </BrowserRouter>
     </>
   );
