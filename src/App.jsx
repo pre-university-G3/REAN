@@ -13,7 +13,6 @@ import CourseDetail from "./pages/CourseDetail";
 import "./App.css";
 import UserProfile from "./components/Profile/UserProfile";
 import UserEnroll from "./components/Profile/UserEnroll";
-import ProfileSaved from "./components/Profile/ProfileSaved";
 import ProfilePage from "./pages/ProfilePage";
 
 function App() {
