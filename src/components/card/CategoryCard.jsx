@@ -6,6 +6,7 @@ export default function CategoryCard(props) {
   const handleClick = () => {
     setClick(!isClick);
   };
+
   return (
     <div
       onClick={handleClick}

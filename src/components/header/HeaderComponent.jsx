@@ -194,6 +194,7 @@ export default function HeaderComponent() {
           <ul className="flex flex-col space-y-2 items-center justify-between h-full w-full">
             <li>
               <button
+                onClick={() => setDarkMode(!darkMode)}
                 type="button"
                 className="text-detail-large font-semibold dark:text-dark-primary"
               >
@@ -252,55 +253,61 @@ export default function HeaderComponent() {
             </li>
           </ul>
         </nav>
-        <ul
-          className={`flex justify-between space-x-4 items-center h-full ${
-            isAuth ? "hidden" : ""
-          }`}
-        >
-          <li>
-            <Link
-              className="font-semibold text-detail-large dark:text-dark-primary"
-              to="/login"
-            >
-              Login
-            </Link>
-          </li>
-          <li className="h-[60%] w-[0.8px] bg-gray-300 dark:bg-primary rounded-small"></li>
-          <li>
-            <Link
-              className="flex justify-center items-center h-10 px-4 text-white dark:bg-primary dark:text-accent font-semibold animated rounded-small bg-accent hover:bg-[#0b6957]"
-              to="/register"
-            >
-              Register
-            </Link>
-          </li>
-          <button
-            onClick={() => {
-              const newMode = !darkMode;
-              setDarkMode(newMode);
-              setThemeLogo(newMode ? "/icons/sun.svg" : "/icons/night.svg");
-              setIsThemeClick(!isThemeClick);
-            }}
-            type="button"
-            className="flex justify-center items-center dark:bg-primary h-10 w-10 rounded-small animated bg-accent hover:bg-[#0b6957]"
-          >
-            <div
-              className={`transition-transform duration-300 ease-in-out ${
-                isThemeClick ? "rotate-180" : "rotate-0"
+        <nav>
+          <ul className="flex justify-between space-x-4 items-center h-full">
+            <ul
+              className={`flex justify-between space-x-4 items-center h-full ${
+                isAuth ? "hidden" : ""
               }`}
             >
-              <img src={themeLogo} alt="Theme icon" />
-            </div>
-          </button>
-        </ul>
-        <img
-          onClick={() => navigate("/profile")}
-          className={`h-12 w-12 rounded-full outline-1 cursor-pointer outline-accent border-2 border-transparent ${
-            isAuth ? "" : "hidden"
-          }`}
-          src={"/img/userprofile.jpg"}
-          alt=""
-        />
+              <li>
+                <Link
+                  className="font-semibold text-detail-large dark:text-dark-primary"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </li>
+              <li className="h-[60%] w-[0.8px] bg-gray-300 dark:bg-primary rounded-small"></li>
+              <li>
+                <Link
+                  className="flex justify-center items-center h-10 px-4 text-white dark:bg-primary dark:text-accent font-semibold animated rounded-small bg-accent hover:bg-[#0b6957]"
+                  to="/register"
+                >
+                  Register
+                </Link>
+              </li>
+            </ul>
+            <ul className="flex justify-between space-x-4 items-center h-full">
+              <button
+                onClick={() => {
+                  const newMode = !darkMode;
+                  setDarkMode(newMode);
+                  setThemeLogo(newMode ? "/icons/sun.svg" : "/icons/night.svg");
+                  setIsThemeClick(!isThemeClick);
+                }}
+                type="button"
+                className="flex justify-center items-center dark:bg-primary h-10 w-10 rounded-small animated bg-accent hover:bg-[#0b6957]"
+              >
+                <div
+                  className={`transition-transform duration-300 ease-in-out ${
+                    isThemeClick ? "rotate-180" : "rotate-0"
+                  }`}
+                >
+                  <img src={themeLogo} alt="Theme icon" />
+                </div>
+              </button>
+              <img
+                onClick={() => navigate("/profile")}
+                className={`h-10 w-10 rounded-full outline-1 cursor-pointer outline-accent border-2 border-transparent ${
+                  isAuth ? "" : "hidden"
+                }`}
+                src={"/img/userprofile.jpg"}
+                alt=""
+              />
+            </ul>
+          </ul>
+        </nav>
       </header>
     </>
   );
