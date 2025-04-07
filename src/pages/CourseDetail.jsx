@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import HeroSection from "../components/coursedetail/HeroSection";
-import DropDown from "../components/coursedetail/DropDown";
-import AllCourseData from "../data/allCourses/AllCourses";
-import CourseCard from "../components/card/CourseCard";
 import { useParams } from "react-router-dom";
 import getCourseBySlug from "../api/getCourseBySlug";
 import getCourseById from "../api/getCourseById";
-
-const recommandCourse = AllCourseData.slice(0, 4);
 
 export default function CourseDetail() {
   const { slug } = useParams();
@@ -33,7 +28,7 @@ export default function CourseDetail() {
   });
 
   return (
-    <main className="flex flex-col items-center space-y-[96px] pb-24 bg-white dark:bg-dark-bg">
+    <main className="flex flex-col items-center h-screen bg-white dark:bg-dark-bg">
       {/* Hero Section */}
       <HeroSection
         id={course?.id}
@@ -44,7 +39,7 @@ export default function CourseDetail() {
         instructor={course?.instructorUsername}
       />
 
-      {/* Course Content */}
+      {/* Course Content
       <article className="px-4 md:px-30 space-y-[96px]">
         <section className="w-full flex flex-col space-y-10">
           <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
@@ -53,7 +48,7 @@ export default function CourseDetail() {
           <DropDown />
         </section>
 
-        {/* Description */}
+        {/* Description 
         <section className="w-full">
           <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
             Description
@@ -67,7 +62,7 @@ export default function CourseDetail() {
           </p>
         </section>
 
-        {/* All Courses */}
+        {/* All Courses 
         <section className="w-full flex flex-col space-y-10">
           <div className="flex justify-between items-center">
             <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
@@ -96,7 +91,7 @@ export default function CourseDetail() {
           </section>
         </section>
 
-        {/* Instructor */}
+        {/* Instructor 
         <section className="w-full">
           <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
             Instructor
@@ -126,7 +121,7 @@ export default function CourseDetail() {
             </div>
           </article>
         </section>
-      </article>
+      </article> */}
     </main>
   );
 }

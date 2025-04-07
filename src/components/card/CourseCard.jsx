@@ -1,64 +1,102 @@
 import React, { useEffect, useState } from "react";
 import IsLogin from "../../auth/IsLogin";
 import { useNavigate } from "react-router-dom";
+import saveToWatchLater from "../../api/saveToWatchLater";
 
 export default function CourseCard(props) {
-  const { thumbnail, title, subtitle, description, instructor } = props;
+  const { id, thumbnail, title, subtitle, description, instructor, onClick } =
+    props;
   const [isAuth, setAuth] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     setAuth(IsLogin);
   }, []);
+  const courseId = id;
+  const handleCourseClick = () => {
+    if (onClick) {
+      onClick(courseId);
+    }
+  };
 
-  const handleClick = () => {
-    navigate(isAuth ? `/` : "/login");
+  const handleClick = async () => {
+    try {
+      setIsSaving(true); // Add loading state if needed
+      const success = await saveToWatchLater(id);
+      if (success) {
+        alert("Course saved successfully!"); // Consider using toast instead of alert
+      } else {
+        alert("Failed to save course");
+      }
+    } catch (e) {
+      alert("Error saving course: " + e.message);
+      console.error("Save error:", e);
+    } finally {
+      setIsSaving(false); // Reset loading state
+    }
   };
 
   return (
-    <>
-      <div
-        onClick={handleClick}
-        className=" flex flex-col justify-between shadow-small rounded-small pb-2 h-[450px]"
-      >
-        <figure className={`h-[50%] overflow-hidden w-full rounded-t-small`}>
-          <img className="h-full w-full object-cover" src={thumbnail} alt="" />
-        </figure>
+    <div
+      className="flex flex-col bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-[450px] cursor-pointer"
+      onClick={handleCourseClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Image with hover effect */}
+      <div className="relative h-[50%] overflow-hidden">
+        <img
+          className={`w-full h-full object-cover transition-transform duration-500 ${
+            isHovered ? "scale-105" : "scale-100"
+          }`}
+          src={thumbnail}
+          alt={title}
+        />
+        {/* Premium badge */}
+        <div className="absolute top-3 right-3 bg-white text-primary font-bold px-3 py-1 rounded-full text-xs shadow-md">
+          Premium
+        </div>
+      </div>
 
-        {/* <img className="h-[180px] rounded-t-xl" src={avatar} /> */}
-        <div className="flex flex-col gap-y-3 p-4 bg-white rounded-md">
-          <div className="flex flex-col gap-y-1">
-            <span className="text-sub-title-medium text-start line-clamp-1">
-              <b>{title}</b>
-            </span>
-            <span className="text-accent ">{subtitle}</span>
+      {/* Content */}
+      <div className="flex flex-col flex-grow p-5">
+        <div className="flex-grow">
+          <div className="mb-3">
+            <h3 className="text-xl font-bold text-gray-900 line-clamp-1 mb-1">
+              {title}
+            </h3>
+            <p className="text-accent font-medium">{subtitle}</p>
           </div>
-          <span className="text-detail-small line-clamp-2 md:text-detail-medium lg:text-detail-large text-gray-600">
+
+          <p className="text-gray-600 text-sm line-clamp-2 mb-4">
             {description}
-          </span>
-          <div className="flex flex-col gap-y-2 ">
-            <div className="w-full h-[0.0625rem] bg-gray-400"></div>
-            <div className="flex w-full justify-between">
-              <div className="flex gap-1">
-                <span className="text-detail-small md:text-detail-medium lg:text-detail-large text-gray-600">
-                  Instructor
-                </span>
-              </div>
-              <div className="flex gap-1">
-                <span className="text-detail-small md:text-detail-medium lg:text-detail-large text-gray-600">
-                  {instructor}
-                </span>
-              </div>
+          </p>
+        </div>
+
+        {/* Instructor and action */}
+        <div className="mt-auto">
+          <div className="border-t border-gray-200 pt-3">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-500">Instructor</span>
+              <span className="text-sm font-medium text-gray-700">
+                {instructor}
+              </span>
             </div>
           </div>
+
+          <button
+            onClick={handleClick}
+            disabled={isSaving}
+            className={`w-full mt-4 py-2 rounded-md font-medium text-white transition-colors duration-300 ${
+              isHovered ? "bg-dark-accent" : "bg-accent"
+            }`}
+          >
+            {isSaving ? "Saving..." : "Save"}
+          </button>
         </div>
-        <input
-          onClick={handleClick}
-          className="w-full small-button bg-accent hover:bg-accent-light text-white"
-          type="button"
-          value="Save"
-        />
       </div>
-    </>
+    </div>
   );
 }

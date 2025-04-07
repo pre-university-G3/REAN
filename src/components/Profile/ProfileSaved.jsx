@@ -9,7 +9,7 @@ function ProfileSaved() {
         {courses.map((course) => (
           <div
             key={course.id}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border shadow-small"
+            className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden border shadow-small"
           >
             <img
               src={course.thumbnail}

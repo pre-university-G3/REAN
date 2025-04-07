@@ -45,7 +45,7 @@ export default function PopularCourses() {
             title={course.title}
             instructor={course.instructorUsername}
             thumbnail={course.thumbnail}
-            onClick={handleCourseClick} // Pass the click handler to each course
+            onClick={handleCourseClick}
           />
         ))}
       </section>

@@ -57,11 +57,12 @@ export default function HeaderComponent() {
   return (
     <>
       {/* Header for Small Devices */}
-      <header className="fixed sm:hidden w-full animated h-fit z-100">
+      <header className="fixed sm:hidden w-full animated h-fit z-100 animated">
         <nav
           className={`relative h-[50px] z-50 w-full px-[30px] bg-white dark:bg-[#121212] animated shadow-small flex justify-between items-center`}
         >
           <img
+            className="dark:invert-100"
             src={"/icons/logo.svg"}
             width={"48px"}
             alt=""
@@ -223,8 +224,13 @@ export default function HeaderComponent() {
         </menu>
       </header>
       {/* Header for large Screen */}
-      <header className="hidden fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white dark:bg-[#0D0D0D] dark:text-accent shadow-small z-100">
-        <img src={"/icons/logo.svg"} alt="" onClick={() => navigate("/")} />
+      <header className="hidden animated fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white dark:bg-[#0D0D0D] dark:text-accent shadow-small z-100">
+        <img
+          src={"/icons/logo.svg"}
+          alt=""
+          onClick={() => navigate("/")}
+          className="dark:invert-75"
+        />
         <nav>
           <ul className="flex space-x-20 w-full  justify-between items-center">
             <li>

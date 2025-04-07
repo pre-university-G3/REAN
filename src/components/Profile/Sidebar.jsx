@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBookOpen, FaBookmark, FaUser } from "react-icons/fa";
+import { IoArrowBack } from "react-icons/io5";
 function NavLink({ to, icon, text, sidebarOpen, darkMode }) {
   const location = useLocation();
   const isActive = location.pathname === to;
@@ -45,6 +46,7 @@ export default function Sidebar() {
         }`}
       >
         <div className="p-4 flex justify-between items-center">
+          <Link to={"/"}>{sidebarOpen ? <IoArrowBack /> : ""}</Link>
           <h1 className="text-xl font-bold">{sidebarOpen ? "Account" : ""}</h1>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}

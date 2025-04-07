@@ -1,130 +1,144 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
-import { useState } from "react";
-import { Search } from "lucide-react";
-import coursesInProgress from "../../data/courseInProgress";
-import recommendedCourses from "../../data/recommandCourses";
-import getSavedCourses from "../../api/getSavedCourses";
 import { useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
+
+import getAllCourses from "../../api/getAllCourses";
+import getSavedCourses from "../../api/getSavedCourses";
+
+import CourseCard from "../card/CourseCard";
+
 export default function UserEnroll() {
-  const [search, setSearch] = useState();
-  const [darkMode, setDarkMode] = useState(false);
-  const [savedCourses, setSavedCourses] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [savedCourses, setSavedCourses] = useState([]);
+  const [recommendedCourses, setRecommendedCourses] = useState([]);
+  const [allCourses, setAllCourses] = useState([]);
+
   const navigate = useNavigate();
 
-  const handleRowClick = (courseId) => {
-    navigate(`/coursedetail/${courseId}`); // Navigate to course detail page
-  };
   useEffect(() => {
+    const fetchCourses = async () => {
+      const data = await getAllCourses();
+      if (data?.content) {
+        setAllCourses(data.content);
+        setRecommendedCourses(data.content.slice(0, 4));
+      }
+    };
+
     const fetchSavedCourses = async () => {
       try {
         const response = await getSavedCourses();
-        if (response) {
-          setSavedCourses(response);
-        }
+        if (response) setSavedCourses(response);
       } catch (e) {
-        alert("Error" + e.message);
+        alert("Error fetching saved courses: " + e.message);
       }
     };
+
+    fetchCourses();
     fetchSavedCourses();
-  });
+  }, []);
+
+  const handleCourseClick = (slug) => {
+    navigate(`/coursedetail/${slug}`);
+  };
+
+  const handleRowClick = (courseId) => {
+    navigate(`/coursedetail/${courseId}`);
+  };
+
+  const filteredCourses = savedCourses?.filter((course) =>
+    course?.title?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <>
-      <div className="p-10 w-full flex flex-col">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Courses in Progress</h2>
+    <div className="p-10 w-full flex flex-col">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">Saved Courses</h2>
 
-          {/* Search Bar */}
-          <div className="relative flex items-center gap-2">
-            <input
-              type="text"
-              placeholder="Search"
-              className="border rounded-lg px-4 py-2 pl-10 w-72"
-              value={Search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-
-            {/* Search Button */}
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-              Search
-            </button>
-          </div>
+        {/* Search Bar */}
+        <div className="relative flex items-center gap-2">
+          <input
+            type="text"
+            placeholder="Search by title..."
+            className="border rounded-lg px-2 py-2 pl-10 w-72"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+            <Search size={16} />
+          </button>
         </div>
+      </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <table className="w-full text-left">
-            {/* Table Header */}
-            <thead>
-              <tr className="text-gray-500 border-b">
-                <th className="pb-4 text-sm font-medium uppercase">
-                  Course ID
-                </th>
-                <th className="pb-4 text-sm font-medium uppercase">
-                  Corse title
-                </th>
-                <th className="pb-4 text-sm font-medium uppercase">
-                  Instructor
-                </th>
-                <th className="pb-4 text-sm font-medium uppercase">Added At</th>
+      {/* Saved Courses Table */}
+      <div className="bg-white rounded-lg shadow-md  mb-10">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-max">
+            <thead className="bg-gray-50">
+              <tr className="text-gray-600 text-left text-xs font-medium uppercase tracking-wider">
+                <th className="px-6 py-3">Course ID</th>
+                <th className="px-6 py-3">Course Title</th>
+                <th className="px-6 py-3">Instructor</th>
+                <th className="px-6 py-3">Added At</th>
               </tr>
             </thead>
-
-            {/* Table Body */}
-            <tbody>
-              {savedCourses?.map((course, index) => (
-                <tr
-                  key={index}
-                  id={course?.courseId}
-                  className="border-b last:border-none cursor-pointer"
-                  onClick={() => handleRowClick(course?.courseId)}
-                >
-                  {/* Course Name with Icon */}
-                  <td className="py-4 flex items-center gap-4">
-                    <div>
-                      <p className="font-semibold">{course?.courseId}</p>
-                    </div>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredCourses?.length > 0 ? (
+                filteredCourses.map((course, index) => (
+                  <tr
+                    key={course?.courseId || index}
+                    className="hover:bg-gray-50 transition-colors duration-150 cursor-pointer"
+                    onClick={() => handleRowClick(course?.courseId)}
+                  >
+                    <td className="px-6 py-4 text-sm text-gray-900 font-medium">
+                      {course?.courseId}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-700">
+                      {course?.title}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-700">
+                      {course?.instructor}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500">
+                      {course?.addedAt}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="4"
+                    className="px-6 py-4 text-center text-gray-500"
+                  >
+                    No courses found.
                   </td>
-
-                  {/* Start Date */}
-                  <td className="py-4 text-gray-700">{course?.title}</td>
-
-                  {/* Rate */}
-                  <td className="py-4 text-gray-700">{course?.instructor}</td>
-
-                  {/* Level */}
-                  <td className="py-4 text-gray-700">{course?.addedAt}</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
-
-        {/* Recommended Courses */}
-        <div>
-          <h2 className="text-2xl font-bold mt-8">Recommended Courses</h2>
-          <div className="grid grid-cols-3 gap-4 mt-4">
-            {recommendedCourses.map((course, index) => (
-              <div key={index} className="bg-white rounded-lg shadow p-4 ">
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="rounded w-full h-40 object-cover"
-                />
-                <h3 className="mt-2 text-lg font-semibold">{course.title}</h3>
-                <p className="text-sm text-gray-600">{course.description}</p>
-                <div className="flex justify-between text-sm mt-2">
-                  <span>{course.lessons} Lessons</span>
-                  <span>{course.hours} Hours</span>
-                </div>
-                <button className="mt-2 w-full small-button flex gap-2">
-                  <FaBookmark size={16} /> Save
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
-    </>
+
+      {/* Recommended Courses */}
+      <section>
+        <h2 className="text-2xl font-bold">Recommend Courses</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {recommendedCourses?.map((course) => (
+            <CourseCard
+              key={course?.id}
+              id={course?.id}
+              onClick={handleCourseClick}
+              thumbnail={course?.thumbnail}
+              title={course?.title}
+              subtitle={course?.subtitle}
+              instructor={course?.instructorUsername}
+              description={course?.description}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }

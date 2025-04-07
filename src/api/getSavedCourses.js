@@ -30,8 +30,7 @@ const getSavedCourses = async () => {
 
     return await response.json();
   } catch (error) {
-    console.error("Failed to fetch saved courses:", error);
-    throw error;
+    console.log(error.message);
   }
 };
 
