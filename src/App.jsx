@@ -31,7 +31,34 @@ function App() {
               </Layout>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <ProfilePage>
+                <UserProfile />
+              </ProfilePage>
+            }
+          />
+          <Route path="/coursedetail/:slug" element={<CourseDetail />} />
+          <Route
+            path="/saved"
+            element={
+              <ProfilePage>
+                <UserEnroll />
+              </ProfilePage>
+            }
+          />
+
+          <Route
+            path="/coursedetail"
+            element={
+              <Layout>
+                <CourseDetail />
+              </Layout>
+            }
+          />
         </Route>
+
         <Route
           path="/"
           element={
@@ -56,56 +83,10 @@ function App() {
             </Layout>
           }
         />
-        <Route path="/coursedetail/:slug" element={<CourseDetail />} />
+
         <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
 
-        {/* Route login and register */}
-        <Route
-          path="/register"
-          element={
-            <AuthPage>
-              <RegisterForm />
-            </AuthPage>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <AuthPage>
-              <LoginForm />
-            </AuthPage>
-          }
-        />
-
-        {/* Profile Sidebar Routing */}
-        <Route
-          path="/profile"
-          element={
-            <ProfilePage>
-              <UserProfile />
-            </ProfilePage>
-          }
-        />
-        <Route
-          path="/saved"
-          element={
-            <ProfilePage>
-              <UserEnroll />
-            </ProfilePage>
-          }
-        />
-
-        <Route
-          path="/coursedetail"
-          element={
-            <Layout>
-              <CourseDetail />
-            </Layout>
-          }
-        />
-        <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
-
-        {/* User Route */}
+        {/* User Mode Route */}
         <Route element={<UserRoute />}>
           <Route
             path="/register"

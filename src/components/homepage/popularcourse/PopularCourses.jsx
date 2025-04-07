@@ -40,7 +40,7 @@ export default function PopularCourses() {
         {popularCourses?.map((course) => (
           <Course
             key={course.id}
-            category={course.category}
+            category={course.categoryName}
             slug={course.slug}
             title={course.title}
             instructor={course.instructorUsername}

@@ -1,37 +1,59 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { SlUserFollowing } from "react-icons/sl";
 
-export default function Course(props) {
-  const { id, slug, category, title, instructor, thumbnail, onClick } = props;
+const Course = ({ slug, category, title, instructor, thumbnail, onClick }) => {
   const handleClick = () => {
-    if (onClick) {
-      onClick(slug);
-    }
+    onClick?.(slug);
   };
 
   return (
-    <section
-      className="flex flex-col p-4 space-y-2 rounded-small shadow-small dark:bg-black dark:text-dark-primary/[0.8]"
+    <article
       onClick={handleClick}
+      className="group flex flex-col p-4 gap-3 rounded-small shadow-small hover:shadow-medium transition-shadow cursor-pointer dark:bg-black dark:text-dark-primary/80"
+      role="button"
+      tabIndex={0}
+      aria-label={`View course: ${title}`}
     >
-      <figure
-        className="w-full h-[300px] md:h-[169px] rounded-small bg-center bg-cover"
+      {/* Thumbnail */}
+      <div
+        className="w-full h-[169px] rounded-small bg-cover bg-center"
         style={{ backgroundImage: `url(${thumbnail})` }}
-      ></figure>
-      <span className="text-accent text-detail-large uppercase dark:text-dark-accent/[0.8]">
+        aria-hidden="true"
+      />
+
+      {/* Course Category */}
+      <span className="text-xs uppercase tracking-wide text-accent dark:text-dark-accent/80">
         {category}
       </span>
-      <span className="text-sub-title-large line-clamp-1 text-primary font-semibold dark:text-dark-primary/[0.8]">
+
+      {/* Course Title */}
+      <h3 className="text-lg font-semibold line-clamp-1 text-primary dark:text-dark-primary">
         {title}
-      </span>
-      <div className="flex justify-between items-center">
-        <span className="flex gap-x-2 items-center text-detail-large text-primary/70 dark:text-dark-primary/[0.6]">
-          Instructor
+      </h3>
+
+      {/* Instructor Info */}
+      <div className="flex justify-between items-center text-sm text-primary/70 dark:text-dark-primary/60">
+        <span className="flex items-center gap-2">
+          <SlUserFollowing size={14} /> Instructor
         </span>
-        <span className="flex gap-x-2 items-center text-detail-large text-primary/70 dark:text-dark-primary/[0.6]">
-          {instructor}
-        </span>
+        <span>{instructor}</span>
       </div>
-    </section>
+    </article>
   );
-}
+};
+
+Course.propTypes = {
+  slug: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  instructor: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};
+
+Course.defaultProps = {
+  onClick: undefined,
+};
+
+export default Course;

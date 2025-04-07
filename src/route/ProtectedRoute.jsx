@@ -4,5 +4,5 @@ import { Navigate } from "react-router-dom";
 import IsLogin from "../auth/IsLogin";
 
 export default function ProtectedRoute() {
-  return IsLogin ? <Outlet /> : <Navigate to="/login" />;
+  return IsLogin() ? <Outlet /> : <Navigate to="/login" />;
 }

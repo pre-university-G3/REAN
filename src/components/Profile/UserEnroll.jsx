@@ -57,15 +57,15 @@ export default function UserEnroll() {
         <h2 className="text-2xl font-bold">Saved Courses</h2>
 
         {/* Search Bar */}
-        <div className="relative flex items-center gap-2">
+        <div className=" flex items-center gap-2 ">
           <input
             type="text"
             placeholder="Search by title..."
-            className="border rounded-lg px-2 py-2 pl-10 w-72"
+            className="border-1 border-gray-200 focus:outline-0  focus:border-gray-400 animated rounded-lg py-2 pl-10 w-72"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+          <button className="bg-blue-500 text-white flex w-10 justify-center items-center h-10 rounded-lg hover:bg-blue-600 transition">
             <Search size={16} />
           </button>
         </div>
@@ -101,7 +101,11 @@ export default function UserEnroll() {
                       {course?.instructor}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500">
-                      {course?.addedAt}
+                      {new Date(course?.addedAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </td>
                   </tr>
                 ))
@@ -122,7 +126,7 @@ export default function UserEnroll() {
 
       {/* Recommended Courses */}
       <section>
-        <h2 className="text-2xl font-bold">Recommend Courses</h2>
+        <h2 className="text-2xl font-bold mb-10">Recommend Courses</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {recommendedCourses?.map((course) => (

@@ -44,7 +44,7 @@ export default function UserProfile() {
 
       <section className="h-screen flex flex-col space-y-10 w-full p-10">
         <div className="container w-full flex justify-between items-center">
-          <div className="img-profile flex justify-content-center items-center ">
+          <div className="img-profile flex gap-4 items-center ">
             <div className="w-[120px] h-[120px] pt-2">
               <img
                 className="border-4 border-transparent outline-4 outline-accent rounded-full w-[120px] h-[120px]"
