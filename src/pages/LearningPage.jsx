@@ -8,12 +8,12 @@ export default function Layout({ children }) {
   return (
 <div className="flex flex-col min-h-screen bg-white">
   {/* Header at the top */}
-  <HeaderComponent />
+ 
   
   {/* Main content area with sidebar and content */}
   <main className="flex flex-1">
     <div className="flex flex-1">
-      {/* Sidebar - will collapse on mobile */}
+      {/* Sidebar on mobile */}
       <section>
         <LearningSide /> 
       </section>
@@ -23,7 +23,7 @@ export default function Layout({ children }) {
       </Content>
     </div>
   </main>
-  
+  <HeaderComponent />
 </div>
   );
 }

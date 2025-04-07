@@ -4,7 +4,7 @@ import { Menu } from "lucide-react";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation(); // Get current route location
+  const location = useLocation();
 
   // Auto-open sidebar on desktop
   useEffect(() => {
@@ -17,19 +17,18 @@ export default function Sidebar() {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Set initial state
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Sidebar menu items data
   const menuItems = [
-    { path: "/", name: "HTML HOME" },
+    { path: "/learning_page", name: "HTML HOME" },
     { path: "/introduction", name: "HTML Introduction" },
     { path: "/editors", name: "HTML Editors" },
     { path: "/basic", name: "HTML Basic" },
     { path: "/elements", name: "HTML Elements" },
-    // Add more items as needed
   ];
 
   return (
@@ -38,7 +37,7 @@ export default function Sidebar() {
       <aside 
         className={`fixed top-18 bottom-0 left-0 w-64 bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 z-40 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0`}
+        } lg:translate-x-0 lg:top-18 lg:mt-0 sm:top-20 md:top-18`}
       >
         <div className="p-4">
           <h2 className="text-lg font-bold mb-4 text-gray-800">HTML Tutorial</h2>
