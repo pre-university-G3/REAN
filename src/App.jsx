@@ -44,14 +44,7 @@ function App() {
             </Layout>
           }
         />
-        <Route
-          path="/coursedetail"
-          element={
-            <Layout>
-              <CourseDetail />
-            </Layout>
-          }
-        />
+        <Route path="/coursedetail/:slug" element={<CourseDetail />} />
         <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
 
         {/* Route login and register */}
@@ -82,18 +75,10 @@ function App() {
           }
         />
         <Route
-          path="/my-course"
-          element={
-            <ProfilePage>
-              <UserEnroll />
-            </ProfilePage>
-          }
-        />
-        <Route
           path="/saved"
           element={
             <ProfilePage>
-              <ProfileSaved />
+              <UserEnroll />
             </ProfilePage>
           }
         />

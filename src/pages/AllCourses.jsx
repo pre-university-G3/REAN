@@ -1,27 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CategoryCard from "../components/card/CategoryCard.jsx";
 import CourseCard from "../components/card/CourseCard.jsx";
-import AllCourseData from "../data/allCourses/AllCourses.js";
-import CategoryData from "../data/allCourses/Category.js";
-import PopularCourseData from "../data/allCourses/PopularCourses.js";
+import getCategory from "../api/getCategory.js";
+import getAllCourses from "../api/getAllCourses.js";
 
 export function AllCourses() {
+  const [popularCourses, setPopularCourses] = useState([]);
+  const [courses, setCourses] = useState();
   useEffect(() => {
-    fetch("https://course-api.istad.co/api/v1/courses", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // If using tokens
-      },
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        if (data.length === 0) console.log("No courses found.");
-        else console.log(data);
-      })
-      .catch((error) => console.error("Error:", error));
+    const fetchCourses = async () => {
+      const data = await getAllCourses();
+      if (data) {
+        setCourses(data?.content);
+        setPopularCourses(courses?.slice(0, 8));
+      }
+    };
+
+    fetchCourses();
   });
+  console.log(courses);
+
+  // Fetching the categories
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    try {
+      const fetchCategory = async () => {
+        const data = await getCategory();
+        setCategories(data ? data : []);
+      };
+
+      fetchCategory();
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   return (
     <>
       {/* <main className="bg-white">
@@ -119,11 +132,14 @@ export function AllCourses() {
 
         <section className="px-4 sm:px-5 md:px-15 lg:px-30 py-8">
           <div className="flex gap-4 overflow-x-auto py-2 scrollbar-hidden">
-            {CategoryData.map((category) => (
+            {categories.map((category) => (
               <CategoryCard
                 key={category.id}
-                title={category.title}
-                icon={category.icon}
+                title={category?.name}
+                icon={category?.icon.replace(
+                  "http://localhost:8080/image/",
+                  ""
+                )}
               />
             ))}
           </div>
@@ -134,16 +150,17 @@ export function AllCourses() {
             Popular Courses
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {PopularCourseData.map((course) => (
+            {popularCourses?.map((course) => (
               <CourseCard
-                key={course.id}
-                avatar={course.avatar}
-                title={course.title}
+                key={course?.id}
+                thumbnail={course?.thumbnail}
+                title={course?.title}
                 subtitle={course.subtitle}
-                icon={course.icon}
-                lesson={course.lesson}
-                time={course.time}
-                description={course.description}
+                // icon={course.icon}
+                // lesson={course.lesson}
+                // time={course.time}
+                instructor={course?.instructorUsername}
+                description={course?.description}
               />
             ))}
           </div>
@@ -154,16 +171,17 @@ export function AllCourses() {
             All Courses
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-24">
-            {AllCourseData.map((course) => (
+            {courses?.map((course) => (
               <CourseCard
-                key={course.id}
-                avatar={course.avatar}
-                title={course.title}
+                key={course?.id}
+                thumbnail={course?.thumbnail}
+                title={course?.title}
                 subtitle={course.subtitle}
-                icon={course.icon}
-                lesson={course.lesson}
-                time={course.time}
-                description={course.description}
+                // icon={course.icon}
+                // lesson={course.lesson}
+                // time={course.time}
+                instructor={course?.instructorUsername}
+                description={course?.description}
               />
             ))}
           </div>

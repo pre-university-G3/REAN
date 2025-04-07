@@ -8,7 +8,6 @@ import ClientFeedback from "../components/homepage/clientfeedback/ClientFeedback
 import FeedbackForm from "../components/homepage/feedbackform/FeedbackForm";
 import getUser from "../api/getUser";
 import refreshToken from "../api/refreshToken";
-
 export default function HomePage() {
   // Fetch user information
   const [user, setUser] = useState(null);

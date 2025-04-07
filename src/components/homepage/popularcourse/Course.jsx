@@ -1,10 +1,11 @@
 import React from "react";
+import { SlUserFollowing } from "react-icons/sl";
 
 export default function Course(props) {
-  const { id, category, title, lessons, time, src, onClick } = props;
+  const { id, slug, category, title, instructor, thumbnail, onClick } = props;
   const handleClick = () => {
     if (onClick) {
-      onClick(id);
+      onClick(slug);
     }
   };
 
@@ -15,20 +16,20 @@ export default function Course(props) {
     >
       <figure
         className="w-full h-[300px] md:h-[169px] rounded-small bg-center bg-cover"
-        style={{ backgroundImage: `url(${src})` }}
+        style={{ backgroundImage: `url(${thumbnail})` }}
       ></figure>
       <span className="text-accent text-detail-large uppercase dark:text-dark-accent/[0.8]">
         {category}
       </span>
-      <span className="text-sub-title-large text-primary font-semibold dark:text-dark-primary/[0.8]">
+      <span className="text-sub-title-large line-clamp-1 text-primary font-semibold dark:text-dark-primary/[0.8]">
         {title}
       </span>
       <div className="flex justify-between items-center">
         <span className="flex gap-x-2 items-center text-detail-large text-primary/70 dark:text-dark-primary/[0.6]">
-          <img src={"./icons/lesson.svg"} alt="" /> {lessons} Lessons
+          Instructor
         </span>
         <span className="flex gap-x-2 items-center text-detail-large text-primary/70 dark:text-dark-primary/[0.6]">
-          <img src={"./icons/clock.svg"} alt="" /> {time} Hours
+          {instructor}
         </span>
       </div>
     </section>

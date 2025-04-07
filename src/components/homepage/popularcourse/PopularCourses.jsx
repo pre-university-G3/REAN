@@ -1,13 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import Course from "./Course";
-import popularCourses from "../../../data/homepagedata/popularCourses";
-
-const courses = popularCourses;
+import { useEffect, useState } from "react";
+import getAllCourses from "../../../api/getAllCourses";
 
 export default function PopularCourses() {
+  const [popularCourses, setPopularCourses] = useState([]);
+  const [courses, setCourses] = useState();
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const data = await getAllCourses();
+      if (data) {
+        setCourses(data?.content);
+        setPopularCourses(courses?.slice(0, 8));
+      }
+    };
+
+    fetchCourses();
+  });
+  console.log(popularCourses);
   const navigate = useNavigate();
-  const handleCourseClick = (id) => {
-    navigate(`/courses/${id}`);
+  const handleCourseClick = (slug) => {
+    navigate(`/coursedetail/${slug}`);
   };
 
   return (
@@ -24,15 +37,14 @@ export default function PopularCourses() {
         </button>
       </article>
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px]">
-        {courses.map((course) => (
+        {popularCourses?.map((course) => (
           <Course
             key={course.id}
-            id={course.id}
             category={course.category}
+            slug={course.slug}
             title={course.title}
-            lessons={course.lessons}
-            time={course.time}
-            src={course.src}
+            instructor={course.instructorUsername}
+            thumbnail={course.thumbnail}
             onClick={handleCourseClick} // Pass the click handler to each course
           />
         ))}

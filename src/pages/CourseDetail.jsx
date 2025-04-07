@@ -1,16 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeroSection from "../components/coursedetail/HeroSection";
 import DropDown from "../components/coursedetail/DropDown";
 import AllCourseData from "../data/allCourses/AllCourses";
 import CourseCard from "../components/card/CourseCard";
+import { useParams } from "react-router-dom";
+import getCourseBySlug from "../api/getCourseBySlug";
+import getCourseById from "../api/getCourseById";
 
 const recommandCourse = AllCourseData.slice(0, 4);
 
 export default function CourseDetail() {
+  const { slug } = useParams();
+  const [course, setCourse] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getCourseBySlug(slug);
+      if (data) {
+        setCourse(data);
+      }
+    };
+    const fetchDataById = async () => {
+      const data = await getCourseById(slug);
+      if (data) {
+        setCourse(data);
+      }
+    };
+    fetchData();
+    if (course === undefined || course === null) {
+      fetchDataById();
+    }
+  });
+
   return (
     <main className="flex flex-col items-center space-y-[96px] pb-24">
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        id={course?.id}
+        category={course?.categoryName}
+        title={course?.title}
+        description={course?.description}
+        thumbnail={course?.thumbnail}
+        instructor={course?.instructorUsername}
+      />
 
       {/* Course Content */}
       <article className="px-4 md:px-30 space-y-[96px]">

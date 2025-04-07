@@ -73,13 +73,6 @@ export default function Sidebar() {
             darkMode={darkMode}
           />
           <NavLink
-            to="/my-course"
-            icon={<FaBookOpen />}
-            text="MY COURSE"
-            sidebarOpen={sidebarOpen}
-            darkMode={darkMode}
-          />
-          <NavLink
             to="/saved"
             icon={<FaBookmark />}
             text="SAVED"
