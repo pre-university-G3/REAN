@@ -56,7 +56,7 @@ export default function CourseCard(props) {
         />
         {/* Premium badge */}
         <div className="absolute top-3 right-3 bg-white text-primary font-bold px-3 py-1 rounded-full text-xs shadow-md">
-          Premium
+          Free
         </div>
       </div>
 
