@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function Content({ children }) {
+  const videoSectionRef = useRef(null);
+
+  const scrollToVideo = () => {
+    videoSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <main className="flex-1 p-4 sm:p-6 ml-0 lg:ml-64 mt-16">
       {children || (
@@ -28,12 +34,12 @@ export default function Content({ children }) {
                   </p>
                 </div>
               </div>
-              <Link
-                to="/introduction"
+              <button
+                onClick={scrollToVideo}
                 className="mt-3 inline-block bg-[#16a085] hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-4 md:py-3 md:px-6 rounded-md transition-colors text-center md:self-end"
               >
                 Start learning HTML now »
-              </Link>
+              </button>
             </div>
           </section>
 
@@ -76,7 +82,10 @@ export default function Content({ children }) {
           </section>
 
           {/* YouTube Video Section - Responsive */}
-          <section className="bg-[#2c3e50] rounded-lg overflow-hidden shadow-md">
+          <section 
+            ref={videoSectionRef} 
+            className="bg-[#2c3e50] rounded-lg overflow-hidden shadow-md scroll-mt-16"
+          >
             <div className="relative w-full aspect-video">
               <div className="absolute inset-0 flex items-center justify-center bg-black">
                 <iframe
@@ -95,20 +104,20 @@ export default function Content({ children }) {
                 HTML Crash Course For Absolute Beginners
               </h2>
               <p className="text-white mb-4 text-sm sm:text-base md:text-lg">
-                Learn HTML fundamentals in this comprehensive 9 mintues tutorial
+                Learn HTML fundamentals in this comprehensive 9 minutes tutorial
                 with Bro Code.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
                   Beginner
                 </span>
-                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
-                  9 Mintues
+                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                  9 Minutes
                 </span>
-                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
                   HTML5
                 </span>
-                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
                   Bro Code
                 </span>
               </div>
