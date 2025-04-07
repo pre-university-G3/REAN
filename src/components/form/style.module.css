@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #2c3e50;
+  --color-secondary: #f4c542;
+  --color-accent: #16a085;
+
+  --color-dark-primary: #e0e0e0;
+  --color-dark-bg: #121212;
+  --color-dark-accent: #1abc9c;
+  --color-dark-secondary: #ffd700;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 .container {
   @apply h-screen grid place-content-center;
 }
@@ -9,7 +22,7 @@
 }
 
 .label {
-  @apply block mb-2 text-sm font-medium text-gray-900;
+  @apply block mb-2 text-sm font-medium text-gray-900 dark:text-dark-primary/70;
 }
 .input {
   @apply border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5;

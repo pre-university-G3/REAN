@@ -7,8 +7,10 @@ const CourseDetail = ({ title, lessons }) => {
   return (
     <div>
       <button
-        className={`w-full border border-gray-300 flex items-center justify-between p-4 font-semibold text-sub-title-large rounded-lg ${
-          isOpen ? "bg-yellow-400" : ""
+        className={`w-full border border-gray-300 flex items-center justify-between p-4 font-semibold text-sub-title-large  dark:border-gray-700 dark:text-gray-100 dark:bg-black ${
+          isOpen
+            ? "bg-yellow-400 dark:bg-yellow-600 rounded-t-lg"
+            : "rounded-lg"
         }`}
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -23,21 +25,27 @@ const CourseDetail = ({ title, lessons }) => {
         {lessons.map((lesson, index) => (
           <div
             key={index}
-            className="flex items-center justify-between p-4 border-t bg-gray-50 hover:bg-gray-100"
+            className="flex items-center justify-between p-4 border-t bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full">
-                <PlayCircle size={20} className="text-primary" />
+              <div className="w-10 h-10 flex items-center justify-center bg-gray-200 dark:bg-gray-600 rounded-full">
+                <PlayCircle
+                  size={20}
+                  className="text-primary dark:text-gray-300"
+                />
               </div>
-              <p className="text-primary">{lesson.title}</p>
+              <p className="text-primary dark:text-gray-100">{lesson.title}</p>
             </div>
-            <span className="text-primary">{lesson.duration}</span>
+            <span className="text-primary dark:text-gray-300">
+              {lesson.duration}
+            </span>
           </div>
         ))}
       </div>
     </div>
   );
 };
+
 const CourseList = () => {
   const sections = [
     {

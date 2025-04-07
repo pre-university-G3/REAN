@@ -33,7 +33,7 @@ export default function CourseDetail() {
   });
 
   return (
-    <main className="flex flex-col items-center space-y-[96px] pb-24">
+    <main className="flex flex-col items-center space-y-[96px] pb-24 bg-white dark:bg-dark-bg">
       {/* Hero Section */}
       <HeroSection
         id={course?.id}
@@ -47,15 +47,18 @@ export default function CourseDetail() {
       {/* Course Content */}
       <article className="px-4 md:px-30 space-y-[96px]">
         <section className="w-full flex flex-col space-y-10">
-          <h1 className="text-accent text-h2-large font-bold">
+          <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
             Course Content
           </h1>
           <DropDown />
         </section>
+
         {/* Description */}
         <section className="w-full">
-          <h1 className="text-accent text-h2-large font-bold">Description</h1>
-          <p className="text-primary text-body-text-large mt-10">
+          <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
+            Description
+          </h1>
+          <p className="text-primary text-body-text-large mt-10  dark:text-gray-300">
             It would be best to have a basic understanding of HTML and CSS. If
             you still need to learn the fundamentals, we link to some excellent
             resources inside the path. We recommend starting the path and using
@@ -63,12 +66,15 @@ export default function CourseDetail() {
             challenge.
           </p>
         </section>
+
         {/* All Courses */}
         <section className="w-full flex flex-col space-y-10">
           <div className="flex justify-between items-center">
-            <h1 className="text-accent text-h2-large font-bold">All Course</h1>
+            <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
+              All Course
+            </h1>
             <div className="mt-5">
-              <nav className="text-gray-500">
+              <nav className="text-gray-500 dark:text-gray-400">
                 <a href="#" className="hover:text-accent text-body-text-large">
                   View More <span className="mx-3">&gt;</span>
                 </a>
@@ -89,10 +95,13 @@ export default function CourseDetail() {
             ))}
           </section>
         </section>
+
         {/* Instructor */}
         <section className="w-full">
-          <h1 className="text-accent text-h2-large font-bold">Instructor</h1>
-          <article className="bg-white rounded-lg shadow-md border p-10 mt-10 border-black">
+          <h1 className="text-accent text-h2-large font-bold  dark:text-gray-100">
+            Instructor
+          </h1>
+          <article className="bg-white dark:bg-black rounded-lg shadow-md border p-10 mt-10 border-black dark:border-gray-700">
             <div className="flex flex-col md:flex-row gap-5">
               <figure className="flex-shrink-0">
                 <img
@@ -102,16 +111,16 @@ export default function CourseDetail() {
                 />
               </figure>
               <div className="flex-grow">
-                <h1 className="text-h3-large text-primary font-bold mb-3">
+                <h1 className="text-h3-large text-primary font-bold mb-3  dark:text-dark-primary">
                   Joseph Delgadillo
                 </h1>
-                <p className="text-body-text-large text-primary mt-2">
+                <p className="text-body-text-large text-primary mt-2  dark:text-dark-primary/70">
                   Joseph Delgadillo is the founder of JTD Courses, an education
                   technology company. He has been active in the online learning
                   industry since 2015 and has worked with several prominent
                   companies. As of 2024, over 1 million students across the
                   globe have enrolled in his courses covering network security,
-                  Python programming, web development and more.
+                  Python programming, web development, and more.
                 </p>
               </div>
             </div>

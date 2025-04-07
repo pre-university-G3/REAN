@@ -14,11 +14,24 @@ import "./App.css";
 import UserProfile from "./components/Profile/UserProfile";
 import UserEnroll from "./components/Profile/UserEnroll";
 import ProfilePage from "./pages/ProfilePage";
+import ProtectedRoute from "./route/ProtectedRoute";
+import UserRoute from "./route/UserRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Protected Route */}
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path="/courses"
+            element={
+              <Layout>
+                <AllCourses />
+              </Layout>
+            }
+          />
+        </Route>
         <Route
           path="/"
           element={
@@ -81,6 +94,37 @@ function App() {
             </ProfilePage>
           }
         />
+
+        <Route
+          path="/coursedetail"
+          element={
+            <Layout>
+              <CourseDetail />
+            </Layout>
+          }
+        />
+        <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
+
+        {/* User Route */}
+        <Route element={<UserRoute />}>
+          <Route
+            path="/register"
+            element={
+              <AuthPage>
+                <RegisterForm />
+              </AuthPage>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <AuthPage>
+                <LoginForm />
+              </AuthPage>
+            }
+          />
+        </Route>
+
         <Route path="*" element={<FileNotFound />} />
       </Routes>
     </BrowserRouter>

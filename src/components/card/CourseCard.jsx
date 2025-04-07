@@ -6,12 +6,15 @@ export default function CourseCard(props) {
   const { thumbnail, title, subtitle, description, instructor } = props;
   const [isAuth, setAuth] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     setAuth(IsLogin);
   }, []);
+
   const handleClick = () => {
     navigate(isAuth ? `/` : "/login");
   };
+
   return (
     <>
       <div
@@ -48,13 +51,13 @@ export default function CourseCard(props) {
               </div>
             </div>
           </div>
-          <input
-            onClick={handleClick}
-            className="w-full small-button"
-            type="button"
-            value="Save"
-          />
         </div>
+        <input
+          onClick={handleClick}
+          className="w-full small-button bg-accent hover:bg-accent-light text-white"
+          type="button"
+          value="Save"
+        />
       </div>
     </>
   );
