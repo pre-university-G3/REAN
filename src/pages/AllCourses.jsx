@@ -13,14 +13,12 @@ export function AllCourses() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const [listCourses, setListCourses] = useState([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
       const data = await getAllCourses();
       if (data) {
         setCourses(data?.content);
-        setListCourses(courses);
         setPopularCourses(data?.content?.slice(0, 8));
         setLoading(false);
       }
