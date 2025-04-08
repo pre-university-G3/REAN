@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { SlUserFollowing } from "react-icons/sl";
+import { FiArrowRight } from "react-icons/fi";
 
 const Course = ({ slug, category, title, instructor, thumbnail, onClick }) => {
   const handleClick = () => {
@@ -10,35 +11,43 @@ const Course = ({ slug, category, title, instructor, thumbnail, onClick }) => {
   return (
     <article
       onClick={handleClick}
-      className="group flex flex-col p-4 gap-3 rounded-small shadow-small hover:shadow-medium transition-shadow cursor-pointer dark:bg-black dark:text-dark-primary/80"
+      className="group relative flex flex-col p-5 gap-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:border-4 hover:border-accent/20 dark:hover:border-transparent shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden hover:-translate-y-1"
       role="button"
       tabIndex={0}
       aria-label={`View course: ${title}`}
     >
-      {/* Thumbnail */}
-      <div
-        className="w-full h-[169px] rounded-small bg-cover bg-center"
-        style={{ backgroundImage: `url(${thumbnail})` }}
-        aria-hidden="true"
-      />
-
-      {/* Course Category */}
-      <span className="text-xs uppercase tracking-wide text-accent dark:text-dark-accent/80">
-        {category}
-      </span>
-
-      {/* Course Title */}
-      <h3 className="text-lg font-semibold line-clamp-1 text-primary dark:text-dark-primary">
-        {title}
-      </h3>
-
-      {/* Instructor Info */}
-      <div className="flex justify-between items-center text-sm text-primary/70 dark:text-dark-primary/60">
-        <span className="flex items-center gap-2">
-          <SlUserFollowing size={14} /> Instructor
+      <div className="relative w-full h-48 rounded-lg overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+          style={{ backgroundImage: `url(${thumbnail})` }}
+          aria-hidden="true"
+        />
+        <span className="absolute top-3 left-3 px-3 py-1 text-xs font-medium uppercase tracking-wide rounded-full bg-accent text-white dark:bg-dark-accent shadow-sm z-10">
+          {category}
         </span>
-        <span>{instructor}</span>
       </div>
+
+      <div className="flex flex-col gap-3 z-20">
+        {/* Title with hover effect */}
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-2 group-hover:text-accent dark:group-hover:text-dark-accent transition-colors">
+          {title}
+        </h3>
+
+        {/* Instructor Info */}
+        <div className="flex justify-between items-center text-sm">
+          <span className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+            <SlUserFollowing
+              size={14}
+              className="text-accent dark:text-dark-accent"
+            />
+            Instructor
+          </span>
+          <span className="font-medium text-gray-700 dark:text-gray-300">
+            {instructor}
+          </span>
+        </div>
+      </div>
+      <div className="absolute -inset-1 rounded-xl bg-accent/5 dark:bg-dark-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
     </article>
   );
 };

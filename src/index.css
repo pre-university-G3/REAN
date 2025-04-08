@@ -6,6 +6,14 @@ html {
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@layer components {
+  .search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+}
+
 @theme {
   --color-primary: #2c3e50;
   --color-secondary: #f4c542;

@@ -69,7 +69,7 @@ export default function UserProfile() {
                 navigate("/");
               }}
               type="button"
-              className="medium-button"
+              className="px-4 py-2 text-body-text-small font-semibold text-white rounded-small  bg-red-600"
             >
               Log out
             </button>

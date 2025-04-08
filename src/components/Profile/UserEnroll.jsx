@@ -7,12 +7,15 @@ import getAllCourses from "../../api/getAllCourses";
 import getSavedCourses from "../../api/getSavedCourses";
 
 import CourseCard from "../card/CourseCard";
+import { IoTrashOutline } from "react-icons/io5";
+import deleteFromWatchLater from "../../api/deleteFromWatchLater";
 
 export default function UserEnroll() {
   const [searchTerm, setSearchTerm] = useState("");
   const [savedCourses, setSavedCourses] = useState([]);
   const [recommendedCourses, setRecommendedCourses] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
+  const [isDeleting, setIsDeleting] = useState({ status: false, id: 0 });
 
   const navigate = useNavigate();
 
@@ -36,7 +39,17 @@ export default function UserEnroll() {
 
     fetchCourses();
     fetchSavedCourses();
-  }, []);
+  });
+
+  const handleDeleteClick = async (courseId) => {
+    setIsDeleting(true, courseId);
+    try {
+      await deleteFromWatchLater(courseId);
+      setIsDeleting(false);
+    } catch (e) {
+      console.log("Error in deleting saved course : " + e.message);
+    }
+  };
 
   const handleCourseClick = (slug) => {
     navigate(`/coursedetail/${slug}`);
@@ -47,7 +60,7 @@ export default function UserEnroll() {
   };
 
   const filteredCourses = savedCourses?.filter((course) =>
-    course?.title?.toLowerCase().includes(searchTerm.toLowerCase())
+    course?.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -81,6 +94,7 @@ export default function UserEnroll() {
                 <th className="px-6 py-3">Course Title</th>
                 <th className="px-6 py-3">Instructor</th>
                 <th className="px-6 py-3">Added At</th>
+                <th className="px-6 py-3">Edition</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -89,12 +103,14 @@ export default function UserEnroll() {
                   <tr
                     key={course?.courseId || index}
                     className="hover:bg-gray-50 transition-colors duration-150 cursor-pointer"
-                    onClick={() => handleRowClick(course?.courseId)}
                   >
                     <td className="px-6 py-4 text-sm text-gray-900 font-medium">
                       {course?.courseId}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td
+                      onClick={() => handleRowClick(course?.courseId)}
+                      className="px-6 py-4 text-sm text-gray-700"
+                    >
                       {course?.title}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-700">
@@ -107,15 +123,25 @@ export default function UserEnroll() {
                         day: "numeric",
                       })}
                     </td>
+                    <td className="px-6 py-4 text-sm text-white ">
+                      <span
+                        onClick={() => handleDeleteClick(course?.courseId)}
+                        className="flex items-center gap-x-1 bg-red-600 px-2.5 py-1 w-fit rounded-small"
+                      >
+                        {isDeleting.status && isDeleting.id == course?.courseId
+                          ? "Deleting..."
+                          : "Delete"}
+                      </span>
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
                   <td
-                    colSpan="4"
+                    colSpan="5"
                     className="px-6 py-4 text-center text-gray-500"
                   >
-                    No courses found.
+                    No saved course.
                   </td>
                 </tr>
               )}

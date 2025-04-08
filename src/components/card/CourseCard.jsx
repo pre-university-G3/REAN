@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import IsLogin from "../../auth/IsLogin";
-import { useNavigate } from "react-router-dom";
 import saveToWatchLater from "../../api/saveToWatchLater";
 
 export default function CourseCard(props) {
@@ -8,7 +7,6 @@ export default function CourseCard(props) {
     props;
   const [isAuth, setAuth] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
@@ -24,14 +22,8 @@ export default function CourseCard(props) {
   const handleClick = async () => {
     try {
       setIsSaving(true); // Add loading state if needed
-      const success = await saveToWatchLater(id);
-      if (success) {
-        alert("Course saved successfully!"); // Consider using toast instead of alert
-      } else {
-        alert("Failed to save course");
-      }
+      await saveToWatchLater(id);
     } catch (e) {
-      alert("Error saving course: " + e.message);
       console.error("Save error:", e);
     } finally {
       setIsSaving(false); // Reset loading state
@@ -41,12 +33,14 @@ export default function CourseCard(props) {
   return (
     <div
       className="flex flex-col bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-[450px] cursor-pointer"
-      onClick={handleCourseClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image with hover effect */}
-      <div className="relative h-[50%] overflow-hidden">
+      <div
+        onClick={handleCourseClick}
+        className="relative h-[50%] overflow-hidden"
+      >
         <img
           className={`w-full h-full object-cover transition-transform duration-500 ${
             isHovered ? "scale-105" : "scale-100"
@@ -89,7 +83,7 @@ export default function CourseCard(props) {
           <button
             onClick={handleClick}
             disabled={isSaving}
-            className={`w-full mt-4 py-2 rounded-md font-medium text-white transition-colors duration-300 ${
+            className={`w-full z-50 mt-4 py-2 rounded-md font-medium text-white transition-colors duration-300 ${
               isHovered ? "bg-dark-accent" : "bg-accent"
             }`}
           >

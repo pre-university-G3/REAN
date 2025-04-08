@@ -21,7 +21,7 @@ const StyledWrapper = styled.div`
     width: 60px;
     height: 30px;
     position: relative;
-    z-index: 4;
+    z-index: 100;
   }
 
   .typing-circle {

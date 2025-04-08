@@ -13,7 +13,7 @@ export default function CategoryCard(props) {
     <div
       onClick={handleClick}
       className={`
-        flex items-center gap-4 p-4 rounded-lg cursor-pointer 
+        inline-flex items-center gap-4 p-4 rounded-lg cursor-pointer 
         transition-all duration-300 ease-in-out w-fit
         shadow-sm hover:shadow-md
         border border-gray-200 hover:border-accent/30
@@ -27,15 +27,15 @@ export default function CategoryCard(props) {
           transition-colors duration-300
         `}
       />
-      <span
+      <p
         className={`
           text-sm md:text-base font-medium capitalize w-fit
           ${isActive ? "text-accent" : "text-gray-700"}
-          transition-colors duration-300
+          transition-colors duration-300 whitespace-nowrap
         `}
       >
         {title}
-      </span>
+      </p>
     </div>
   );
 }
