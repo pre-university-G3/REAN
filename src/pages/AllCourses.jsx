@@ -3,9 +3,10 @@ import CategoryCard from "../components/card/CategoryCard.jsx";
 import CourseCard from "../components/card/CourseCard.jsx";
 import getCategory from "../api/getCategory.js";
 import getAllCourses from "../api/getAllCourses.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/loading/Loader.jsx";
 import { motion } from "framer-motion";
+import { Button } from "@headlessui/react";
 
 export function AllCourses() {
   const [popularCourses, setPopularCourses] = useState([]);
@@ -207,9 +208,17 @@ export function AllCourses() {
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
               Popular Courses
             </h2>
-            <button className="text-primary hover:text-primary-dark font-medium">
+            <Button
+              onClick={() => {
+                document.getElementById("all-course").scrollIntoView({
+                  block: "start",
+                  inline: "center",
+                });
+              }}
+              className="text-primary hover:text-primary-dark font-medium cursor-pointer"
+            >
               View All
-            </button>
+            </Button>
           </motion.div>
 
           {popularCourses?.length > 0 ? (
@@ -247,7 +256,7 @@ export function AllCourses() {
       </section>
 
       {/* All Courses Section */}
-      <section className="px-4 sm:px-6 md:px-8 lg:px-12 py-12">
+      <section id="all-course" className="px-4 sm:px-6 md:px-8 lg:px-12 py-12">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
