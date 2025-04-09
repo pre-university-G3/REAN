@@ -273,7 +273,8 @@ export function AllCourses() {
                 <motion.div
                   key={course?.id}
                   variants={item}
-                  initial={{ opacity: 0, y: 100 }}
+                  transition={{ duration: 0.5 }}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView="show"
                   viewport={true}
                 >

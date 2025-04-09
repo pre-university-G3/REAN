@@ -1,13 +1,26 @@
 import React from "react";
 import Widget from "./Widget";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   const navigate = useNavigate();
   return (
     <>
       <section className="relative z-10 flex flex-col w-full h-fit md:h-[100vh] md:flex-row justify-center pt-[50px] sm:pt-[72px] px-5 md:px-[60px] lg:px-[120px] dark:bg-[#121212] dark:text-white">
-        <article className="space-y-8 w-full h-[80vh] md:h-full md:w-[70vw] flex flex-col justify-center text-center md:text-start">
+        <motion.article
+          variants={{
+            hidden: { opacity: 0.5, y: 50, x: -50 },
+            show: { opacity: 1, y: 0, x: 0 },
+          }}
+          // initial={{ opacity: 0, x: -20 }}
+          // animate={{ opacity: 1, x: 0 }}
+          initial="hidden"
+          transition={{ duration: 1 }}
+          whileInView="show"
+          viewport={true}
+          className="space-y-8 w-full h-[80vh] md:h-full md:w-[70vw] flex flex-col justify-center text-center md:text-start"
+        >
           <h1 className="text-h1-small md:text-h1-medium xl:text-h1-large font-bold text-primary dark:text-accent">
             Transform Your Future with Quality{" "}
             <span className="text-accent dark:text-[#FFD700]">Education</span>{" "}
@@ -28,8 +41,20 @@ export default function HeroSection() {
               Learn more
             </button>
           </div>
-        </article>
-        <figure className="hidden md:flex relative w-full h-full justify-center items-center overflow-y-visible">
+        </motion.article>
+        <motion.figure
+          variants={{
+            hidden: { opacity: 0.5, y: 50, x: 50 },
+            show: { opacity: 1, y: 0, x: 0 },
+          }}
+          // initial={{ opacity: 0, x: -20 }}
+          // animate={{ opacity: 1, x: 0 }}
+          initial="hidden"
+          transition={{ duration: 1 }}
+          whileInView="show"
+          viewport={true}
+          className="hidden md:flex relative w-full h-full justify-center items-center overflow-y-visible"
+        >
           <img
             className="md:absolute md:top-[-80px] w-full h-full"
             src={"./img/heroimage.svg"}
@@ -55,7 +80,7 @@ export default function HeroSection() {
             title={"4.8"}
             des={"Satisfaction"}
           />
-        </figure>
+        </motion.figure>
       </section>
       <img
         className="hidden z-20 md:inline absolute translate-x-180 translate-y-10"
