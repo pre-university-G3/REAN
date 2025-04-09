@@ -18,7 +18,7 @@ const Course = ({ slug, category, title, instructor, thumbnail, onClick }) => {
     >
       <div className="relative w-full h-48 rounded-lg overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
           style={{ backgroundImage: `url(${thumbnail})` }}
           aria-hidden="true"
         />

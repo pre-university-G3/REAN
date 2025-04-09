@@ -1,0 +1,40 @@
+.logo-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.animated-logo {
+  width: 80px;
+  height: 200px;
+}
+
+.logo-path-1 {
+  animation: path1-anim 2s ease-in-out infinite;
+}
+
+.logo-path-2 {
+  animation: path2-anim 2s ease-in-out infinite;
+}
+
+@keyframes path1-anim {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes path2-anim {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
