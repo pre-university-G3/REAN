@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "generate-html": "cpx index.html dist/",
+    "generate-html": "cpx index.html build/",
     "build": "npm run generate-html && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
