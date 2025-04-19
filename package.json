@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "generate-html": "if not exist dist mkdir dist && copy index.html dist\\",
+    "generate-html": "cpx index.html dist",
     "build": "npm run generate-html && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -35,6 +35,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "cpx": "^1.5.0",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
