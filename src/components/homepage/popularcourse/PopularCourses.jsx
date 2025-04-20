@@ -26,7 +26,7 @@ export default function PopularCourses() {
   console.log(popularCourses);
   const navigate = useNavigate();
   const handleCourseClick = (slug) => {
-    navigate(`/coursedetail/${slug}`);
+    navigate(`/course/${slug}`);
   };
 
   return (

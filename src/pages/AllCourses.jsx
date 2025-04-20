@@ -37,7 +37,7 @@ export function AllCourses() {
   };
 
   const handleCourseClick = (slug) => {
-    navigate(`/coursedetail/${slug}`);
+    navigate(`/course/${slug}`);
   };
 
   // Fetching the categories

@@ -51,7 +51,7 @@ export default function UserEnroll() {
   };
 
   const handleCourseClick = (slugOrId) => {
-    navigate(`/coursedetail/${slugOrId}`);
+    navigate(`/course/${slugOrId}`);
   };
 
   const filteredCourses = savedCourses?.filter((course) =>

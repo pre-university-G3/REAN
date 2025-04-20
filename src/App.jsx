@@ -39,7 +39,7 @@ function App() {
               </ProfilePage>
             }
           />
-          <Route path="/coursedetail/:slug" element={<CourseDetail />} />
+          {/* <Route path="/coursedetail/:slug" element={<CourseDetail />} /> */}
           <Route
             path="/saved"
             element={
@@ -50,7 +50,7 @@ function App() {
           />
 
           <Route
-            path="/coursedetail"
+            path="/course/:slug"
             element={
               <Layout>
                 <CourseDetail />
@@ -83,8 +83,6 @@ function App() {
             </Layout>
           }
         />
-
-        <Route path="/courses/:id" element={<h1>Courses Page ID</h1>} />
 
         {/* User Mode Route */}
         <Route element={<UserRoute />}>
