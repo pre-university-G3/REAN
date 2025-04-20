@@ -108,17 +108,19 @@ export default function RegisterForm() {
           className=" w-[40%] hidden lg:flex"
         />
 
-        <main className="w-full flex justify-center max-w-lg p-8 bg-white shadow-small rounded-small">
+        <main
+          className={` w-full flex justify-center max-w-lg p-8 bg-white dark:bg-black shadow-small rounded-small`}
+        >
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
             <Form className="w-full">
-              <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">
+              <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center mb-4">
                 Register
               </h1>
-              <p className="text-gray-500 mb-6 text-center">
+              <p className="text-gray-500 dark:text-gray-300 mb-6 text-center">
                 Register to access all lessons with Rean
               </p>
 

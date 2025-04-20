@@ -47,45 +47,6 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-.small-button {
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 16px;
-  background-color: var(--accent-color);
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.medium-button {
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  background-color: var(--accent-color);
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.large-button {
-  height: 52px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 35px;
-  background-color: var(--accent-color);
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
-}
-
 .large-button,
 .medium-button,
 .small-button {

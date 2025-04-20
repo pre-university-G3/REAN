@@ -11,10 +11,8 @@
   --color-dark-secondary: #ffd700;
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 .container {
-  @apply h-screen grid place-content-center;
+  @apply h-screen grid place-content-center bg-white text-[color:var(--color-primary)] dark:bg-[color:var(--color-dark-bg)] dark:text-[color:var(--color-dark-primary)];
 }
 
 .title {
@@ -22,10 +20,11 @@
 }
 
 .label {
-  @apply block mb-2 text-sm font-medium text-gray-900 dark:text-dark-primary/70;
+  @apply block mb-2 text-sm font-medium text-gray-900 dark:text-[color:var(--color-dark-primary)]/70;
 }
+
 .input {
-  @apply border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5;
+  @apply border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:bg-transparent dark:text-[color:var(--color-dark-primary)];
 }
 
 /* .form {
