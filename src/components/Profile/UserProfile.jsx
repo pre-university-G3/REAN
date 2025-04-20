@@ -68,7 +68,7 @@ export default function UserProfile() {
                 localStorage.removeItem("refreshToken");
                 navigate("/");
               }}
-              className="px-4 py-2 text-sm font-semibold text-white rounded-md bg-red-600 hover:bg-red-700"
+              className="px-4 hidden sm:inline py-2 text-sm font-semibold text-white rounded-md bg-red-600 hover:bg-red-700"
             >
               Log out
             </button>
@@ -104,6 +104,16 @@ export default function UserProfile() {
               />
             </div>
           </div>
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("refreshToken");
+              navigate("/");
+            }}
+            className="sm:hidden px-4 py-2 text-sm font-semibold text-white w-full rounded-md bg-red-600 hover:bg-red-700"
+          >
+            Log out
+          </button>
         </div>
       </section>
 
