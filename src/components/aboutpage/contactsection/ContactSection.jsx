@@ -24,7 +24,7 @@ export default function ContactSection() {
       <section className="flex flex-col gap-10 w-full z-10 px-5 md:px-[60px] lg:px-[120px] mb-24 dark:bg-dark-bg dark:text-dark-primary">
         <section
           id="contact"
-          className="grid grid-cols-2 items-center justify-center gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-10"
         >
           <form
             onSubmit={handleSubmit}
@@ -79,7 +79,7 @@ export default function ContactSection() {
               )}
             </button>
           </form>
-          <figure className="flex flex-col justify-center items-center p-10 dark:text-dark-primary">
+          <figure className="hidden md:flex flex-col justify-center items-center p-10 dark:text-dark-primary">
             <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-primary dark:text-dark-primary font-bold">
               Get in touch
             </h2>
