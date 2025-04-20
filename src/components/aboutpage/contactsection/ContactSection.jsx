@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import contactAddress from "../../../data/aboutpagedata/contactAddress";
 import AddressCard from "./AddressCard";
 import { useForm, ValidationError } from "@formspree/react";
@@ -8,10 +8,12 @@ const contactData = contactAddress;
 export default function ContactSection() {
   const [state, handleSubmit, reset] = useForm("xrbpyokj");
   const [showModal, setShowModal] = useState(false);
+  const formRef = useRef();
 
   useEffect(() => {
     if (state.succeeded) {
       setShowModal(true);
+      formRef.current.reset();
     }
   }, [state.succeeded]);
   const closeModal = () => {
@@ -27,6 +29,7 @@ export default function ContactSection() {
           className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-10"
         >
           <form
+            ref={formRef}
             onSubmit={handleSubmit}
             action="https://formspree.io/f/xrbpyokj"
             method="Post"

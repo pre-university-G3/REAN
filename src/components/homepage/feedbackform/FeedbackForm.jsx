@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 
 export default function FeedbackForm() {
   const [state, handleSubmit, reset] = useForm("xldjpbqa");
   const [showModal, setShowModal] = useState(false);
+  const formRef = useRef();
 
   useEffect(() => {
     if (state.succeeded) {
       setShowModal(true);
+      const form = formRef.current;
+      form.reset();
     }
   }, [state.succeeded]);
 
@@ -33,6 +36,7 @@ export default function FeedbackForm() {
           </p>
         </article>
         <form
+          ref={formRef}
           id="form"
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 w-full "
