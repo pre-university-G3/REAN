@@ -32,7 +32,7 @@ export default function HeroSection() {
           </p>
           <div className="flex space-x-2.5 justify-center md:justify-start">
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/courses")}
               className="large-button w-full max-w-[232px]"
             >
               Get Started
