@@ -42,63 +42,67 @@ export default function UserProfile() {
     <>
       {/* You had an invalid Link here — removed */}
 
-      <section className="h-screen flex flex-col space-y-10 w-full p-10">
-        <div className="container w-full flex justify-between items-center">
-          <div className="img-profile flex gap-4 items-center ">
-            <div className="w-[120px] h-[120px] pt-2">
+      <section className="h-full flex flex-col space-y-10 w-full">
+        <div className="w-full flex flex-col space-y-8">
+          {/* Top Section */}
+          <div className="flex flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-4">
               <img
-                className="border-4 border-transparent outline-4 outline-accent rounded-full w-[120px] h-[120px]"
-                src={"/img/userprofile.jpg"}
-                alt=""
+                className="border-4 border-transparent outline outline-accent rounded-full w-28 h-28"
+                src="/img/userprofile.jpg"
+                alt="User Profile"
               />
+              <div>
+                <h2 className="text-h1-small text-primary dark:text-dark-primary font-bold">
+                  {user.biography}
+                </h2>
+                <p className="text-primary/70 dark:text-dark-primary/70">
+                  {user.email}
+                </p>
+              </div>
             </div>
-            <div className=" flex-col p-2">
-              <h2 className=" text-h1-small text-primary dark:text-dark-primary font-bold">
-                {user.biography}
-              </h2>
-              <p className="text-primary/70 dark:text-dark-primary/70">
-                {user.email}
-              </p>
-            </div>
-          </div>
-          <div>
+
             <button
               onClick={() => {
                 localStorage.removeItem("token");
                 localStorage.removeItem("refreshToken");
                 navigate("/");
               }}
-              type="button"
-              className="px-4 py-2 text-body-text-small font-semibold text-white rounded-small  bg-red-600"
+              className="px-4 py-2 text-sm font-semibold text-white rounded-md bg-red-600 hover:bg-red-700"
             >
               Log out
             </button>
           </div>
-        </div>
-        <div className="flex items-center justify-between w-full mt-10 ml-7 h-[50vh]">
-          <div className="bg-white w-[50%] rounded-lg shadow-md p-6  border border-gray-200">
-            <h2 className="text-xl font-semibold mb-6 text-gray-800">
-              Profile Information
-            </h2>
-            <div className="space-y-4">
-              {ProfileInfo.map((item, index) => (
-                <div key={index} className="flex flex-col gap-2">
-                  <p className="text-sm font-medium text-gray-500">
-                    {item.label}
-                  </p>
-                  <p className="flex items-center px-4 h-[52px] text-gray-800 bg-gray-100 rounded-md p-2">
-                    {item.value}
-                  </p>
-                </div>
-              ))}
+
+          {/* Info Section */}
+          <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
+            {/* Profile Info */}
+            <div className="bg-white dark:bg-[#1e1e1e] w-full rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+              <h2 className="text-xl font-semibold mb-6 text-gray-800 dark:text-white">
+                Profile Information
+              </h2>
+              <div className="space-y-4">
+                {ProfileInfo.map((item, index) => (
+                  <div key={index} className="flex flex-col gap-2">
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                      {item.label}
+                    </p>
+                    <p className="flex items-center px-4 h-[52px] text-gray-800 bg-gray-100 dark:text-white dark:bg-gray-800 rounded-md">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="w-[50%] h-full flex justify-center items-center">
-            <img
-              className="w-full object-contain"
-              src={image}
-              alt="Illustration"
-            />
+
+            {/* Image */}
+            <div className="w-full hidden lg:flex justify-center items-center">
+              <img
+                className="w-full  object-contain"
+                src={image}
+                alt="Illustration"
+              />
+            </div>
           </div>
         </div>
       </section>

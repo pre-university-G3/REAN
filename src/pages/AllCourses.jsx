@@ -99,7 +99,7 @@ export function AllCourses() {
   return (
     <main className="bg-gradient-to-br from-white to-gray-50 dark:from-[#121212] dark:to-[#1e1e1e]">
       {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-[#2c3e50]/10 to-[#f4c542]/10 dark:from-[#1abc9c]/20 dark:to-[#ffd700]/20 h-[400px] md:h-[500px] relative overflow-hidden flex flex-col items-center justify-center px-4">
+      <section className="w-full bg-gradient-to-r from-[#2c3e50]/10 to-[#f4c542]/10 dark:from-primary/20 dark:to-[#000000]/20 h-[400px] md:h-[500px] relative overflow-hidden flex flex-col items-center justify-center px-4">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-1/6 w-6 h-6 bg-[#16a085] rounded-full animate-float dark:bg-[#1abc9c]"></div>
           <div className="absolute top-40 right-1/8 w-4 h-4 bg-[#f4c542] rounded-full animate-float-delay dark:bg-[#ffd700]"></div>

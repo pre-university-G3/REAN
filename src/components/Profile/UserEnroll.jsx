@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { FaBookmark } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 
 import getAllCourses from "../../api/getAllCourses";
 import getSavedCourses from "../../api/getSavedCourses";
+import deleteFromWatchLater from "../../api/deleteFromWatchLater";
 
 import CourseCard from "../card/CourseCard";
-import { IoTrashOutline } from "react-icons/io5";
-import deleteFromWatchLater from "../../api/deleteFromWatchLater";
 
 export default function UserEnroll() {
   const [searchTerm, setSearchTerm] = useState("");
   const [savedCourses, setSavedCourses] = useState([]);
   const [recommendedCourses, setRecommendedCourses] = useState([]);
-  const [allCourses, setAllCourses] = useState([]);
   const [isDeleting, setIsDeleting] = useState({ status: false, id: 0 });
 
   const navigate = useNavigate();
@@ -23,7 +20,6 @@ export default function UserEnroll() {
     const fetchCourses = async () => {
       const data = await getAllCourses();
       if (data?.content) {
-        setAllCourses(data.content);
         setRecommendedCourses(data.content.slice(0, 4));
       }
     };
@@ -39,24 +35,23 @@ export default function UserEnroll() {
 
     fetchCourses();
     fetchSavedCourses();
-  });
+  }, []);
 
   const handleDeleteClick = async (courseId) => {
-    setIsDeleting(true, courseId);
+    setIsDeleting({ status: true, id: courseId });
     try {
       await deleteFromWatchLater(courseId);
-      setIsDeleting(false);
+      setSavedCourses((prev) =>
+        prev.filter((course) => course.courseId !== courseId)
+      );
+      setIsDeleting({ status: false, id: 0 });
     } catch (e) {
       console.log("Error in deleting saved course : " + e.message);
     }
   };
 
-  const handleCourseClick = (slug) => {
-    navigate(`/coursedetail/${slug}`);
-  };
-
-  const handleRowClick = (courseId) => {
-    navigate(`/coursedetail/${courseId}`);
+  const handleCourseClick = (slugOrId) => {
+    navigate(`/coursedetail/${slugOrId}`);
   };
 
   const filteredCourses = savedCourses?.filter((course) =>
@@ -64,84 +59,82 @@ export default function UserEnroll() {
   );
 
   return (
-    <div className="p-10 w-full flex flex-col">
+    <section className="h-full w-full flex flex-col space-y-10">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Saved Courses</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-primary dark:text-dark-primary">
+          Saved Courses
+        </h2>
 
         {/* Search Bar */}
-        <div className=" flex items-center gap-2 ">
+        <div className="flex w-[40%] items-center gap-2">
           <input
             type="text"
             placeholder="Search by title..."
-            className="border-1 border-gray-200 focus:outline-0  focus:border-gray-400 animated rounded-lg py-2 pl-10 w-72"
+            className="border border-gray-300 dark:border-gray-700 focus:outline-none focus:border-gray-500 dark:focus:border-gray-400 rounded-lg py-2 pl-4 pr-2 w-full dark:bg-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="bg-blue-500 text-white flex w-10 justify-center items-center h-10 rounded-lg hover:bg-blue-600 transition">
+          <button className="bg-blue-500 text-white flex justify-center items-center w-10 h-10 rounded-lg hover:bg-blue-600 transition">
             <Search size={16} />
           </button>
         </div>
       </div>
 
       {/* Saved Courses Table */}
-      <div className="bg-white rounded-lg shadow-md  mb-10">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-max">
-            <thead className="bg-gray-50">
-              <tr className="text-gray-600 text-left text-xs font-medium uppercase tracking-wider">
-                <th className="px-6 py-3">Course ID</th>
+      <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
+        <div className="w-full overflow-x-auto">
+          <table className="w-full min-w-[700px]">
+            <thead className="bg-gray-100 dark:bg-gray-800">
+              <tr className="text-gray-600 dark:text-gray-300 text-left text-xs font-medium uppercase tracking-wider">
                 <th className="px-6 py-3">Course Title</th>
                 <th className="px-6 py-3">Instructor</th>
                 <th className="px-6 py-3">Added At</th>
-                <th className="px-6 py-3">Edition</th>
+                <th className="px-6 py-3">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
               {filteredCourses?.length > 0 ? (
-                filteredCourses.map((course, index) => (
+                filteredCourses.map((course) => (
                   <tr
-                    key={course?.courseId || index}
-                    className="hover:bg-gray-50 transition-colors duration-150 cursor-pointer"
+                    key={course?.courseId}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-150 cursor-pointer"
                   >
-                    <td className="px-6 py-4 text-sm text-gray-900 font-medium">
-                      {course?.courseId}
-                    </td>
                     <td
-                      onClick={() => handleRowClick(course?.courseId)}
-                      className="px-6 py-4 text-sm text-gray-700"
+                      onClick={() => handleCourseClick(course?.courseId)}
+                      className="px-6 py-4 text-sm text-gray-700 dark:text-gray-100"
                     >
                       {course?.title}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
                       {course?.instructor}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
                       {new Date(course?.addedAt).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
                       })}
                     </td>
-                    <td className="px-6 py-4 text-sm text-white ">
-                      <span
+                    <td className="px-6 py-4">
+                      <button
                         onClick={() => handleDeleteClick(course?.courseId)}
-                        className="flex items-center gap-x-1 bg-red-600 px-2.5 py-1 w-fit rounded-small"
+                        className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded transition"
                       >
-                        {isDeleting.status && isDeleting.id == course?.courseId
+                        {isDeleting.status && isDeleting.id === course?.courseId
                           ? "Deleting..."
                           : "Delete"}
-                      </span>
+                      </button>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
                   <td
-                    colSpan="5"
-                    className="px-6 py-4 text-center text-gray-500"
+                    colSpan="4"
+                    className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
                   >
-                    No saved course.
+                    No saved courses.
                   </td>
                 </tr>
               )}
@@ -151,11 +144,12 @@ export default function UserEnroll() {
       </div>
 
       {/* Recommended Courses */}
-      <section>
-        <h2 className="text-2xl font-bold mb-10">Recommend Courses</h2>
-
+      <div className="mt-10">
+        <h2 className="text-2xl font-bold text-primary dark:text-dark-primary mb-6">
+          Recommended Courses
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {recommendedCourses?.map((course) => (
+          {recommendedCourses.map((course) => (
             <CourseCard
               key={course?.id}
               id={course?.id}
@@ -168,7 +162,7 @@ export default function UserEnroll() {
             />
           ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
