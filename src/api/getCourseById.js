@@ -1,11 +1,14 @@
 const getCourseById = async (id) => {
   try {
-    const response = await fetch(`/api/api/v1/courses/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://course-api.istad.co/api/v1/courses/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
