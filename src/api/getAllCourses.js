@@ -1,9 +1,9 @@
 const getAllCourses = async () => {
   const response = await fetch("https://course-api.istad.co/api/v1/courses", {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`, // If using tokens
-    },
+    // headers: {
+    //   Authorization: `Bearer ${localStorage.getItem("token")}`,
+    // },
   });
 
   if (!response.ok) {

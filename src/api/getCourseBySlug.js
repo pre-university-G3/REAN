@@ -3,7 +3,6 @@ const getCourseBySlug = async (slug) => {
     const response = await fetch(`/api/api/v1/courses/slug/${slug}`, {
       method: "GET",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
     });

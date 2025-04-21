@@ -3,7 +3,6 @@ const getCourseById = async (id) => {
     const response = await fetch(`/api/api/v1/courses/${id}`, {
       method: "GET",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
