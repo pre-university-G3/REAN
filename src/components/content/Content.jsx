@@ -36,7 +36,7 @@ export default function Content({ children }) {
               </div>
               <button
                 onClick={scrollToVideo}
-                className="mt-3 inline-block bg-[#16a085] hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-4 md:py-3 md:px-6 rounded-md transition-colors text-center md:self-end"
+                className="mt-3 inline-block bg-accent hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-4 md:py-3 md:px-6 rounded-md transition-colors text-center md:self-end"
               >
                 Start learning HTML now »
               </button>
@@ -108,16 +108,16 @@ export default function Content({ children }) {
                 with Bro Code.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
                   Beginner
                 </span>
-                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
                   9 Minutes
                 </span>
-                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
                   HTML5
                 </span>
-                <span className="bg-[#16a085] text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
+                <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
                   Bro Code
                 </span>
               </div>
@@ -128,7 +128,7 @@ export default function Content({ children }) {
           <div className="flex justify-center pt-6">
             <Link
               to="/introduction"
-              className="bg-[#16a085] hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors"
+              className="bg-accent hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors"
             >
               Next: HTML Introduction »
             </Link>
