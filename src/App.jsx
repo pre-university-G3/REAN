@@ -9,10 +9,9 @@ import Element from "./pages/Element";
 import Basic from "./pages/Basic";
 import Editors from "./pages/Editors";
 
-
 function App() {
   return (
-    <Router> 
+    <Router>
       <main>
         <Routes>
           <Route path="learning_page" element={<LearninPages />} />
