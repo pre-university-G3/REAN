@@ -14,8 +14,9 @@ const getCourseBySlug = async (slug) => {
           `Failed to fetch course: ${response.status} ${response.statusText}`
       );
     }
+    const data = await response.json();
 
-    return await response.json();
+    return data;
   } catch (error) {
     console.error(`Error fetching course with slug ${slug}:`, error);
     throw error; // Re-throw to let the caller handle it

@@ -4,7 +4,6 @@ const getCourseById = async (id) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
 
@@ -16,7 +15,8 @@ const getCourseById = async (id) => {
       );
     }
 
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error(`Error fetching course with slug ${id}:`, error);
     throw error; // Re-throw to let the caller handle it
