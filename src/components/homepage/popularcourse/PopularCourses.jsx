@@ -8,7 +8,6 @@ import Loader from "../../loading/Loader";
 export default function PopularCourses() {
   const [popularCourses, setPopularCourses] = useState([]);
   const [courses, setCourses] = useState();
-  const [isUser, setIsUser] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchCourses = async () => {
@@ -19,11 +18,9 @@ export default function PopularCourses() {
         setLoading(false);
       }
     };
-    setIsUser(IsLogin());
-    if (isUser) fetchCourses();
-  }, [isUser, courses]);
+    fetchCourses();
+  }, [courses]);
 
-  console.log(popularCourses);
   const navigate = useNavigate();
   const handleCourseClick = (slug) => {
     navigate(`/course/${slug}`);
@@ -31,9 +28,7 @@ export default function PopularCourses() {
 
   return (
     <section
-      className={`w-full flex-col space-y-10 px-5 md:px-[60px] lg:px-[120px] dark:bg-dark-bg dark:text-white ${
-        isUser ? "flex" : "hidden"
-      }`}
+      className={`w-full flex flex-col space-y-10 px-5 md:px-[60px] lg:px-[120px] dark:bg-dark-bg dark:text-white `}
     >
       <article className="flex justify-between items-center">
         <h2 className="text-h2-small md:text-h2-medium lg:text-h2-large text-primary font-bold text-start dark:text-accent">

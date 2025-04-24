@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import IsLogin from "../../auth/IsLogin";
 import saveToWatchLater from "../../api/saveToWatchLater";
+import { useNavigate } from "react-router-dom";
 
 export default function CourseCard(props) {
   const { id, thumbnail, title, subtitle, description, instructor, onClick } =
@@ -8,6 +9,7 @@ export default function CourseCard(props) {
   const [isAuth, setAuth] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setAuth(IsLogin);
@@ -20,13 +22,17 @@ export default function CourseCard(props) {
   };
 
   const handleClick = async () => {
-    try {
-      setIsSaving(true); // Add loading state if needed
-      await saveToWatchLater(id);
-    } catch (e) {
-      console.error("Save error:", e);
-    } finally {
-      setIsSaving(false); // Reset loading state
+    if (isAuth) {
+      try {
+        setIsSaving(true); // Add loading state if needed
+        await saveToWatchLater(id);
+      } catch (e) {
+        console.error("Save error:", e);
+      } finally {
+        setIsSaving(false); // Reset loading state
+      }
+    } else {
+      navigate("/login");
     }
   };
 

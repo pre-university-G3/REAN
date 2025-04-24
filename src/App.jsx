@@ -24,14 +24,6 @@ function App() {
         {/* Protected Route */}
         <Route element={<ProtectedRoute />}>
           <Route
-            path="/courses"
-            element={
-              <Layout>
-                <AllCourses />
-              </Layout>
-            }
-          />
-          <Route
             path="/profile"
             element={
               <ProfilePage>
@@ -48,16 +40,15 @@ function App() {
               </ProfilePage>
             }
           />
-
-          <Route
-            path="/course/:slug"
-            element={
-              <Layout>
-                <CourseDetail />
-              </Layout>
-            }
-          />
         </Route>
+        <Route
+          path="/course/:slug"
+          element={
+            <Layout>
+              <CourseDetail />
+            </Layout>
+          }
+        />
 
         <Route
           path="/"

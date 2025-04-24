@@ -1,27 +1,37 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import memberdata from "../../data/aboutpagedata/memberdata";
 import saveToWatchLater from "../../api/saveToWatchLater";
+import IsLogin from "../../auth/IsLogin";
 
 export default function HeroSection(props) {
   const { id, category, title, description, thumbnail, instructor } = props;
   const instructorInfo = memberdata.find((data) => data.name === instructor);
   const [isSaving, setIsSaving] = useState(false);
+  const [isAuth, setAuth] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setAuth(IsLogin());
+  }, []);
 
   const handleSave = async () => {
-    try {
-      setIsSaving(true);
-      const success = await saveToWatchLater(id);
-      if (success) {
-        alert("Course saved successfully!");
-      } else {
-        alert("Failed to save course");
+    if (isAuth) {
+      try {
+        setIsSaving(true);
+        const success = await saveToWatchLater(id);
+        if (success) {
+          alert("Course saved successfully!");
+        } else {
+          alert("Failed to save course");
+        }
+      } catch (e) {
+        alert("Error saving course: " + e.message);
+        console.error("Save error:", e);
+      } finally {
+        setIsSaving(false);
       }
-    } catch (e) {
-      alert("Error saving course: " + e.message);
-      console.error("Save error:", e);
-    } finally {
-      setIsSaving(false);
+    } else {
+      navigate("/login");
     }
   };
 
