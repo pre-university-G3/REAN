@@ -10,6 +10,8 @@ import Layout from "./route/Layout";
 import AuthPage from "./pages/AuthPage";
 import FileNotFound from "./components/filenotfound/FileNotFound";
 import CourseDetail from "./pages/CourseDetail";
+import LearningPage from "./pages/LearningPage";
+import HtmlHyperlinks from "./pages/HtmlHyperlinks";
 import "./App.css";
 import UserProfile from "./components/Profile/UserProfile";
 import UserEnroll from "./components/Profile/UserEnroll";
@@ -55,6 +57,19 @@ function App() {
               <Layout>
                 <CourseDetail />
               </Layout>
+            }
+          />
+
+          <Route
+            path="/learning_page"
+            element={
+                <LearningPage />
+            }
+          />
+          <Route
+            path="/html_hyperlinks"
+            element={
+                <HtmlHyperlinks />
             }
           />
         </Route>

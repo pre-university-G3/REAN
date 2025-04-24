@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 import React, { useState } from 'react';
 function Navbar() {
     const  [counter ,setcount] = useState("ban hx")
@@ -25,6 +22,3 @@ function Navbar() {
 }
 
 export default Navbar;
-=======
->>>>>>> 13c943fd0decb5f2e8099cc72a32402a7445a38b
->>>>>>> f8ec64ca879b8ed054c251618c63239a456be30a
