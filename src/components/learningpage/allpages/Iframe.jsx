@@ -63,7 +63,7 @@ export default function VideoLayout({ children }) {
                   <div className="relative w-full aspect-video">
                     <div className="absolute inset-0 flex items-center justify-center bg-black">
                       <iframe
-                        src="https://www.youtube.com/embed/gOioxltfh48"
+                        src="https://www.youtube.com/embed/aRGdDy18qfY?si=UTKJyqc9s0gO6iCB"
                         className="absolute top-0 left-0 w-full h-full"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -78,7 +78,7 @@ export default function VideoLayout({ children }) {
                       HTML Crash Course For Absolute Beginners
                     </h2>
                     <p className="text-white mb-4 text-sm sm:text-base md:text-lg">
-                      Learn HTML hyperlinks in 3 minutes with Bro Code.
+                      Learn HTML Iframe in 3 minutes with Bro Code.
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <span className="bg-accent text-white px-3 py-1 rounded-full text-xs sm:text-sm md:text-base">
@@ -98,12 +98,20 @@ export default function VideoLayout({ children }) {
                 </section>
 
                 {/* Next Button Section */}
-                <div className="flex justify-center pt-6"> 
+                <div className="flex justify-between  pt-6">
+
+                  <Link 
+                    to="/html_meta_tag" 
+                    className="bg-accent dark:bg-green-700 hover:bg-green-500 dark:hover:bg-green-600 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors" 
+                  > 
+                      « Back: Meta Tag
+                  </Link>
+
                   <Link
-                    to="/html_audio"
+                    to="/html_button"
                     className="bg-accent hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors"
                   >
-                    Next: HTML Audio »
+                    Next: HTML Button »
                   </Link>
                 </div>
               </div>
