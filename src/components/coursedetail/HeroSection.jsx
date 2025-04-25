@@ -122,7 +122,10 @@ export default function HeroSection(props) {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <button className="relative px-6 sm:px-8 py-3 sm:py-4 bg-accent hover:bg-accent-dark text-white font-bold rounded-lg transition-all duration-300 overflow-hidden group">
+            <button
+              onClick={() => navigate("/learning_page")}
+              className="relative px-6 sm:px-8 py-3 sm:py-4 bg-accent hover:bg-accent-dark text-white font-bold rounded-lg transition-all duration-300 overflow-hidden group"
+            >
               <span className="relative z-10 flex items-center justify-center">
                 Start Learning Now
                 <svg
