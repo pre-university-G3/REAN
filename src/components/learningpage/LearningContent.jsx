@@ -9,11 +9,11 @@ export default function Content({ children }) {
   };
 
   return (
-    <main className="flex-1 p-4 sm:p-6 ml-0 lg:ml-64 mt-16">
+    <main className="flex-1 p-4 sm:p-6 ml-0 lg:ml-64 mt-16 dark:bg-black">
       {children || (
         <div className="space-y-6 max-w-6xl mx-auto">
           {/* Hero Section - Responsive */}
-          <section className="bg-[#2c3e50] text-white p-4 sm:p-6 md:p-8 rounded-md">
+          <section className="bg-[#2c3e50] dark:bg-gray-800 text-white p-4 sm:p-6 md:p-8 rounded-md">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex-1">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-4">
@@ -43,11 +43,11 @@ export default function Content({ children }) {
             </div>
           </section>
 
-          <hr className="border-t border-gray-200" />
+          <hr className="border-t border-gray-200 dark:border-gray-700" />
 
           {/* Try it Yourself Section - Responsive */}
-          <section className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="bg-[#2c3e50] p-4 sm:p-6">
+          <section className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden">
+            <div className="bg-[#2c3e50] dark:bg-gray-800 p-4 sm:p-6">
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
                 Easy Learning with HTML "Try it Yourself"
               </h2>
@@ -55,12 +55,12 @@ export default function Content({ children }) {
 
             <div className="p-4 sm:p-6 md:p-8">
               <div className="space-y-4 md:space-y-6">
-                <h3 className="font-semibold text-md sm:text-lg md:text-xl">
+                <h3 className="font-semibold text-md sm:text-lg md:text-xl dark:text-white">
                   Example
                 </h3>
 
-                <div className="bg-[#2c3e50] rounded-md overflow-hidden">
-                  <pre className="p-3 sm:p-4 md:p-5 text-[#16a085] text-xs sm:text-sm md:text-base overflow-x-auto">
+                <div className="bg-[#2c3e50] dark:bg-gray-800 rounded-md overflow-hidden">
+                  <pre className="p-3 sm:p-4 md:p-5 text-[#16a085] dark:text-[#2ecc71] text-xs sm:text-sm md:text-base overflow-x-auto">
                     <code>
                       {`<!DOCTYPE html>
 <html>
@@ -84,7 +84,7 @@ export default function Content({ children }) {
           {/* YouTube Video Section - Responsive */}
           <section 
             ref={videoSectionRef} 
-            className="bg-[#2c3e50] rounded-lg overflow-hidden shadow-md scroll-mt-16"
+            className="bg-[#2c3e50] dark:bg-gray-800 rounded-lg overflow-hidden shadow-md scroll-mt-16"
           >
             <div className="relative w-full aspect-video">
               <div className="absolute inset-0 flex items-center justify-center bg-black">
@@ -127,10 +127,10 @@ export default function Content({ children }) {
           {/* Next Button Section */}
           <div className="flex justify-center pt-6">
             <Link
-              to="/introduction"
+              to="/html_hyperlinks"
               className="bg-accent hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors"
             >
-              Next: HTML Introduction »
+              Next: HTML Hyperlinks »
             </Link>
           </div>
         </div>

@@ -11,7 +11,9 @@ import AuthPage from "./pages/AuthPage";
 import FileNotFound from "./components/filenotfound/FileNotFound";
 import CourseDetail from "./pages/CourseDetail";
 import LearningPage from "./pages/LearningPage";
-import HtmlHyperlinks from "./pages/HtmlHyperlinks";
+import HtmlHyperlinks from "./components/learningpage/allpages/HtmlHyperlinks";
+import AudioHtml from "./components/learningpage/allpages/AudioHtml";
+import Video from "./components/learningpage/allpages/Video";
 import "./App.css";
 import UserProfile from "./components/Profile/UserProfile";
 import UserEnroll from "./components/Profile/UserEnroll";
@@ -72,7 +74,22 @@ function App() {
                 <HtmlHyperlinks />
             }
           />
+
+          <Route
+            path="/html_video"
+            element={
+                <Video />
+            }
+          />
+
         </Route>
+
+        <Route
+          path="/html_audio"
+          element={
+            <AudioHtml />
+          }
+        />
 
         <Route
           path="/"
