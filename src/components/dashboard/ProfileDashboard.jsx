@@ -10,6 +10,7 @@ import EnabledCoursesTable from "./EnabledCoursesTable";
 import DisabledCoursesTable from "./DisabledCoursesTable";
 import getPrivateCourses from "../../api/getPrivateCourses";
 import VerifyCode from "../modal/VerifyCode";
+import FormCreateCourse from "./FormCreateCourse";
 
 export default function ProfileDashboard() {
   const [courses, setCourses] = useState([]);
@@ -19,6 +20,7 @@ export default function ProfileDashboard() {
   const location = useLocation();
   const [tabClick, setTabClick] = useState("all-courses");
   const [table, setTable] = useState(<AllCoursesTable />);
+  const [showCreateCourseModal, setShowCreateCourseModal] = useState(false);
 
   useEffect(() => {
     const loginMe = async () => {
@@ -316,7 +318,10 @@ export default function ProfileDashboard() {
           </div>
 
           {/* Categories Card */}
-          <div className="rounded-2xl flex-col gap-4 flex justify-center items-center border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+          <div
+            onClick={() => setShowCreateCourseModal(true)}
+            className="rounded-2xl flex-col gap-4 flex justify-center items-center border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6"
+          >
             <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
               <i class="fa-solid fa-plus text-[20px]"></i>
             </div>
@@ -380,6 +385,9 @@ export default function ProfileDashboard() {
           </div>
         </div>
       </section>
+      {showCreateCourseModal && (
+        <FormCreateCourse onClose={() => setShowCreateCourseModal(false)} />
+      )}
     </main>
   );
 }

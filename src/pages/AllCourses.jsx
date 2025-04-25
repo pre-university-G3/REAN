@@ -13,6 +13,7 @@ export function AllCourses() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,14 +27,21 @@ export function AllCourses() {
     };
 
     fetchCourses();
-  }, [courses]);
+  }, []);
 
   const handleCategoryClick = (categoryName) => {
-    // Filter courses by category
-    const filtered = courses.filter(
-      (course) => course.categoryName === categoryName
-    );
-    setPopularCourses(filtered.slice(0, 8));
+    if (selectedCategory === categoryName) {
+      // If clicking the same category, unselect it
+      setSelectedCategory(null);
+      setPopularCourses(courses.slice(0, 8));
+    } else {
+      // Select new category
+      setSelectedCategory(categoryName);
+      const filtered = courses.filter(
+        (course) => course.categoryName === categoryName
+      );
+      setPopularCourses(filtered);
+    }
   };
 
   const handleCourseClick = (slug) => {
@@ -44,33 +52,18 @@ export function AllCourses() {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchCategory = async () => {
-      try {
-        const data = await getCategory();
-        setCategories(data ? data : []);
-      } catch (error) {
-        console.log(error);
-      }
+      const data = await getCategory();
+      setCategories(data ? data : []);
     };
 
     fetchCategory();
   }, []);
 
-  // if (searchQuery.length > 1) {
   const filteredCourses = courses?.filter(
     (course) =>
       course?.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course?.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  //   setListCourses(filteredCourses);
-  // } else {
-  //   setListCourses(courses);
-  // }
-
-  // const filteredPopularCourses = popularCourses?.filter(
-  //   (course) =>
-  //     course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     course.description.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
 
   if (loading) {
     return (
@@ -81,7 +74,7 @@ export function AllCourses() {
   }
 
   // Animation variants
-  const container = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -91,9 +84,14 @@ export function AllCourses() {
     },
   };
 
-  const item = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
+  };
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
@@ -106,7 +104,12 @@ export function AllCourses() {
           <div className="absolute bottom-30 left-1/4 w-4 h-4 bg-[#f4c542] rounded-full animate-float-delay-2 dark:bg-[#ffd700]"></div>
         </div>
 
-        <motion.div className="text-center flex flex-col items-center gap-y-4 max-w-4xl mx-auto relative z-10">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={sectionVariants}
+          className="text-center flex flex-col items-center gap-y-4 max-w-4xl mx-auto relative z-10"
+        >
           <h1 className="text-[#2c3e50] dark:text-[#e0e0e0] text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
             Discover Your Next{" "}
             <span className="text-[#16a085] dark:text-[#1abc9c]">
@@ -140,22 +143,28 @@ export function AllCourses() {
         }`}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.h2 className="text-2xl md:text-3xl font-bold text-[#2c3e50] dark:text-[#e0e0e0] mb-8">
+          <motion.h2
+            initial="hidden"
+            animate="show"
+            variants={sectionVariants}
+            className="text-2xl md:text-3xl font-bold text-[#2c3e50] dark:text-[#e0e0e0] mb-8"
+          >
             Browse by Category
           </motion.h2>
 
           <motion.div
-            variants={container}
+            variants={containerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             className="flex overflow-scroll gap-x-2 scrollbar-hidden"
           >
-            {categories.map((category, index) => (
-              <motion.div key={category.id} variants={item}>
+            {categories.map((category) => (
+              <motion.div key={category.id} variants={itemVariants}>
                 <CategoryCard
                   title={category?.name}
                   onClick={() => handleCategoryClick(category.name)}
+                  isSelected={selectedCategory === category.name}
                   icon={category?.icon.replace(
                     "http://localhost:8080/image/",
                     ""
@@ -175,38 +184,41 @@ export function AllCourses() {
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial="hidden"
+            animate="show"
+            variants={sectionVariants}
             className="flex justify-between items-center mb-8"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">
-              Popular Courses
+              {selectedCategory
+                ? `${selectedCategory} Courses`
+                : "Popular Courses"}
             </h2>
-            <Button
-              onClick={() => {
-                document.getElementById("all-course").scrollIntoView({
-                  block: "start",
-                  inline: "center",
-                });
-              }}
-              className="text-primary dark:text-primary-400 hover:text-primary-dark font-medium cursor-pointer"
-            >
-              View All
-            </Button>
+            {!selectedCategory && (
+              <Button
+                onClick={() => {
+                  document.getElementById("all-course").scrollIntoView({
+                    block: "start",
+                    inline: "center",
+                  });
+                }}
+                className="text-primary dark:text-primary-400 hover:text-primary-dark font-medium cursor-pointer"
+              >
+                View All
+              </Button>
+            )}
           </motion.div>
 
           {popularCourses?.length > 0 ? (
             <motion.div
-              variants={container}
+              variants={containerVariants}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
             >
               {popularCourses.map((course) => (
-                <motion.div key={course?.id} variants={item}>
+                <motion.div key={course?.id} variants={itemVariants}>
                   <CourseCard
                     id={course?.id}
                     onClick={handleCourseClick}
@@ -222,11 +234,16 @@ export function AllCourses() {
               ))}
             </motion.div>
           ) : (
-            <div className="text-center py-12">
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={sectionVariants}
+              className="text-center py-12"
+            >
               <h3 className="text-xl text-gray-500">
-                No courses match your search
+                No courses found in this category
               </h3>
-            </div>
+            </motion.div>
           )}
         </div>
       </section>
@@ -235,10 +252,9 @@ export function AllCourses() {
       <section id="all-course" className="px-4 sm:px-6 md:px-8 lg:px-12 py-12">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial="hidden"
+            animate="show"
+            variants={sectionVariants}
             className="flex justify-between items-center mb-8"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">
@@ -248,21 +264,14 @@ export function AllCourses() {
 
           {filteredCourses?.length > 0 ? (
             <motion.div
-              variants={container}
+              variants={containerVariants}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
             >
               {filteredCourses?.map((course) => (
-                <motion.div
-                  key={course?.id}
-                  variants={item}
-                  transition={{ duration: 0.5 }}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView="show"
-                  viewport={true}
-                >
+                <motion.div key={course?.id} variants={itemVariants}>
                   <CourseCard
                     id={course?.id}
                     onClick={handleCourseClick}
@@ -278,11 +287,16 @@ export function AllCourses() {
               ))}
             </motion.div>
           ) : (
-            <div className="text-center py-12">
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={sectionVariants}
+              className="text-center py-12"
+            >
               <h3 className="text-xl text-gray-500">
                 No courses match your search
               </h3>
-            </div>
+            </motion.div>
           )}
         </div>
       </section>
