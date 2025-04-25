@@ -87,7 +87,7 @@ function App() {
           />
 
           <Route path="/learning_page" element={<LearningPage />} />
-          
+
           <Route path="/html_hyperlinks" element={<HtmlHyperlinks />} />
 
           <Route path="/html_video" element={<Video />} />
