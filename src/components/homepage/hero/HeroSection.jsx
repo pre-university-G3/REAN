@@ -31,7 +31,10 @@ export default function HeroSection() {
             opportunities for personal and professional growth.{" "}
           </p>
           <div className="flex space-x-2.5 justify-center md:justify-start">
-            <button className="large-button w-full max-w-[232px]">
+            <button
+              onClick={() => navigate("/courses")}
+              className="large-button w-full max-w-[232px]"
+            >
               Get Started
             </button>
             <button

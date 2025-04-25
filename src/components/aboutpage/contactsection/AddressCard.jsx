@@ -15,7 +15,7 @@ export default function AddressCard(props) {
           {description}
         </p>
       </article>
-      <p className="font-medium text-[16px] underline dark:text-dark-accent">
+      <p className="font-medium text-[10px] sm:text-[16px] underline dark:text-dark-accent">
         {value}
       </p>
     </div>

@@ -12,7 +12,6 @@ export default function HeaderComponent() {
   const [isThemeClick, setIsThemeClick] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
 
-  // Fetch user information
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -23,12 +22,10 @@ export default function HeaderComponent() {
 
     fetchData();
   }, []);
-  console.log(user);
 
   useEffect(() => {
     setIsAuth(IsLogin());
   }, []);
-  console.log("isAuth is", isAuth);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode") === "true";
@@ -58,9 +55,7 @@ export default function HeaderComponent() {
     <>
       {/* Header for Small Devices */}
       <header className="fixed sm:hidden w-full animated h-fit z-100 animated">
-        <nav
-          className={`relative h-[50px] z-50 w-full px-[30px] bg-white dark:bg-[#121212] animated shadow-small flex justify-between items-center`}
-        >
+        <nav className="relative h-[50px] z-50 w-full px-[30px] bg-white dark:bg-[#121212] animated shadow-small flex justify-between items-center">
           <img
             className="dark:invert-100"
             src={"/icons/logo.svg"}
@@ -114,31 +109,52 @@ export default function HeaderComponent() {
             </li>
             <li>
               <button
+                onClick={() => {
+                  const newMode = !darkMode;
+                  setDarkMode(newMode);
+                  setThemeLogo(newMode ? "/icons/sun.svg" : "/icons/night.svg");
+                  setIsThemeClick(!isThemeClick);
+                }}
                 type="button"
                 className="font-semibold text-detail-medium dark:text-dark-primary"
               >
-                Dark Mode
+                {darkMode ? "Light Mode" : "Dark Mode"}
               </button>
             </li>
-            <li>
-              <Link
-                className="font-semibold text-detail-medium dark:text-dark-primary"
-                to="/login"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="text-accent dark:text-dark-accent font-semibold text-detail-medium"
-                to="/register"
-              >
-                Register
-              </Link>
-            </li>
+
+            {!isAuth ? (
+              <>
+                <li>
+                  <Link
+                    className="font-semibold text-detail-medium dark:text-dark-primary"
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-accent dark:text-dark-accent font-semibold text-detail-medium"
+                    to="/register"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link
+                  className="font-semibold text-detail-medium dark:text-dark-primary"
+                  to="/profile"
+                >
+                  Profile
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </header>
+
       {/* Header for Large Devices */}
       <header className="hidden  fixed w-full sm:flex flex-col items-end lg:hidden z-100">
         <nav className="relative z-50 h-[72px] w-full px-[60px] shadow-small flex justify-between items-center bg-white dark:bg-[#0D0D0D]">
@@ -195,34 +211,54 @@ export default function HeaderComponent() {
           <ul className="flex flex-col space-y-2 items-center justify-between h-full w-full">
             <li>
               <button
-                onClick={() => setDarkMode(!darkMode)}
+                onClick={() => {
+                  const newMode = !darkMode;
+                  setDarkMode(newMode);
+                  setThemeLogo(newMode ? "/icons/sun.svg" : "/icons/night.svg");
+                  setIsThemeClick(!isThemeClick);
+                }}
                 type="button"
                 className="text-detail-large font-semibold dark:text-dark-primary"
               >
-                Dark
+                {darkMode ? "Light" : "Dark"}
               </button>
             </li>
+
             <li className="w-full h-[0.5px] bg-gray-300 dark:bg-dark-primary"></li>
-            <li>
-              <Link
-                className="text-detail-large font-semibold dark:text-dark-primary"
-                to="/login"
-              >
-                Login
-              </Link>
-            </li>
-            <li className="w-full h-[0.5px] bg-gray-300 dark:bg-dark-primary"></li>
-            <li>
-              <Link
-                className="text-detail-large font-semibold text-accent dark:text-dark-accent"
-                to="/register"
-              >
-                Register
-              </Link>
-            </li>
+            {!isAuth ? (
+              <>
+                <li>
+                  <Link
+                    className="text-detail-large font-semibold dark:text-dark-primary"
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li className="w-full h-[0.5px] bg-gray-300 dark:bg-dark-primary"></li>
+                <li>
+                  <Link
+                    className="text-detail-large font-semibold text-accent dark:text-dark-accent"
+                    to="/register"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link
+                  className="text-detail-large font-semibold dark:text-dark-primary"
+                  to="/profile"
+                >
+                  Profile
+                </Link>
+              </li>
+            )}
           </ul>
         </menu>
       </header>
+
       {/* Header for large Screen */}
       <header className="hidden animated fixed lg:flex justify-between items-center h-[72px] w-full px-[120px] bg-white dark:bg-[#0D0D0D] dark:text-accent shadow-small z-100">
         <img
@@ -232,7 +268,7 @@ export default function HeaderComponent() {
           className="dark:invert-75"
         />
         <nav>
-          <ul className="flex space-x-20 w-full  justify-between items-center">
+          <ul className="flex space-x-20 w-full justify-between items-center">
             <li>
               <Link
                 className="font-semibold text-detail-large dark:text-dark-primary"

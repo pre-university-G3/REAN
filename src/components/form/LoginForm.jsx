@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import style from "./style.module.css";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import { Link, useNavigate } from "react-router";
 import * as Yup from "yup";
@@ -60,20 +59,20 @@ export default function LoginForm() {
 
   if (loading) {
     return (
-      <div className={style.container}>
+      <div className="flex justify-center items-center h-screen">
         <Loader />
       </div>
     );
   }
 
   return (
-    <section className="relative z-1 flex flex-col justify-center dark:bg-dark-bg  px-5 md:px-[60px] lg:px-[120px] h-screen">
+    <section className="relative z-[1] flex flex-col justify-center dark:bg-dark-bg px-5 md:px-[60px] lg:px-[120px] h-screen">
       <div className="flex items-center justify-between">
         <article className="w-[50%] hidden md:flex">
-          <img src={images} alt="piclogin" className="w-full " />
+          <img src={images} alt="piclogin" className="w-full" />
         </article>
 
-        <main className="w-full max-w-lg p-8 bg-white dark:bg-black shadow-small rounded-small">
+        <main className="w-full max-w-lg p-8 bg-white dark:bg-black shadow-sm rounded-2xl">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -91,7 +90,10 @@ export default function LoginForm() {
 
               <section className="mb-6">
                 {/* Email Field */}
-                <label className={style.label} htmlFor="email">
+                <label
+                  htmlFor="email"
+                  className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
                   Email
                 </label>
                 <Field
@@ -99,18 +101,21 @@ export default function LoginForm() {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className={`${style.input} h-[52px] placeholder:text-gray-500 dark:placeholder:text-gray-400`}
+                  className="w-full px-4 py-3 h-[52px] border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                 />
                 <ErrorMessage
                   name="email"
                   component="section"
-                  className={style.error}
+                  className="text-red-500 text-sm mt-1"
                 />
               </section>
 
               <section className="mb-6">
                 {/* Password Field */}
-                <label className={style.label} htmlFor="password">
+                <label
+                  htmlFor="password"
+                  className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
                   Password
                 </label>
                 <div className="relative">
@@ -119,11 +124,11 @@ export default function LoginForm() {
                     name="password"
                     id="password"
                     placeholder="Password"
-                    className={`${style.input} h-[52px] placeholder:text-gray-500 dark:placeholder:text-gray-400`}
+                    className="w-full px-4 py-3 h-[52px] border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   />
                   <button
                     type="button"
-                    onClick={handleShowPassword}
+                    onClick={() => handleShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-300"
                   >
                     {showPassword ? (
@@ -136,7 +141,7 @@ export default function LoginForm() {
                 <ErrorMessage
                   name="password"
                   component="section"
-                  className={style.error}
+                  className="text-red-500 text-sm mt-1"
                 />
               </section>
 
@@ -159,6 +164,7 @@ export default function LoginForm() {
           </Formik>
         </main>
       </div>
+
       {errorModal.open && (
         <ErrorModal
           title={errorModal.title}

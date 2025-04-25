@@ -7,7 +7,7 @@ export default function WhoWeAre() {
     <>
       <section
         id="whoweare"
-        className="z-10 flex flex-col md:flex-row items-center justify-between gap-5 px-5 md:px-[60px] lg:px-[120px]"
+        className="z-10 flex flex-col md:flex-row items-center justify-between gap-5 px-5 md:px-[60px] lg:px-[120px] overflow-hidden"
       >
         <figure className="flex flex-col">
           <img src={"/img/whoweare.svg"} alt="" />
@@ -38,7 +38,7 @@ export default function WhoWeAre() {
         alt=""
       />
       <img
-        className="z-0 absolute translate-y-[300px] translate-x-[700px] bottom-0"
+        className="hidden sm:inline z-0 absolute translate-y-[300px] translate-x-[700px] bottom-0"
         src={"/img/ellipse.svg"}
         alt=""
       />

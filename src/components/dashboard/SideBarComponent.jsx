@@ -17,29 +17,23 @@ import {
 
 export default function SideBarComponent() {
   return (
-    <Sidebar className="h-screen" aria-label="Default sidebar example">
+    <Sidebar className="h-screen fixed" aria-label="Default sidebar example">
       <SidebarItems>
         <SidebarItemGroup>
-          <SidebarItem href="#" icon={HiChartPie}>
+          <SidebarItem href="/dashboard" icon={HiChartPie}>
             Dashboard
-          </SidebarItem>
-          <SidebarItem href="#" icon={HiViewBoards} labelColor="dark">
-            Profile
           </SidebarItem>
           <SidebarItem href="#" icon={HiInbox} label="3">
             Inbox
           </SidebarItem>
-          <SidebarItem href="#" icon={HiUser}>
-            Users
-          </SidebarItem>
           <SidebarItem href="#" icon={HiShoppingBag}>
-            Products
+            Courses
           </SidebarItem>
           <SidebarItem href="#" icon={HiArrowSmRight}>
-            Sign In
+            Create Admin
           </SidebarItem>
           <SidebarItem href="#" icon={HiTable}>
-            Sign Up
+            Log Out
           </SidebarItem>
         </SidebarItemGroup>
       </SidebarItems>

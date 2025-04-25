@@ -1,13 +1,14 @@
 const getCourseById = async (id) => {
   try {
-    const response = await fetch(`/api/api/v1/courses/${id}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await fetch(
+      `https://course-api.istad.co/api/v1/courses/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
@@ -17,7 +18,8 @@ const getCourseById = async (id) => {
       );
     }
 
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error(`Error fetching course with slug ${id}:`, error);
     throw error; // Re-throw to let the caller handle it

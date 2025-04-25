@@ -14,7 +14,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="relative z-10 flex flex-col items-center md:flex-row pt-[50px] sm:pt-[72px] px-5 md:px-[60px] lg:px-[120px] h-fit md:h-screen justify-center ">
+      <section className="relative z-10 flex flex-col items-center md:flex-row pt-[50px] sm:pt-[72px] px-5 md:px-[60px] lg:px-[120px] h-fit md:h-screen overflow-hidden justify-center ">
         <article className="w-full h-screen md:h-fit md:w-[70%] items-center md:items-start flex flex-col text-center md:text-start justify-center gap-5">
           <h1 className="text-h1-small md:text-h1-medium lg:text-h1-large text-accent font-bold dark:text-dark-primary">
             About Us
@@ -44,17 +44,17 @@ export default function HeroSection() {
         <figure className="w-full h-full justify-center md:justify-end items-center overflow-y-visible relative flex">
           <img className="w-[90%]" src={"/img/heroabout.svg"} alt="" />
         </figure>
+        <img
+          className="absolute top-[358px] left-[-148px] z-0 "
+          src={"/img/circle-round.svg"}
+          alt=""
+        />
+        <img
+          className="absolute top-[-100px] translate-x-[250px] lg:translate-x-[800px] z-0 "
+          src={"/img/circle-round.svg"}
+          alt=""
+        />
       </section>
-      <img
-        className="absolute top-[358px] left-[-148px] z-0 "
-        src={"/img/circle-round.svg"}
-        alt=""
-      />
-      <img
-        className="absolute top-[-100px] right-[-250px] z-0 "
-        src={"/img/circle-round.svg"}
-        alt=""
-      />
     </>
   );
 }

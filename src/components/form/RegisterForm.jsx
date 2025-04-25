@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import * as Yup from "yup";
 import Loader from "../../components/loading/Loader";
-import style from "./style.module.css";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import images from "../../../public/img/register.svg";
 import { registerUser } from "../../api/register";
@@ -27,13 +26,7 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required("Gender is required"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
-    .matches(
-      // validation on password input
-      // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#/$%/^&/*])(?=.{6})/,
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.{6})/,
-      "Please use a strong password"
-      // "Password must contain one uppercase, one lowercase, one number, and one specail case character"
-    )
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.{6})/, "Please use a strong password")
     .required("Password is required"),
   confirmedPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Password not match")
@@ -64,20 +57,15 @@ export default function RegisterForm() {
     setShowconfirmedPassword(!showconfirmedPassword);
   };
 
-  // adjust path as needed
-
   const handleSubmit = async (values) => {
     values.biography = values.name;
     console.log(values);
     setLoading(true);
 
     try {
-      await registerUser(values); // now abstracted
-      // setShowVerifyModal(true);
-      const verifyCode = prompt("Enter verification code sent to your email:");
-      alert("Verifying with code: " + verifyCode);
-
-      const data = await verifyUser(values.email, verifyCode); // now abstracted
+      await registerUser(values);
+      <VerifyCode onClick={handleVerifyCode} />;
+      const data = await verifyUser(values.email, verifyCode);
       console.log(data);
       navigate("/login");
     } catch (error) {
@@ -93,7 +81,7 @@ export default function RegisterForm() {
 
   if (loading) {
     return (
-      <div className={style.container}>
+      <div className="h-screen grid place-content-center bg-white text-[color:var(--color-primary)] dark:bg-[color:var(--color-dark-bg)] dark:text-[color:var(--color-dark-primary)]">
         <Loader />
       </div>
     );
@@ -105,27 +93,29 @@ export default function RegisterForm() {
         <img
           src={images}
           alt="pic-register"
-          className=" w-[40%] hidden lg:flex"
+          className="w-[40%] hidden lg:flex"
         />
 
-        <main className="w-full flex justify-center max-w-lg p-8 bg-white shadow-small rounded-small">
+        <main className="w-full flex justify-center max-w-lg p-8 bg-white dark:bg-black shadow-small rounded-small">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
             <Form className="w-full">
-              <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">
+              <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 text-center mb-2">
                 Register
               </h1>
-              <p className="text-gray-500 mb-6 text-center">
+              <p className="text-gray-500 dark:text-gray-300 mb-6 text-center">
                 Register to access all lessons with Rean
               </p>
 
-              {/* Username and Gender Fields */}
               <div className="flex flex-col gap-4 md:flex-row md:gap-6 mb-6">
                 <div className="w-full">
-                  <label className={style.label} htmlFor="name">
+                  <label
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-[color:var(--color-dark-primary)]/70"
+                    htmlFor="name"
+                  >
                     Username
                   </label>
                   <Field
@@ -133,24 +123,27 @@ export default function RegisterForm() {
                     name="name"
                     id="name"
                     placeholder="Username"
-                    className={`${style.input} h-[52px]`}
+                    className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:bg-transparent dark:text-[color:var(--color-dark-primary)] h-[52px]"
                   />
                   <ErrorMessage
                     name="name"
                     component="section"
-                    className={style.error}
+                    className="text-red-500 text-sm mt-3"
                   />
                 </div>
 
                 <div className="w-full">
-                  <label className={style.label} htmlFor="gender">
+                  <label
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-[color:var(--color-dark-primary)]/70"
+                    htmlFor="gender"
+                  >
                     Gender
                   </label>
                   <Field
                     as="select"
                     name="gender"
                     id="gender"
-                    className={`${style.input} h-[52px]`}
+                    className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:bg-transparent dark:text-[color:var(--color-dark-primary)] h-[52px]"
                   >
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
@@ -160,14 +153,16 @@ export default function RegisterForm() {
                   <ErrorMessage
                     name="gender"
                     component="section"
-                    className={style.error}
+                    className="text-red-500 text-sm mt-3"
                   />
                 </div>
               </div>
 
-              {/* Email Field */}
               <div className="mb-6">
-                <label className={style.label} htmlFor="email">
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-[color:var(--color-dark-primary)]/70"
+                  htmlFor="email"
+                >
                   Email
                 </label>
                 <Field
@@ -175,18 +170,20 @@ export default function RegisterForm() {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className={`${style.input} h-[52px]`}
+                  className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:bg-transparent dark:text-[color:var(--color-dark-primary)] h-[52px]"
                 />
                 <ErrorMessage
                   name="email"
                   component="section"
-                  className={style.error}
+                  className="text-red-500 text-sm mt-3"
                 />
               </div>
 
-              {/* Password Field */}
               <div className="mb-6">
-                <label className={style.label} htmlFor="password">
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-[color:var(--color-dark-primary)]/70"
+                  htmlFor="password"
+                >
                   Password
                 </label>
                 <div className="relative">
@@ -195,7 +192,7 @@ export default function RegisterForm() {
                     name="password"
                     id="password"
                     placeholder="Password"
-                    className={`${style.input} h-[52px]`}
+                    className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:bg-transparent dark:text-[color:var(--color-dark-primary)] h-[52px]"
                   />
                   <button
                     type="button"
@@ -212,13 +209,15 @@ export default function RegisterForm() {
                 <ErrorMessage
                   name="password"
                   component="section"
-                  className={style.error}
+                  className="text-red-500 text-sm mt-3"
                 />
               </div>
 
-              {/* Confirm Password Field */}
               <div className="mb-6">
-                <label className={style.label} htmlFor="confirmedPassword">
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-[color:var(--color-dark-primary)]/70"
+                  htmlFor="confirmedPassword"
+                >
                   Confirm Password
                 </label>
                 <div className="relative">
@@ -227,7 +226,7 @@ export default function RegisterForm() {
                     name="confirmedPassword"
                     id="confirmedPassword"
                     placeholder="Confirm Password"
-                    className={`${style.input} h-[52px]`}
+                    className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:bg-transparent dark:text-[color:var(--color-dark-primary)] h-[52px]"
                   />
                   <button
                     type="button"
@@ -244,11 +243,10 @@ export default function RegisterForm() {
                 <ErrorMessage
                   name="confirmedPassword"
                   component="section"
-                  className={style.error}
+                  className="text-red-500 text-sm mt-3"
                 />
               </div>
 
-              {/* Submit Button */}
               <button type="submit" className="large-button w-full">
                 Register
               </button>
@@ -274,33 +272,10 @@ export default function RegisterForm() {
         <VerifyCode
           onClick={(code) => {
             handleVerifyCode(code);
-            setShowVerifyModal(false); // Close modal after input
+            setShowVerifyModal(false);
           }}
         />
       )}
     </section>
   );
 }
-
-// <div className=" flex items-center  from-green-50 to-white px-5 md:px-[60px] lg:px-[120px]  ">
-//       <div className=" w-full ">
-//         <div className="w-full flex  bg-white  rounded-lg p-6  ">
-//           <a
-//             href="/"
-//             className="text-sm text-accent hover:underline mb-4 inline-block"
-//           >
-//             &larr; Back to home
-//           </a>
-//           <div className="flex justify-content-between mt-10 ">
-//             <div className=" w-[50%] bg-red-300 ">
-
-//             </div>
-
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-
-// <main className={`${style.container} w-[50%] bg-red-50`}>
-
-//             </main>

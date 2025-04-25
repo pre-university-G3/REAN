@@ -37,7 +37,7 @@ export function AllCourses() {
   };
 
   const handleCourseClick = (slug) => {
-    navigate(`/coursedetail/${slug}`);
+    navigate(`/course/${slug}`);
   };
 
   // Fetching the categories
@@ -97,54 +97,36 @@ export function AllCourses() {
   };
 
   return (
-    <main className="bg-gradient-to-br from-white to-gray-50">
+    <main className="bg-gradient-to-br from-white to-gray-50 dark:from-[#121212] dark:to-[#1e1e1e]">
       {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-primary/10 to-secondary/10 h-[400px] md:h-[500px] relative overflow-hidden flex flex-col items-center justify-center px-4">
+      <section className="w-full bg-gradient-to-r from-[#2c3e50]/10 to-[#f4c542]/10 dark:from-primary/20 dark:to-[#000000]/20 h-[400px] md:h-[500px] relative overflow-hidden flex flex-col items-center justify-center px-4">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-1/6 w-6 h-6 bg-accent-light rounded-full animate-float"></div>
-          <div className="absolute top-40 right-1/8 w-4 h-4 bg-secondary-light rounded-full animate-float-delay"></div>
-          <div className="absolute bottom-30 left-1/4 w-4 h-4 bg-secondary-light rounded-full animate-float-delay-2"></div>
-          <img
-            className="absolute top-32 left-1/10 w-8 h-8 animate-pulse"
-            src="/images/light.svg"
-            alt="decoration"
-          />
-          <img
-            className="absolute top-12 right-1/6 w-8 h-8 animate-float"
-            src="/images/ufo.svg"
-            alt="decoration"
-          />
+          <div className="absolute top-10 left-1/6 w-6 h-6 bg-[#16a085] rounded-full animate-float dark:bg-[#1abc9c]"></div>
+          <div className="absolute top-40 right-1/8 w-4 h-4 bg-[#f4c542] rounded-full animate-float-delay dark:bg-[#ffd700]"></div>
+          <div className="absolute bottom-30 left-1/4 w-4 h-4 bg-[#f4c542] rounded-full animate-float-delay-2 dark:bg-[#ffd700]"></div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center flex flex-col items-center gap-y-4 max-w-4xl mx-auto relative z-10"
-        >
-          <h1 className="text-primary text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        <motion.div className="text-center flex flex-col items-center gap-y-4 max-w-4xl mx-auto relative z-10">
+          <h1 className="text-[#2c3e50] dark:text-[#e0e0e0] text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
             Discover Your Next{" "}
-            <span className="text-accent">Learning Adventure</span>
+            <span className="text-[#16a085] dark:text-[#1abc9c]">
+              Learning Adventure
+            </span>
           </h1>
 
-          <p className="text-primary/50 text-lg md:text-xl max-w-2xl mx-auto">
-            Unlock a world of knowledge with our expert-led IT courses. Whether
-            you're a beginner or an experienced professional, we have something
-            for everyone.
+          <p className="text-[#2c3e50]/50 dark:text-[#e0e0e0] text-lg md:text-xl max-w-2xl mx-auto">
+            Unlock a world of knowledge with our expert-led IT courses...
           </p>
 
-          <div className="w-full max-w-2xl h-14 px-6 bg-white rounded-lg flex justify-between items-center shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-accent focus-within:shadow-xl">
+          <div className="w-full max-w-2xl h-14 px-6 bg-white dark:bg-[#121212] rounded-lg flex justify-between items-center shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-[#16a085] dark:focus-within:ring-[#1abc9c]">
             <input
-              className="text-base search-input sm:text-lg focus:outline-none w-full h-full bg-transparent placeholder-gray-400 "
+              className="text-base search-input sm:text-lg focus:outline-none w-full h-full bg-transparent placeholder-[#2c3e50]/40 dark:placeholder-[#e0e0e0]/60 text-[#2c3e50] dark:text-white"
               type="search"
               placeholder="Search courses..."
               value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                console.log(searchQuery);
-              }}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button className="text-gray-500 hover:text-primary transition-colors">
+            <button className="text-[#2c3e50]/60 dark:text-[#e0e0e0]/60 hover:text-[#16a085] dark:hover:text-[#1abc9c]">
               <i className="fas fa-magnifying-glass text-lg"></i>
             </button>
           </div>
@@ -158,13 +140,7 @@ export function AllCourses() {
         }`}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl md:text-3xl font-bold text-gray-800 mb-8"
-          >
+          <motion.h2 className="text-2xl md:text-3xl font-bold text-[#2c3e50] dark:text-[#e0e0e0] mb-8">
             Browse by Category
           </motion.h2>
 
@@ -193,7 +169,7 @@ export function AllCourses() {
 
       {/* Popular Courses Section */}
       <section
-        className={`px-4 sm:px-6 md:px-8 lg:px-12 py-12 bg-gray-50 ${
+        className={`px-4 sm:px-6 md:px-8 lg:px-12 py-12 bg-[#f8f9fa] dark:bg-[#121212] ${
           searchQuery ? "hidden" : ""
         }`}
       >
@@ -205,7 +181,7 @@ export function AllCourses() {
             transition={{ duration: 0.5 }}
             className="flex justify-between items-center mb-8"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">
               Popular Courses
             </h2>
             <Button
@@ -215,7 +191,7 @@ export function AllCourses() {
                   inline: "center",
                 });
               }}
-              className="text-primary hover:text-primary-dark font-medium cursor-pointer"
+              className="text-primary dark:text-primary-400 hover:text-primary-dark font-medium cursor-pointer"
             >
               View All
             </Button>
@@ -265,7 +241,7 @@ export function AllCourses() {
             transition={{ duration: 0.5 }}
             className="flex justify-between items-center mb-8"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">
               All Courses
             </h2>
           </motion.div>

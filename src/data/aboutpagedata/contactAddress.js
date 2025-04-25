@@ -3,7 +3,7 @@ const contactAddress = [
     id: 1,
     icon: "/icons/message.svg",
     title: "Chat to dicuss",
-    description: "Have a question? Chat with us live – we’re here to help!",
+    description: "Have a question? Chat us – we’re here to help!",
     value: "kungsovannda@gmail.com",
   },
   {
