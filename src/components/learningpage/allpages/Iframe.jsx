@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Sidebar from "../sideBar";
+import Sidebar from "../sideBar.jsx";
 import HeaderComponent from "../../header/HeaderComponent";
 
 export default function VideoLayout({ children }) {
@@ -9,10 +9,13 @@ export default function VideoLayout({ children }) {
 
   // Check for saved preference or system preference
   useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode');
+    const savedMode = localStorage.getItem("darkMode");
     if (savedMode !== null) {
-      setDarkMode(savedMode === 'true');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setDarkMode(savedMode === "true");
+    } else if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
       setDarkMode(true);
     }
   }, []);
@@ -20,11 +23,11 @@ export default function VideoLayout({ children }) {
   // Apply dark mode class to document
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("darkMode", "true");
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("darkMode", "false");
     }
   }, [darkMode]);
 
@@ -42,7 +45,7 @@ export default function VideoLayout({ children }) {
       <header>
         <HeaderComponent darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </header>
-      
+
       {/* Main content area with sidebar and content */}
       <main className="flex flex-1">
         <div className="flex flex-1">
@@ -50,14 +53,14 @@ export default function VideoLayout({ children }) {
           <section>
             <Sidebar darkMode={darkMode} />
           </section>
-          
+
           {/* Main content area */}
           <div className="flex-1 p-4 sm:p-6 ml-0 lg:ml-64 mt-16">
             {children || (
               <div className="space-y-6 max-w-6xl mx-auto">
                 {/* YouTube Video Section - Responsive */}
-                <section 
-                  ref={videoSectionRef} 
+                <section
+                  ref={videoSectionRef}
                   className="bg-[#2c3e50] dark:bg-gray-800 rounded-lg overflow-hidden shadow-md scroll-mt-16"
                 >
                   <div className="relative w-full aspect-video">
@@ -99,12 +102,11 @@ export default function VideoLayout({ children }) {
 
                 {/* Next Button Section */}
                 <div className="flex justify-between  pt-6">
-
-                  <Link 
-                    to="/html_meta_tag" 
-                    className="bg-accent dark:bg-green-700 hover:bg-green-500 dark:hover:bg-green-600 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors" 
-                  > 
-                      « Back: Meta Tag
+                  <Link
+                    to="/html_meta_tag"
+                    className="bg-accent dark:bg-green-700 hover:bg-green-500 dark:hover:bg-green-600 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors"
+                  >
+                    « Back: Meta Tag
                   </Link>
 
                   <Link
