@@ -98,7 +98,14 @@ export default function VideoLayout({ children }) {
                 </section>
 
                 {/* Next Button Section */}
-                <div className="flex justify-center pt-6"> 
+                <div className="flex justify-between  pt-6">
+
+                  <Link 
+                    to="/learning_page" 
+                    className="bg-accent dark:bg-green-700 hover:bg-green-500 dark:hover:bg-green-600 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors" 
+                  > 
+                      « Back: Intorduction
+                  </Link>
                   <Link
                     to="/html_audio"
                     className="bg-accent hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors"

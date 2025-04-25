@@ -72,104 +72,33 @@ function App() {
             }
           />
 
-          <Route
-            path="/learning_page"
-            element={
-                <LearningPage />
-            }
-          />
-          <Route
-            path="/html_hyperlinks"
-            element={
-                <HtmlHyperlinks />
-            }
-          />
-
-          <Route
-            path="/html_video"
-            element={
-                <Video />
-            }
-          />
-        
-        <Route
-          path="/html_audio"
-          element={
-            <AudioHtml />
-          }
-        />
-
-        <Route
-          path="/html_image"
-          element={
-            <Image />
-          }
-        />
-
-        <Route
-          path="/html_text_formatting"
-          element={
-            <TextFormat />
-          }
-        />
-
-        <Route
-          path="/html_list"
-          element={
-            <List />
-          }
-        />
-
-<Route
-          path="/html_table"
-          element={
-            <Table />
-          }
-        />
-
-<Route
-          path="/html_color"
-          element={
-            <Color />
-          }
-        />
-
-<Route
-          path="/html_span_and_div"
-          element={
-            <SpanAndDiv />
-          }
-        />
-
-<Route
-          path="/html_meta_tag"
-          element={
-            <MetaTag />
-          }
-        />
-
-<Route
-          path="/html_iframes"
-          element={
-            <Iframe />
-          }
-        />
-
-<Route
-          path="/html_button"
-          element={
-            <Button />
-          }
-        />
-
-<Route
-          path="/html_form"
-          element={
-            <Form />
-          }
-        />
+          <Route path="/learning_page" element={<LearningPage />} />
           
+          <Route path="/html_hyperlinks" element={<HtmlHyperlinks />} />
 
+          <Route path="/html_video" element={<Video />} />
+
+          <Route path="/html_audio" element={<AudioHtml />} />
+
+          <Route path="/html_image" element={<Image />} />
+
+          <Route path="/html_text_formatting" element={<TextFormat />} />
+
+          <Route path="/html_list" element={<List />} />
+
+          <Route path="/html_table" element={<Table />} />
+
+          <Route path="/html_color" element={<Color />} />
+
+          <Route path="/html_span_and_div" element={<SpanAndDiv />} />
+
+          <Route path="/html_meta_tag" element={<MetaTag />} />
+
+          <Route path="/html_iframes" element={<Iframe />} />
+
+          <Route path="/html_button" element={<Button />} />
+
+          <Route path="/html_form" element={<Form />} />
         </Route>
 
         <Route

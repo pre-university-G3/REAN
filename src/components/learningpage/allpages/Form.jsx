@@ -103,7 +103,7 @@ export default function VideoLayout({ children }) {
                     to="/html_button"
                     className="bg-accent hover:bg-green-500 text-white text-sm sm:text-base md:text-lg py-2 px-6 md:py-3 md:px-8 rounded-md transition-colors"
                   >
-                    » Back: HTML Button 
+                    « Back: HTML Button 
                   </Link>
                 </div>
               </div>
