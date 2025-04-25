@@ -83,7 +83,7 @@ export default function Sidebar({ darkMode }) {
       {/* Overlay for mobile sidebar */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 lg:hidden z-30"
+          className="fixed inset-0 bg-opacity-50 lg:hidden z-30"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
