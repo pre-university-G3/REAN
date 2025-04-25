@@ -8,7 +8,7 @@ export default function DashboardRoute() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/dashboard"
+          path="/"
           element={
             <Dashboard>
               <ProfileDashboard />

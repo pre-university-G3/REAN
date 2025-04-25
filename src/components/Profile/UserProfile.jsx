@@ -25,8 +25,6 @@ export default function UserProfile() {
 
     fetchData();
   }, []);
-  console.log(user);
-  console.dir(user);
   const navigate = useNavigate();
   const ProfileInfo = [
     { label: "Username", value: `${user.biography}` },

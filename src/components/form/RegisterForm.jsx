@@ -44,7 +44,7 @@ export default function RegisterForm() {
     description: "",
   });
   const [showVerifyModal, setShowVerifyModal] = useState(false);
-  const [verifyCode, setVerifyCode] = useState(0);
+  const [verifyCode, setVerifyCode] = useState(null);
   const handleVerifyCode = (code) => {
     setVerifyCode(code);
     console.log("User entered code:", code);
@@ -57,16 +57,55 @@ export default function RegisterForm() {
     setShowconfirmedPassword(!showconfirmedPassword);
   };
 
+  // const handleSubmit = async (values) => {
+  //   values.biography = values.name;
+  //   console.log(values);
+  //   setLoading(true);
+
+  //   try {
+  //     await registerUser(values);
+  //     const waitForVerify = async () => {
+  //       <VerifyCode onClick={handleVerifyCode} />;
+  //     };
+
+  //     await waitForVerify();
+
+  //     if (verifyCode !== null) {
+  //       await verifyUser(values.email, verifyCode);
+  //     }
+  //     console.log(data);
+  //     navigate("/login");
+  //   } catch (error) {
+  //     setErrorModal({
+  //       open: true,
+  //       title: "Register Error",
+  //       description: error?.message || "Something went wrong! Please try again",
+  //     });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const handleSubmit = async (values) => {
     values.biography = values.name;
-    console.log(values);
     setLoading(true);
 
     try {
       await registerUser(values);
-      <VerifyCode onClick={handleVerifyCode} />;
-      const data = await verifyUser(values.email, verifyCode);
-      console.log(data);
+
+      // Show verification modal and wait for code
+      const code = await new Promise((resolve) => {
+        setLoading(false);
+        setShowVerifyModal(true);
+        // This function will be called by the modal
+        const handleCodeReceived = (code) => {
+          setShowVerifyModal(false);
+          resolve(code);
+        };
+        // Store it temporarily (or use ref)
+        window.tempHandleCode = handleCodeReceived;
+      });
+
+      await verifyUser(values.email, code);
       navigate("/login");
     } catch (error) {
       setErrorModal({
@@ -76,6 +115,7 @@ export default function RegisterForm() {
       });
     } finally {
       setLoading(false);
+      delete window.tempHandleCode; // Clean up
     }
   };
 
@@ -270,10 +310,8 @@ export default function RegisterForm() {
       )}
       {showVerifyModal && (
         <VerifyCode
-          onClick={(code) => {
-            handleVerifyCode(code);
-            setShowVerifyModal(false);
-          }}
+          onClick={(code) => window.tempHandleCode?.(code)}
+          onClose={() => setShowVerifyModal(false)}
         />
       )}
     </section>
