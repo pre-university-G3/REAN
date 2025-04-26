@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Sidebar from "../sideBar";
+import Sidebar from "../SideBarLearningPage";
 import HeaderComponent from "../../header/HeaderComponent";
 
 export default function VideoLayout({ children }) {

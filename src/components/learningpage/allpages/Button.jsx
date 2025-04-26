@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Sidebar from "../sideBar";
+import SideBar from "../SideBarLearningPage";
 import HeaderComponent from "../../header/HeaderComponent";
 
 export default function VideoLayout({ children }) {
@@ -51,7 +51,7 @@ export default function VideoLayout({ children }) {
         <div className="flex flex-1">
           {/* Sidebar on mobile */}
           <section>
-            <Sidebar darkMode={darkMode} />
+            <SideBar darkMode={darkMode} />
           </section>
 
           {/* Main content area */}

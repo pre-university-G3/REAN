@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../components/learningpage/sideBar";
+import Sidebar from "../components/learningpage/SideBarLearningPage";
 import LearningContent from "../components/learningpage/LearningContent";
 import HeaderComponent from "../components/header/HeaderComponent";
 

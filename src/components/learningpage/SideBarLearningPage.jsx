@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 
-export default function Sidebar({ darkMode }) {
+export default function SideBar({ darkMode }) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -43,21 +43,23 @@ export default function Sidebar({ darkMode }) {
   return (
     <>
       {/* Sidebar - Desktop */}
-      <aside 
+      <aside
         className={`fixed top-18 bottom-0 left-0 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 overflow-y-auto transition-all duration-300 z-40 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:top-18 lg:mt-0 sm:top-20 md:top-18`}
       >
         <div className="p-4">
-          <h2 className="text-lg font-bold mb-4 text-gray-800 dark:text-white">HTML Tutorial</h2>
+          <h2 className="text-lg font-bold mb-4 text-gray-800 dark:text-white">
+            HTML Tutorial
+          </h2>
           <ul className="space-y-2">
             {menuItems.map((item) => (
               <li key={item.path}>
-                <Link 
+                <Link
                   className={`block p-2 rounded-md transition-colors ${
                     location.pathname === item.path
-                      ? 'bg-primary text-white hover:bg-primary-dark' 
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      ? "bg-primary text-white hover:bg-primary-dark"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
@@ -82,7 +84,7 @@ export default function Sidebar({ darkMode }) {
 
       {/* Overlay for mobile sidebar */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-opacity-50 lg:hidden z-30"
           onClick={() => setIsOpen(false)}
         ></div>
