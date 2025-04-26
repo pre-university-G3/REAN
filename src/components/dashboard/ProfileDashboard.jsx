@@ -22,19 +22,6 @@ export default function ProfileDashboard() {
   const [table, setTable] = useState(<AllCoursesTable />);
   const [showCreateCourseModal, setShowCreateCourseModal] = useState(false);
 
-  useEffect(() => {
-    const loginMe = async () => {
-      const data = await loginUser({
-        email: "kungsovannda@gmail.com",
-        password: "7Da@rean",
-      });
-      localStorage.setItem("token", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
-    };
-
-    loginMe();
-  });
-
   // Combine courses for display
 
   useEffect(() => {
