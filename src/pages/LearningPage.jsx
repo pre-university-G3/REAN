@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../components/learningpage/sideBar.jsx";
-import LearningContent from "../components/learningpage/LearningContent.jsx";
+import Sidebar from "../components/learningpage/sideBar";
+import LearningContent from "../components/learningpage/LearningContent";
 import HeaderComponent from "../components/header/HeaderComponent";
 
 export default function Layout({ children }) {
