@@ -3,6 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { FaBookOpen, FaBookmark, FaUser, FaHome } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
 import { HiMenu } from "react-icons/hi";
+import getUser from "../../api/getUser";
+import { RiDashboardFill } from "react-icons/ri";
+import Loader from "../loading/Loader";
 
 function NavLink({ to, icon, text, sidebarOpen, className }) {
   const location = useLocation();
@@ -26,6 +29,22 @@ function NavLink({ to, icon, text, sidebarOpen, className }) {
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+  const [user, setUser] = useState();
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchUser = async () => {
+      setLoading(true);
+      const data = await getUser();
+      setUser(data || []);
+      setShowDashboard(String(data?.id) === "680b7b62dae442405053065d");
+      setLoading(false);
+    };
+
+    fetchUser();
+  }, []);
+
+  console.log(showDashboard);
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,6 +56,10 @@ export default function Sidebar() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -74,6 +97,15 @@ export default function Sidebar() {
             to="/saved"
             icon={<FaBookmark />}
             text="Saved"
+            sidebarOpen={sidebarOpen}
+          />
+
+          <NavLink
+            className={`{
+              ${showDashboard ? "" : "hidden"}`}
+            to="/dashboard"
+            icon={<RiDashboardFill />}
+            text="Dashboard"
             sidebarOpen={sidebarOpen}
           />
           <NavLink

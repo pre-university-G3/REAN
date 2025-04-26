@@ -68,8 +68,8 @@ export default function ProfileDashboard() {
   }
 
   return (
-    <main className="flex flex-col h-screen w-screen">
-      <section className="flex px-8 py-8 h-fit">
+    <main className="flex flex-col">
+      <section className="flex h-fit">
         <div className="grid grid-cols-1 gap-4 w-full sm:grid-cols-2 md:grid-cols-4">
           {/* Courses Card */}
           <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
@@ -332,7 +332,7 @@ export default function ProfileDashboard() {
         </div>
       </section>
 
-      <section className="px-8">
+      <section className="mt-4">
         <div className="flex flex-col">
           <div className="border-b-2 border-gray-200 dark:border-neutral-700">
             <nav className="-mb-0.5 flex gap-x-6">

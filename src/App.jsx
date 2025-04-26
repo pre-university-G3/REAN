@@ -32,6 +32,7 @@ import ProtectedRoute from "./route/ProtectedRoute";
 import UserRoute from "./route/UserRoute";
 import getUser from "./api/getUser";
 import DashboardRoute from "./route/DashboardRoute";
+import ProfileDashboard from "./components/dashboard/ProfileDashboard.jsx";
 
 function App() {
   const [user, setUser] = useState();
@@ -43,22 +44,12 @@ function App() {
 
     fetchUser();
   }, []);
-  if (user?.id === "680b7b62dae442405053065d") {
-    return <DashboardRoute />;
-  }
+
   return (
     <BrowserRouter>
       <Routes>
         {/* Protected Route */}
         <Route element={<ProtectedRoute />}>
-          <Route
-            path="/courses"
-            element={
-              <Layout>
-                <AllCourses />
-              </Layout>
-            }
-          />
           <Route
             path="/profile"
             element={
@@ -76,15 +67,23 @@ function App() {
               </ProfilePage>
             }
           />
-
           <Route
-            path="/course/:slug"
+            path="/dashboard"
             element={
-              <Layout>
-                <CourseDetail />
-              </Layout>
+              <ProfilePage>
+                <ProfileDashboard />
+              </ProfilePage>
             }
           />
+
+          {/* <Route
+            path="/courses"
+            element={
+              <Layout>
+                <AllCourses />
+              </Layout>
+            }
+          /> */}
 
           <Route path="/learning_page" element={<LearningPage />} />
 
@@ -114,6 +113,15 @@ function App() {
 
           <Route path="/html_form" element={<Form />} />
         </Route>
+
+        <Route
+          path="/course/:slug"
+          element={
+            <Layout>
+              <CourseDetail />
+            </Layout>
+          }
+        />
 
         <Route
           path="/"
